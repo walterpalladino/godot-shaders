@@ -1,0 +1,17 @@
+res://test/simple_water.gdshader
+res://test/test1.tres
+res://shaders/black_and_white/high_contrast_shader.gdshader
+res://shaders/black_and_white/white_material.tres
+res://shaders/black_and_white/black_material.tres
+res://shaders/black_and_white/green_material.tres
+res://shaders/black_and_white/dark_green_material.tres
+res://shaders/low_poly_water/low_poly_shader.gdshader
+res://shaders/low_poly_water/low_poly_material.tres
+res://shaders/snow_surface/snow_surface_shader.gdshader
+res://shaders/snow_surface/snow_surface_material.tres
+res://shaders/water/water_shader.gdshader
+res://shaders/water/water_material.tres
+res://test/visual-water.gdshader
+res://shaders/black_and_white/black_and_white.tres
+res://shaders/high_contrast/high_contrast_001.tscn
+res://shaders/high_contrast/high_contrast_shader.gdshader

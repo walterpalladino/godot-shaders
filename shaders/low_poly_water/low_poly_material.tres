@@ -1,0 +1,23 @@
+[gd_resource type="ShaderMaterial" load_steps=4 format=3 uid="uid://kmhjhlbsxbnk"]
+
+[ext_resource type="Shader" path="res://shaders/low_poly_water/low_poly_shader.gdshader" id="1_i1for"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_onrc7"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_3da4c"]
+seamless = true
+noise = SubResource("FastNoiseLite_onrc7")
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_i1for")
+shader_parameter/metallic = 0.0
+shader_parameter/roughness = 0.125
+shader_parameter/time_scale = 0.01
+shader_parameter/noise_scale = 10.0
+shader_parameter/height_scale = 0.25
+shader_parameter/color_deep = Color(0.0705882, 0.333333, 0.431373, 1)
+shader_parameter/color_shallow = Color(0, 0.74902, 0.788235, 1)
+shader_parameter/beers_law = 3.0
+shader_parameter/depth_offset = 1.0
+shader_parameter/wave = SubResource("NoiseTexture2D_3da4c")

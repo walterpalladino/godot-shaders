@@ -1,0 +1,9 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://5s25rs28lrbi"]
+
+[ext_resource type="Shader" path="res://shaders/high_contrast/high_contrast_shader.gdshader" id="1_tn03f"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_tn03f")
+shader_parameter/color = Color(0.180392, 0.290196, 0.0431373, 1)
+shader_parameter/cut_off = 0.5

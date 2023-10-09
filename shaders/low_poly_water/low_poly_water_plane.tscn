@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://c5gsq5uefuibs"]
+
+[ext_resource type="Material" uid="uid://kmhjhlbsxbnk" path="res://shaders/low_poly_water/low_poly_material.tres" id="1_m74n1"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_ld0w7"]
+material = ExtResource("1_m74n1")
+size = Vector2(10, 10)
+subdivide_width = 64
+subdivide_depth = 64
+
+[node name="LowPolyWaterPlane" type="MeshInstance3D"]
+cast_shadow = 0
+mesh = SubResource("PlaneMesh_ld0w7")

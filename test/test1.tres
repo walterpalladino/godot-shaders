@@ -1,0 +1,26 @@
+[gd_resource type="VisualShader" load_steps=2 format=3 uid="uid://crobbulw4k35a"]
+
+[sub_resource type="VisualShaderNodeVec4Constant" id="VisualShaderNodeVec4Constant_ftntv"]
+constant = Quaternion(0.2, 0.2, 0.6, 1)
+
+[resource]
+code = "shader_type spatial;
+render_mode blend_mix, depth_draw_opaque, cull_back, diffuse_lambert, specular_schlick_ggx;
+
+
+
+
+void fragment() {
+// Vector4Constant:2
+	vec4 n_out2p0 = vec4(0.200000, 0.200000, 0.600000, 1.000000);
+
+
+// Output:0
+	ALBEDO = vec3(n_out2p0.xyz);
+
+
+}
+"
+nodes/fragment/2/node = SubResource("VisualShaderNodeVec4Constant_ftntv")
+nodes/fragment/2/position = Vector2(-500, 100)
+nodes/fragment/connections = PackedInt32Array(2, 0, 0, 0)
