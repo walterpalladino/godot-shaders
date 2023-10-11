@@ -6,6 +6,12 @@ Some GODOT shaders I'm working on
 - Normal based water
 - Low Poly water
 
+## Terrain Shaders
+- Normal based snow
+
+## Artistic Shaders
+- High contrast shader for retro 70s look
+
 ## Thanks to
 
 I'm using on this examples some free assets from:

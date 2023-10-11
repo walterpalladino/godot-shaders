@@ -13,3 +13,5 @@ res://test/visual-water.gdshader
 res://shaders/high_contrast/high_contrast.tres
 res://models/plane_100x_100.tscn
 res://README.md
+res://shaders/snow_surface/Snow Surface Test 001.tscn
+res://shaders/high_contrast/high_contrast_001.tscn
