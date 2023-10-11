@@ -25,8 +25,8 @@ uniform float riples_strength : hint_range(0.0, 1.0) = 0.25;
 uniform float edge_scale = 0.25;
 uniform float near = 0.1;
 uniform float far = 100.0;
-uniform sampler2D foam_texture ;
-
+uniform sampler2D foam_texture;
+uniform vec3 foam_color : source_color;
 
 uniform sampler2D DEPTH_TEXTURE : hint_depth_texture, filter_linear_mipmap;
 uniform sampler2D SCREEN_TEXTURE : hint_screen_texture, filter_linear_mipmap;
@@ -94,22 +94,21 @@ void fragment() {
 //	ALBEDO = color;
 
 
-	//	Add Foam	
+	//	Add Foam
+	//	1 - get the depth at that screen corrdinate
 	float z_depth = rim(texture(DEPTH_TEXTURE, SCREEN_UV).x);
 	float z_pos = rim(FRAGCOORD.z);
 	float diff = z_depth - z_pos;
-	
-	vec3 foam_color = vec3(1.0);
-	
+	//	2 - create the area mask affected by the foam	
 	float foam_mask = step(edge_scale, diff);
-	foam_mask = smoothstep(0.0, edge_scale, diff);
-	
+	foam_mask = smoothstep(0.0, edge_scale, diff);	
 	foam_mask = 1.0 - foam_mask;
+	//	3 - get the foam color at position
 	float foam_velocity = 0.10;
 	vec2 foam_coords = UV * 10.0 + (TIME * foam_velocity) ;
-	foam_color = color + texture(wave, foam_coords).rgb;
-
-	ALBEDO =  mix(color, foam_color, foam_mask);
+	vec3 foam = color + foam_color * texture(wave, foam_coords).rgb;
+	//	blend the foam based on the masked area
+	ALBEDO =  mix(color, foam, foam_mask);
 	
 	EMISSION = riple;
 	

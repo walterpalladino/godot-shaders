@@ -37,5 +37,6 @@ shader_parameter/riples_strength = 0.5
 shader_parameter/edge_scale = 0.25
 shader_parameter/near = 0.1
 shader_parameter/far = 100.0
+shader_parameter/foam_color = Color(0.839216, 1, 0.976471, 1)
 shader_parameter/wave = SubResource("NoiseTexture2D_3da4c")
 shader_parameter/riples = SubResource("NoiseTexture2D_d314b")

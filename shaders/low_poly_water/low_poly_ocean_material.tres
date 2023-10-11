@@ -1,37 +1,7 @@
-[gd_resource type="ShaderMaterial" load_steps=6 format=3 uid="uid://buafad3huhdai"]
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://buafad3huhdai"]
 
 [ext_resource type="Shader" path="res://shaders/low_poly_water/low_poly_water_shader.gdshader" id="1_ruxts"]
-
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_ug67j"]
-noise_type = 2
-fractal_type = 0
-cellular_distance_function = 1
-
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_g1064"]
-seamless = true
-noise = SubResource("FastNoiseLite_ug67j")
-
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_onrc7"]
-
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_3da4c"]
-seamless = true
-noise = SubResource("FastNoiseLite_onrc7")
 
 [resource]
 render_priority = 0
 shader = ExtResource("1_ruxts")
-shader_parameter/metallic = 0.0
-shader_parameter/roughness = 0.122
-shader_parameter/opacity = 0.8
-shader_parameter/time_scale = 0.04
-shader_parameter/noise_scale = 10.0
-shader_parameter/height_scale = 0.6
-shader_parameter/color_deep = Color(0.0705882, 0.333333, 0.431373, 1)
-shader_parameter/color_shallow = Color(0, 0.74902, 0.788235, 1)
-shader_parameter/beers_law = 3.0
-shader_parameter/depth_offset = 1.0
-shader_parameter/riples_velocity = Vector2(0.05, 0.05)
-shader_parameter/riples_scale = 8.0
-shader_parameter/riples_strength = 0.158
-shader_parameter/wave = SubResource("NoiseTexture2D_3da4c")
-shader_parameter/riples = SubResource("NoiseTexture2D_g1064")
