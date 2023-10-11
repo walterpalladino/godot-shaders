@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://btms15jhxe58v"]
+
+[ext_resource type="PackedScene" uid="uid://b8fn10yy6ct8s" path="res://models/hex-grid.glb" id="1_d3ytj"]
+[ext_resource type="Material" uid="uid://buafad3huhdai" path="res://shaders/low_poly_water/low_poly_ocean_material.tres" id="2_111gx"]
+
+[node name="hex-grid" instance=ExtResource("1_d3ytj")]
+
+[node name="Hex Grid" parent="." index="0"]
+surface_material_override/0 = ExtResource("2_111gx")

@@ -1,0 +1,37 @@
+[gd_resource type="ShaderMaterial" load_steps=6 format=3 uid="uid://kmhjhlbsxbnk"]
+
+[ext_resource type="Shader" path="res://shaders/low_poly_water/low_poly_water_shader.gdshader" id="1_i1for"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_b8fpr"]
+noise_type = 2
+fractal_type = 0
+cellular_distance_function = 1
+cellular_jitter = 1.0
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_d314b"]
+seamless = true
+noise = SubResource("FastNoiseLite_b8fpr")
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_onrc7"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_3da4c"]
+seamless = true
+noise = SubResource("FastNoiseLite_onrc7")
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_i1for")
+shader_parameter/metallic = 0.0
+shader_parameter/roughness = 0.125
+shader_parameter/time_scale = 0.01
+shader_parameter/noise_scale = 10.0
+shader_parameter/height_scale = 0.25
+shader_parameter/color_deep = Color(0.0431373, 0.243137, 0.321569, 1)
+shader_parameter/color_shallow = Color(0, 0.74902, 0.788235, 1)
+shader_parameter/beers_law = 3.0
+shader_parameter/depth_offset = 1.0
+shader_parameter/riples_velocity = Vector2(0.05, 0.05)
+shader_parameter/riples_scale = 3.0
+shader_parameter/riples_strength = 0.25
+shader_parameter/wave = SubResource("NoiseTexture2D_3da4c")
+shader_parameter/riples = SubResource("NoiseTexture2D_d314b")
