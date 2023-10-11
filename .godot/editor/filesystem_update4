@@ -1,4 +1,4 @@
-res://models/hex_grid.tscn
+res://shaders/low_poly_water/Low Poly Water Test 001.tscn
 res://test/simple_water.gdshader
 res://test/test1.tres
 res://shaders/high_contrast/high_contrast_shader.gdshader
@@ -11,8 +11,3 @@ res://shaders/water/water_material.tres
 res://shaders/low_poly_water/low_poly_ocean_material.tres
 res://test/visual-water.gdshader
 res://shaders/high_contrast/high_contrast.tres
-res://models/plane_100x_100.tscn
-res://README.md
-res://shaders/snow_surface/Snow Surface Test 001.tscn
-res://shaders/high_contrast/high_contrast_001.tscn
-res://shaders/low_poly_water/Low Poly Water Test 001.tscn
