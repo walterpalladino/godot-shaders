@@ -1,13 +1,16 @@
-res://shaders/low_poly_water/Low Poly Water Test 001.tscn
+res://shaders/crosshatching/spatial/birch_tree_1.tscn
 res://test/simple_water.gdshader
-res://test/test1.tres
-res://shaders/high_contrast/high_contrast_shader.gdshader
-res://shaders/low_poly_water/low_poly_water_shader.gdshader
-res://shaders/low_poly_water/low_poly_water_material.tres
-res://shaders/snow_surface/snow_surface_shader.gdshader
-res://shaders/snow_surface/snow_surface_material.tres
-res://shaders/water/water_shader.gdshader
-res://shaders/water/water_material.tres
-res://shaders/low_poly_water/low_poly_ocean_material.tres
 res://test/visual-water.gdshader
+res://test/test1.tres
 res://shaders/high_contrast/high_contrast.tres
+res://shaders/water/water_shader.gdshader
+res://shaders/snow_surface/snow_surface_shader.gdshader
+res://shaders/low_poly_water/low_poly_water_shader.gdshader
+res://shaders/high_contrast/high_contrast_shader.gdshader
+res://shaders/crosshatching/spatial/crosshatching_spatial.gdshader
+res://shaders/crosshatching/spatial/crosshatching_test.tscn
+res://shaders/crosshatching/spatial/green_crosshatching_material.tres
+res://shaders/crosshatching/canvas/canvas_crosshatching_test.tscn
+res://shaders/crosshatching/canvas/fx.tscn
+res://shaders/crosshatching/canvas/fx_crosshatch_material.tres
+res://shaders/crosshatching/canvas/fx_crosshatch_shader.gdshader

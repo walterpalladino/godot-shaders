@@ -5,3 +5,20 @@
 [resource]
 render_priority = 0
 shader = ExtResource("1_ruxts")
+shader_parameter/metallic = 0.0
+shader_parameter/roughness = 0.02
+shader_parameter/opacity = 0.8
+shader_parameter/time_scale = 0.025
+shader_parameter/noise_scale = 10.0
+shader_parameter/height_scale = 0.15
+shader_parameter/color_deep = null
+shader_parameter/color_shallow = null
+shader_parameter/beers_law = 2.0
+shader_parameter/depth_offset = -0.75
+shader_parameter/riples_velocity = Vector2(0.1, 0.1)
+shader_parameter/riples_scale = 1.0
+shader_parameter/riples_strength = 0.25
+shader_parameter/edge_scale = 0.25
+shader_parameter/near = 0.1
+shader_parameter/far = 100.0
+shader_parameter/foam_color = null

@@ -37,11 +37,14 @@ varying float height;
 varying vec3 world_position;
 varying vec3 v_view_pos;
 
-
+//	Fresnel will adjust the color of albedo depending 
+//	on the angle the camera is viewing the mesh.
 float fresnel (float amount, vec3 normal, vec3 view) {
 	return pow((1.0 - clamp(dot(normalize(normal), normalize(view)), 0.0, 1.0)), amount);	
 }
 
+//	Calculates impact scaling depth buffer data against
+//	near / far planes
 float rim(float depth){
 	depth = 2.0 * depth - 1.0;
 	return near * far / (far + depth * (near - far));
@@ -104,7 +107,8 @@ void fragment() {
 	foam_mask = smoothstep(0.0, edge_scale, diff);	
 	foam_mask = 1.0 - foam_mask;
 	//	3 - get the foam color at position
-	float foam_velocity = 0.10;
+	float foam_velocity = 0.00010 * sin(TIME * 1.0);
+	//vec2 foam_coords_deform = vec2(1.0 * sin(TIME), 1.0 * sin(TIME));
 	vec2 foam_coords = UV * 10.0 + (TIME * foam_velocity) ;
 	vec3 foam = color + foam_color * texture(wave, foam_coords).rgb;
 	//	blend the foam based on the masked area
