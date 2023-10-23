@@ -1,12 +1,12 @@
 [gd_resource type="ShaderMaterial" load_steps=3 format=3 uid="uid://qbqg30huyn1a"]
 
 [ext_resource type="Shader" path="res://shaders/crosshatching/canvas/fx_crosshatch_shader.gdshader" id="1_yc7ri"]
-[ext_resource type="Texture2D" uid="uid://cmiy3kwjribjl" path="res://shaders/crosshatching/pencil.jpg" id="2_4r5op"]
+[ext_resource type="Texture2D" uid="uid://kxm5uev8yq21" path="res://shaders/crosshatching/crosshatching.png" id="2_abgff"]
 
 [resource]
 render_priority = 0
 shader = ExtResource("1_yc7ri")
-shader_parameter/pattern_tiling = Vector2(1, 1)
+shader_parameter/pattern_tiling = Vector2(6, 6)
 shader_parameter/threshold_1 = 0.75
 shader_parameter/threshold_2 = 0.5
 shader_parameter/threshold_3 = 0.25
@@ -15,4 +15,4 @@ shader_parameter/input_brightness = 1.149
 shader_parameter/input_contrast = 1.0
 shader_parameter/output_brightness = 0.494
 shader_parameter/output_contrast = 1.149
-shader_parameter/texture_pattern = ExtResource("2_4r5op")
+shader_parameter/texture_pattern = ExtResource("2_abgff")

@@ -1,7 +1,9 @@
-[gd_scene load_steps=13 format=3 uid="uid://d0esbojl4fusb"]
+[gd_scene load_steps=15 format=3 uid="uid://d0esbojl4fusb"]
 
 [ext_resource type="Material" uid="uid://qbqg30huyn1a" path="res://shaders/crosshatching/canvas/fx_crosshatch_material.tres" id="1_lp2us"]
-[ext_resource type="PackedScene" uid="uid://c7if34iqlsf27" path="res://models/Ultimate Stylized Nature/BirchTree_1.gltf" id="2_fol4x"]
+[ext_resource type="PackedScene" uid="uid://qbyn3jihphc" path="res://models/Ultimate Nature Pack/models/PalmTree_1.fbx" id="1_vdkl8"]
+[ext_resource type="PackedScene" uid="uid://dkj8u0rh01o0l" path="res://models/Ultimate Nature Pack/models/BirchTree_1.fbx" id="2_8o1qj"]
+[ext_resource type="PackedScene" uid="uid://xlv7cdj11dmm" path="res://models/Ultimate Nature Pack/models/Bush_1.fbx" id="4_o0u36"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_m8qa7"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -43,6 +45,12 @@ size = Vector2(2, 2)
 
 [node name="canvas_crosshatching_test" type="Node3D"]
 
+[node name="PalmTree_1" parent="." instance=ExtResource("1_vdkl8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.85386, 0, -1.33347)
+
+[node name="BirchTree_1" parent="." instance=ExtResource("2_8o1qj")]
+transform = Transform3D(0.632908, 0, -0.774227, 0, 1, 0, 0.774227, 0, 0.632908, -1.70537, 0, 1.33508)
+
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.749999, -0.43301, 0, 0, 0)
 shadow_enabled = true
@@ -70,5 +78,5 @@ mesh = SubResource("QuadMesh_oq4mf")
 skeleton = NodePath("../..")
 surface_material_override/0 = ExtResource("1_lp2us")
 
-[node name="BirchTree_1" parent="." instance=ExtResource("2_fol4x")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.16889, 0, 0)
+[node name="Bush_1" parent="." instance=ExtResource("4_o0u36")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.49172, 0, -1.39592)

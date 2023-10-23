@@ -1,5 +1,5 @@
 ea4bc82a6ad023ab7ee23ee620429895
-::res://::1697990875
+::res://::1698076642
 icon.svg::CompressedTexture2D::4064411834310420806::1696707673::1696707677::1::::<><>::
 README.md::TextFile::-1::1697024890::0::1::::<><>::
 ::res://models/::1697024683
@@ -159,7 +159,7 @@ Willow_Snow_5.fbx::PackedScene::3897262145225614341::1561846862::1696771556::1::
 WoodLog.fbx::PackedScene::9133224673310923519::1561846862::1696771556::1::::<><>::
 WoodLog_Moss.fbx::PackedScene::8255142844135674034::1561846864::1696771556::1::::<><>::
 WoodLog_Snow.fbx::PackedScene::8451748701426889771::1561846864::1696771556::1::::<><>::
-::res://models/Ultimate Stylized Nature/::1696770953
+::res://models/Ultimate Stylized Nature/::1698076714
 BirchTree_1.gltf::PackedScene::7035754509306856202::1696770846::1696770889::1::::<><>::
 BirchTree_2.gltf::PackedScene::6968705438047400081::1696770846::1696770889::1::::<><>::
 BirchTree_3.gltf::PackedScene::7369146931035203482::1696770846::1696770889::1::::<><>::
@@ -171,6 +171,7 @@ Bush_Large.gltf::PackedScene::127600576610912606::1696770846::1696770890::1::::<
 Bush_Large_Flowers.gltf::PackedScene::5526629938952720660::1696770846::1696770890::1::::<><>::
 Bush_Small.gltf::PackedScene::2344646013514538516::1696770846::1696770890::1::::<><>::
 Bush_Small_Flowers.gltf::PackedScene::4751078684799660617::1696770846::1696770890::1::::<><>::
+crosshatching.png::CompressedTexture2D::5924941235116700651::1698076714::1698076688::1::::<><>::
 DeadTree_1.gltf::PackedScene::3973747017431489468::1696770846::1696770890::1::::<><>::
 DeadTree_2.gltf::PackedScene::3607446219933738882::1696770846::1696770890::1::::<><>::
 DeadTree_3.gltf::PackedScene::7427099584436155543::1696770846::1696770890::1::::<><>::
@@ -224,45 +225,51 @@ Rock_3.gltf::PackedScene::3164164175471165322::1696770846::1696770889::1::::<><>
 Rock_4.gltf::PackedScene::2913698602016446376::1696770846::1696770889::1::::<><>::
 Rock_5.gltf::PackedScene::2539133827252864034::1696770846::1696770889::1::::<><>::
 ::res://shaders/::1697974194
-::res://shaders/crosshatching/::1697990875
+::res://shaders/crosshatching/::1698076742
+crosshatching.png::CompressedTexture2D::750152360099469408::1698076580::1698076765::1::::<><>::
 pencil.jpg::CompressedTexture2D::5633130282781952177::1653422157::1697974846::1::::<><>::
-::res://shaders/crosshatching/spatial/::1697990875
+::res://shaders/crosshatching/canvas/::1697996242
+canvas_crosshatching_test.tscn::PackedScene::8923336094478958541::1697996235::0::1::::<><>::uid://qbqg30huyn1a::::res://shaders/crosshatching/canvas/fx_crosshatch_material.tres<>uid://c7if34iqlsf27::::res://models/Ultimate Stylized Nature/BirchTree_1.gltf
+fx.tscn::PackedScene::6096871401928830023::1697993110::0::1::::<><>::uid://qbqg30huyn1a::::res://shaders/crosshatching/canvas/fx_crosshatch_material.tres
+fx_crosshatch_material.tres::ShaderMaterial::1126069572229919048::1697996153::0::1::::<><>::res://shaders/crosshatching/canvas/fx_crosshatch_shader.gdshader<>uid://cmiy3kwjribjl::::res://shaders/crosshatching/pencil.jpg
+fx_crosshatch_shader.gdshader::Shader::-1::1697996242::0::1::::<><>::
+::res://shaders/crosshatching/spatial/::1697996242
 birch_tree_1.tscn::PackedScene::94446184274011739::1697990946::0::1::::<><>::uid://dkj8u0rh01o0l::::res://models/Ultimate Nature Pack/models/BirchTree_1.fbx<>uid://dov2yuu34fhd5::::res://shaders/crosshatching/spatial/white_crosshatching_material.tres<>uid://cukxjhr7y4nq5::::res://shaders/crosshatching/spatial/black_crosshatching_material.tres<>uid://7grrh8jw6oc1::::res://shaders/crosshatching/spatial/dark_green_crosshatching_material.tres<>uid://cgcxsrow3ugd1::::res://shaders/crosshatching/spatial/green_crosshatching_material.tres
 black_crosshatching_material.tres::ShaderMaterial::6198674976078507418::1697990837::0::1::::<><>::res://shaders/crosshatching/spatial/crosshatching_spatial.gdshader<>uid://cmiy3kwjribjl
-crosshatching_spatial.gdshader::Shader::-1::1697991165::0::1::::<><>::
+crosshatching_spatial.gdshader::Shader::-1::1697996242::0::1::::<><>::
 crosshatching_test.tscn::PackedScene::7701701302854146934::1697991165::0::1::::<><>::uid://bp6t4db3u0pa7::::res://shaders/crosshatching/spatial/ground_material.tres<>uid://cgcxsrow3ugd1::::res://shaders/crosshatching/spatial/green_crosshatching_material.tres<>uid://cmn1bo02ixm8d::::res://shaders/crosshatching/spatial/dark_blue_cube_material.tres<>uid://cukxjhr7y4nq5::::res://shaders/crosshatching/spatial/black_crosshatching_material.tres<>uid://bl0rrf56h8bn::::res://shaders/crosshatching/spatial/birch_tree_1.tscn
 dark_blue_cube_material.tres::ShaderMaterial::5643525604636579309::1697990837::0::1::::<><>::res://shaders/crosshatching/spatial/crosshatching_spatial.gdshader<>uid://cmiy3kwjribjl
 dark_green_crosshatching_material.tres::ShaderMaterial::2259492229396357710::1697990837::0::1::::<><>::res://shaders/crosshatching/spatial/crosshatching_spatial.gdshader<>uid://cmiy3kwjribjl
 green_crosshatching_material.tres::ShaderMaterial::5199532735408436920::1697991157::0::1::::<><>::res://shaders/crosshatching/spatial/crosshatching_spatial.gdshader<>uid://cmiy3kwjribjl::::res://shaders/crosshatching/pencil.jpg
 ground_material.tres::ShaderMaterial::3504454619940018084::1697990837::0::1::::<><>::res://shaders/crosshatching/spatial/crosshatching_spatial.gdshader<>uid://cmiy3kwjribjl
 white_crosshatching_material.tres::ShaderMaterial::8186941095379665432::1697990837::0::1::::<><>::res://shaders/crosshatching/spatial/crosshatching_spatial.gdshader
-::res://shaders/high_contrast/::1697990837
+::res://shaders/high_contrast/::1697996242
 black_material.tres::ShaderMaterial::6905914661610257262::1696892630::0::1::::<><>::res://shaders/high_contrast/high_contrast_shader.gdshader
 dark_green_material.tres::ShaderMaterial::2144517963310628406::1696892630::0::1::::<><>::res://shaders/high_contrast/high_contrast_shader.gdshader
 green_material.tres::ShaderMaterial::5245323524532393200::1696892630::0::1::::<><>::res://shaders/high_contrast/high_contrast_shader.gdshader
 high_contrast.tres::VisualShader::1151519501977415421::1697990946::0::1::::<><>::
 high_contrast_1.tscn::PackedScene::8576143200823456971::1696772568::0::1::::<><>::uid://dkj8u0rh01o0l
 high_contrast_001.tscn::PackedScene::3012505489519928476::1697025203::0::1::::<><>::uid://dugl3ckr6urn4
-high_contrast_shader.gdshader::Shader::-1::1697991165::0::1::::<><>::
+high_contrast_shader.gdshader::Shader::-1::1697996242::0::1::::<><>::
 white_material.tres::ShaderMaterial::309557092035328177::1696892630::0::1::::<><>::res://shaders/high_contrast/high_contrast_shader.gdshader
-::res://shaders/low_poly_water/::1697990837
+::res://shaders/low_poly_water/::1697996242
 Low Poly Water Test 001.tscn::PackedScene::6480331065797934822::1697118985::0::1::::<><>::uid://c5gsq5uefuibs
 low_poly_ocean_material.tres::ShaderMaterial::3790501342587208428::1697974227::0::1::::<><>::res://shaders/low_poly_water/low_poly_water_shader.gdshader
 low_poly_water_material.tres::ShaderMaterial::727102445250245120::1697974227::0::1::::<><>::res://shaders/low_poly_water/low_poly_water_shader.gdshader
 low_poly_water_plane.tscn::PackedScene::6892016028409618372::1696971465::0::1::::<><>::uid://kmhjhlbsxbnk
-low_poly_water_shader.gdshader::Shader::-1::1697991165::0::1::::<><>::
-::res://shaders/snow_surface/::1697990837
+low_poly_water_shader.gdshader::Shader::-1::1697996242::0::1::::<><>::
+::res://shaders/snow_surface/::1697996242
 Snow Surface Test 001.tscn::PackedScene::6316148658382673662::1697024798::0::1::::<><>::uid://bjjmc6qmfpjy3
 snow_surface_material.tres::ShaderMaterial::3037433505216170552::1697974227::0::1::::<><>::res://shaders/snow_surface/snow_surface_shader.gdshader
-snow_surface_shader.gdshader::Shader::-1::1697991165::0::1::::<><>::
-::res://shaders/water/::1697990837
+snow_surface_shader.gdshader::Shader::-1::1697996242::0::1::::<><>::
+::res://shaders/water/::1697996242
 Water Test 001.tscn::PackedScene::967350478460896875::1697117592::0::1::::<><>::uid://dxnhd4uksigw7
 water_material.tres::ShaderMaterial::8340392947436663049::1697974227::0::1::::<><>::res://shaders/water/water_shader.gdshader
 water_plane.tscn::PackedScene::8800874296439877956::1696875448::0::1::::<><>::uid://dq3fb2u2sb8s0
-water_shader.gdshader::Shader::-1::1697991165::0::1::::<><>::
-::res://test/::1697990837
-simple_water.gdshader::Shader::-1::1697991165::0::1::::<><>::
+water_shader.gdshader::Shader::-1::1697996242::0::1::::<><>::
+::res://test/::1697996242
+simple_water.gdshader::Shader::-1::1697996242::0::1::::<><>::
 test1.tres::VisualShader::5995016569074871820::1697990946::0::1::::<><>::
 test1.tscn::PackedScene::6500363025123084408::1696716267::0::1::::<><>::res://test/simple_water.gdshader<>uid://crobbulw4k35a
 Test Sky.tscn::PackedScene::5409851884339450698::1696892349::0::1::::<><>::
-visual-water.gdshader::Shader::-1::1697991165::0::1::::<><>::
+visual-water.gdshader::Shader::-1::1697996242::0::1::::<><>::
