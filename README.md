@@ -11,6 +11,7 @@ Some GODOT shaders I'm working on
 
 ## Artistic Shaders
 - High contrast shader for retro 70s look
+- Crosshatching shader
 
 ## Thanks to
 
