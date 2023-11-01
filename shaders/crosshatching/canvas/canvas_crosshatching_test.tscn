@@ -70,7 +70,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.71653, 0.5, -0.52426)
 mesh = SubResource("CylinderMesh_gcw2b")
 
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, -3.48787e-16, 3.48787e-16, 2.22945e-16, 0.950358, 0.311158, -4.4e-16, -0.311158, 0.950358, 2.08165e-12, 1.211, 3)
+transform = Transform3D(1, -3.48787e-16, 3.48786e-16, 2.22945e-16, 0.950358, 0.311158, -4.4e-16, -0.311158, 0.950358, 2.08165e-12, 1.701, 4.6152)
 
 [node name="fx_projection_canvas" type="MeshInstance3D" parent="Camera3D"]
 transform = Transform3D(1, 3.48787e-16, -3.48787e-16, -3.48787e-16, 1, 3.48787e-16, 3.48787e-16, -3.48787e-16, 1, 2.08165e-12, 2.08165e-12, -0.1)
