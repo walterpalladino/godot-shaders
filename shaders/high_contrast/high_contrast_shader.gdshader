@@ -3,13 +3,14 @@
 
 shader_type spatial;
 
-render_mode unshaded;
+render_mode unshaded, depth_draw_always, cull_back;
 
 
-uniform sampler2D material_texture ; 
+uniform sampler2D material_texture : hint_default_white; 
+uniform float alpha_cut_off : hint_range(0.0, 1.0) = 0.5;
 uniform vec3 color : source_color;
 uniform vec3 dark_color : source_color;
-uniform float cut_off : hint_range(0.0, 1.0) = 0.5;
+uniform float color_cut_off : hint_range(0.0, 1.0) = 0.5;
 uniform bool invert_direction = false;
 
 uniform bool use_custom_direction = false;
@@ -29,16 +30,27 @@ void fragment() {
 	_dot = clamp(_dot, 0.0, 1.0);
 
 	vec3 _color = dark_color;	
-	if (_dot < cut_off) {
+	if (_dot < color_cut_off) {
 		_color = color * texture_color.rgb;
 	}
 	
 	if (invert_direction) {
 		_color = color * texture_color.rgb;
-		if (_dot < cut_off) {
-		_color = dark_color;
-	}
+		if (_dot < color_cut_off) {
+			_color = dark_color;
+		}
 	}
 	
 	ALBEDO = _color;
+	
+	float alpha = texture_color.a;
+	if (alpha < alpha_cut_off) {
+		alpha = 0.0;
+	}
+	else
+	{
+		alpha = 1.0;
+	}
+	ALPHA = alpha;
+	
 }

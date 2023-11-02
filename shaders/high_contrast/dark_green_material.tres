@@ -5,9 +5,10 @@
 [resource]
 render_priority = 0
 shader = ExtResource("1_tn03f")
+shader_parameter/alpha_cut_off = 1.0
 shader_parameter/color = Color(0.180392, 0.290196, 0.0431373, 1)
 shader_parameter/dark_color = null
-shader_parameter/cut_off = 0.5
+shader_parameter/color_cut_off = 0.5
 shader_parameter/invert_direction = true
 shader_parameter/use_custom_direction = true
 shader_parameter/custom_direction = Vector3(0.1, -0.25, 1)
