@@ -12,12 +12,19 @@ uniform vec3 dark_color : source_color;
 uniform float cut_off : hint_range(0.0, 1.0) = 0.5;
 uniform bool invert_direction = false;
 
+uniform bool use_custom_direction = false;
+uniform vec3 custom_direction = vec3(0.0, 0.0, 1.0);
+
 void fragment() {
 
 	vec4 texture_color = texture(material_texture, UV);
 
 	vec3 world_view = (INV_VIEW_MATRIX * vec4(VIEW, 0.0)).xyz;	
-	
+
+	if (use_custom_direction) {
+		world_view = normalize(custom_direction);
+	}
+
 	float _dot = dot(normalize(world_view), normalize(NORMAL));
 	_dot = clamp(_dot, 0.0, 1.0);
 

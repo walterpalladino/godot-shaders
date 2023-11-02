@@ -10,4 +10,6 @@ shader_parameter/color = Color(0.635294, 0.635294, 0.635294, 1)
 shader_parameter/dark_color = null
 shader_parameter/cut_off = 0.5
 shader_parameter/invert_direction = true
+shader_parameter/use_custom_direction = false
+shader_parameter/custom_direction = Vector3(0, 0, 1)
 shader_parameter/material_texture = ExtResource("2_7k2wd")

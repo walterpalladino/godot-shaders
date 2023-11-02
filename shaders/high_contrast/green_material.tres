@@ -9,3 +9,5 @@ shader_parameter/color = Color(0.180392, 0.45098, 0.0627451, 1)
 shader_parameter/dark_color = null
 shader_parameter/cut_off = 0.5
 shader_parameter/invert_direction = true
+shader_parameter/use_custom_direction = false
+shader_parameter/custom_direction = Vector3(0, 0, 1)
