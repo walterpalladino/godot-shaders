@@ -13,6 +13,7 @@ uniform vec3 dark_color : source_color;
 uniform float color_cut_off : hint_range(0.0, 1.0) = 0.5;
 uniform bool invert_direction = false;
 
+//	Light direction: coming from camera or from a point in space
 uniform bool use_custom_direction = false;
 uniform vec3 custom_direction = vec3(0.0, 0.0, 1.0);
 
@@ -26,6 +27,8 @@ void fragment() {
 		world_view = normalize(custom_direction);
 	}
 
+	//	Get the angle between the surface and the light
+	//	to calculate how much the light affects it
 	float _dot = dot(normalize(world_view), normalize(NORMAL));
 	_dot = clamp(_dot, 0.0, 1.0);
 
@@ -43,6 +46,7 @@ void fragment() {
 	
 	ALBEDO = _color;
 	
+	//	In case the texture has transparency
 	float alpha = texture_color.a;
 	if (alpha < alpha_cut_off) {
 		alpha = 0.0;

@@ -1,15 +1,10 @@
 //	Inspired by https://godotshaders.com/shader/pencil-screen-space-shader/
-//	and others
-//	The shader makes a cut based on the camera direction.
-//	the invert_direction flag is used to invert the direction from left to right.
 
 shader_type spatial;
-
-render_mode unshaded, depth_draw_always, cull_back;
-
+//render_mode unshaded;
 
 uniform vec3 albedo : source_color = vec3(1.0) ;
-uniform sampler2D material_texture : hint_default_white; 
+uniform sampler2D texture_material;
 
 uniform sampler2D texture_pattern;
 uniform vec2 pattern_tiling = vec2(1.0, 1.0);
@@ -18,14 +13,6 @@ uniform float threshold_2: hint_range(0.0, 1.0) = 0.50;
 uniform float threshold_3: hint_range(0.0, 1.0) = 0.25;
 uniform float threshold_4: hint_range(0.0, 1.0) = 0.05;
 
-
-//	Light direction: coming from camera or from a point in space
-uniform bool invert_direction = false;
-uniform bool use_custom_direction = false;
-uniform vec3 custom_direction = vec3(0.0, 0.0, 1.0);
-
-uniform float hatch_brightness : hint_range(0.0, 2.0)= 1.0;
-uniform float hatch_contrast : hint_range(0.0, 5.0)= 1.0;
 
 const float C2_SQRT2 = 0.707106781;
 const mat2 ROT_45 = mat2(vec2(C2_SQRT2, -C2_SQRT2), vec2(C2_SQRT2, C2_SQRT2));
@@ -71,39 +58,18 @@ vec4 getPatternColor(vec2 uv, float intensity)
 
 void fragment() {
 
-	vec3 world_view = (INV_VIEW_MATRIX * vec4(VIEW, 0.0)).xyz;	
-
-	if (use_custom_direction) {
-		world_view = normalize(custom_direction);
-	}
-
-	//	Get the angle between the surface and the light
-	//	to calculate how much the light affects it
-	float _dot = dot(normalize(world_view), normalize(NORMAL));
-	_dot = clamp(_dot, 0.0, 1.0);
-	
-	if (invert_direction)
-		_dot = 1.0 - _dot;
-
 	vec3 vertex_color = albedo * brightness;
 	float intensity = getIntensity(vertex_color);
 	//vec3 color = vec3(intensity);
 	
-	vec4 pattern_color = getPatternColor(SCREEN_UV, intensity * _dot);
+	vec4 pattern_color = getPatternColor(SCREEN_UV, intensity);
 	//vec3 final_color = mix(color.rgb, vertex_color, 0.750);
 	//vec3 final_color = color.rgb + vertex_color * 0.5;
 	vec3 color = pattern_color.rgb;
 	//ALBEDO = color;
 	//ALBEDO = vec3(intensity);
-	//vec4 background_color = vec4(0.0, 0.0, 0.0, 1.0);
-	vec3 pattern_color_rgb = pattern_color.rgb;
-	
-	pattern_color_rgb = mix(vec3(0.0), pattern_color_rgb, hatch_brightness);
-
-	pattern_color_rgb = mix(vec3(0.5), pattern_color_rgb, hatch_contrast);;
-	pattern_color_rgb = clamp(pattern_color_rgb, 0.0, 1.0);
-	
-	ALBEDO = pattern_color_rgb * albedo;//(intensity + 0.25);
+	vec4 background_color = vec4(0.0, 0.0, 0.0, 1.0);
+	ALBEDO = pattern_color.rgb * (intensity + 0.25);
 	//ALBEDO = pattern_color.rgb * (intensity) * albedo;
 //	ALBEDO = pattern_color.rgb;
 	METALLIC = 0.0;
@@ -112,3 +78,10 @@ void fragment() {
 	//ALBEDO = albedo;
 }
 
+/*
+void light() {
+//    DIFFUSE_LIGHT = albedo;
+	//DIFFUSE_LIGHT += dot(NORMAL, LIGHT) * ATTENUATION * ALBEDO;
+	DIFFUSE_LIGHT += dot(NORMAL, LIGHT) * ATTENUATION;
+}
+*/
