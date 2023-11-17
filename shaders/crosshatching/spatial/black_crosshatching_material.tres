@@ -15,5 +15,6 @@ shader_parameter/threshold_4 = 0.05
 shader_parameter/invert_direction = false
 shader_parameter/use_custom_direction = false
 shader_parameter/custom_direction = Vector3(0, 0, 1)
+shader_parameter/hatch_brightness = 1.0
 shader_parameter/hatch_contrast = 1.0
 shader_parameter/texture_pattern = ExtResource("2_d0ppt")
