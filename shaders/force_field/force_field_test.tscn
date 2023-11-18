@@ -1,6 +1,7 @@
-[gd_scene load_steps=9 format=3 uid="uid://c4662vchwpc7r"]
+[gd_scene load_steps=10 format=3 uid="uid://c4662vchwpc7r"]
 
 [ext_resource type="Material" uid="uid://dgv2rlqybi0ai" path="res://shaders/force_field/force_field_material.tres" id="1_s4f6e"]
+[ext_resource type="PackedScene" uid="uid://c3aqmshnh1mpk" path="res://shaders/force_field/force_shield_f_2.tscn" id="2_w84j7"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ldpxu"]
 albedo_color = Color(0.223529, 0.309804, 0.0470588, 1)
@@ -41,4 +42,8 @@ mesh = SubResource("BoxMesh_i4tg6")
 
 [node name="Force Shield" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.895507, 0, -0.315434)
+visible = false
 mesh = SubResource("SphereMesh_cxf4c")
+
+[node name="force_shield_f2" parent="." instance=ExtResource("2_w84j7")]
+transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 0, 0, 0)

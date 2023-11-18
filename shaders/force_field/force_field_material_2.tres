@@ -1,0 +1,15 @@
+[gd_resource type="ShaderMaterial" load_steps=3 format=3 uid="uid://m468hc2crmgx"]
+
+[ext_resource type="Shader" path="res://shaders/force_field/force_field_v2.gdshader" id="1_2htqr"]
+[ext_resource type="Texture2D" uid="uid://bbgmdm7jaym1w" path="res://shaders/force_field/GD_mesh_f2_fx.png" id="2_hlegn"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_2htqr")
+shader_parameter/shield_albedo = Color(0.901961, 0.556863, 0, 1)
+shader_parameter/shield_emission = Color(0.760784, 0.470588, 0, 1)
+shader_parameter/emission_amount = 2.909
+shader_parameter/rim_steepness = 0.697
+shader_parameter/pulsing_strength = 0.4
+shader_parameter/pulsing_speed = 2.5
+shader_parameter/shield_texture = ExtResource("2_hlegn")
