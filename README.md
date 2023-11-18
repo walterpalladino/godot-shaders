@@ -13,6 +13,10 @@ Some GODOT shaders I'm working on
 - High contrast shader for retro 70s look
 - Crosshatching shader
 
+## FXs
+- Sci Fi Shield
+
+
 ## Thanks to
 
 I'm using on this examples some free assets from:
