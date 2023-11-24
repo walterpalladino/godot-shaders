@@ -49,16 +49,7 @@ void fragment() {
 	}
 	
 	ALBEDO = _color;
-	
-	//	In case the texture has transparency
-	float alpha = texture_color.a;
-	if (alpha < alpha_cut_off) {
-		alpha = 0.0;
-	}
-	else
-	{
-		alpha = 1.0;
-	}
-	ALPHA = alpha;
-	
+		
+	ALPHA = texture_color.a;
+	ALPHA_SCISSOR_THRESHOLD = alpha_cut_off;
 }
