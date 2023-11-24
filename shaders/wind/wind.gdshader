@@ -23,10 +23,9 @@ void vertex() {
 	if ((max_height > min_height) && (VERTEX.y >= min_height)) {
 		factor = (VERTEX.y - min_height) / (max_height - min_height);
 	}
-	factor = 1.0 - factor;
 	factor = clamp(factor, 0.0, 1.0);
-		
-	VERTEX = mix(position, VERTEX, factor);
+	
+	VERTEX = mix(VERTEX, position, factor);
 	//VERTEX = position;
 }
 
