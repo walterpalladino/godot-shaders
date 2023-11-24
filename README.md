@@ -8,6 +8,7 @@ Some GODOT shaders I'm working on
 
 ## Terrain Shaders
 - Normal based snow
+- Simple stylized grass shader
 
 ## Artistic Shaders
 - High contrast shader for retro 70s look

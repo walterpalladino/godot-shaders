@@ -3,7 +3,7 @@
 
 shader_type spatial;
 
-render_mode unshaded, depth_draw_always, cull_back;
+render_mode unshaded, depth_draw_always, cull_disabled;
 
 
 uniform sampler2D material_texture : hint_default_white; 
@@ -19,6 +19,10 @@ uniform vec3 custom_direction = vec3(0.0, 0.0, 1.0);
 
 void fragment() {
 
+	if (!FRONT_FACING) {
+		NORMAL = -NORMAL;
+	}
+	
 	vec4 texture_color = texture(material_texture, UV);
 
 	vec3 world_view = (INV_VIEW_MATRIX * vec4(VIEW, 0.0)).xyz;	
