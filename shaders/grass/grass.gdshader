@@ -10,15 +10,16 @@ uniform float color_mix : hint_range(0.0, 10.0, 0.1) = 1.0f;
 uniform vec2 wind_strength = vec2(0.0);
 uniform float wind_frequency = 0.0f;
 
+
 void vertex() {
 	
 	vec3 position = VERTEX;
 
 	position.x += wind_strength.x * sin(TIME * wind_frequency) * (1.0 - UV.y);
 	position.z += wind_strength.y * cos(TIME * wind_frequency) * (1.0 - UV.y);
-	
+
 	VERTEX = position;
-	
+
 }
 
 void fragment() {

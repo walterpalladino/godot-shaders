@@ -8,5 +8,5 @@ shader = ExtResource("1_1vf33")
 shader_parameter/color_top = Color(0.329412, 0.54902, 0.176471, 1)
 shader_parameter/color_bottom = Color(0.247059, 0.34902, 0.0117647, 1)
 shader_parameter/color_mix = 2.1
-shader_parameter/wind_strength = Vector2(0.04, 0.02)
-shader_parameter/wind_frequency = 1.5
+shader_parameter/wind_strength = Vector2(0.1, 0.1)
+shader_parameter/wind_frequency = 1.0
