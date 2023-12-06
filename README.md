@@ -11,6 +11,7 @@ Some GODOT shaders I'm working on
 - Simple stylized grass shader
 - Simple wind shader
 - Simple triplanar shader (using different textures for top, bottom and sides)
+- Simple sky shader
 
 ## Artistic Shaders
 - High contrast shader for retro 70s look
