@@ -2,7 +2,7 @@ shader_type spatial;
 
 render_mode blend_mix, depth_draw_opaque, cull_disabled, diffuse_burley, specular_schlick_ggx;
 
-uniform sampler2D material_texture : hint_default_white; 
+uniform sampler2D material_texture : source_color,filter_linear_mipmap; 
 uniform float alpha_cut_off : hint_range(0.0, 1.0) = 0.5;
 uniform vec3 color : source_color;
 
