@@ -12,16 +12,15 @@ uniform float sun_radius : hint_range(0.0, 2.0, 0.001) = 0.1;
 uniform bool flat_sun = true;
 
 
+
 void sky() {
 
 	float horizon_blend = abs(EYEDIR.y / horizon_intensity) - offset_horizon;
-	//mix_value = pow(EYEDIR.y * blend, 0.10);
 	horizon_blend = clamp(horizon_blend, 0.0, 1.0);
 	
 	vec3 sky_color = vec3(1.0);
 
 	sky_color = mix(horizon_color, azimut_color, horizon_blend);			
-
 
 	// Sun
 	float sun_distance = distance(EYEDIR.xyz, LIGHT0_DIRECTION);
@@ -33,7 +32,6 @@ void sky() {
 	}
 	
 	vec3 sun = (sun_disc * sun_color.rgb) ;
-	
 	
 	sky_color += sun;
 
