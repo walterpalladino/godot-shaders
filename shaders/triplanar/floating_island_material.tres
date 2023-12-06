@@ -1,0 +1,26 @@
+[gd_resource type="ShaderMaterial" load_steps=8 format=3 uid="uid://c1qj4cmtseh6p"]
+
+[ext_resource type="Shader" path="res://shaders/triplanar/triplanar.gdshader" id="1_d0k2b"]
+[ext_resource type="Texture2D" uid="uid://68rum4ymc0rj" path="res://shaders/triplanar/Tileable Dirt Textures/Dirt_01.png" id="2_f1exl"]
+[ext_resource type="Texture2D" uid="uid://dkn3dkjv33cbr" path="res://shaders/triplanar/Tileable Dirt Textures/Dirt_01_Nrm.png" id="2_sgo1e"]
+[ext_resource type="Texture2D" uid="uid://bmwsii0wf4h61" path="res://shaders/triplanar/Stylized_Rocks_002_SD/Stylized_Rocks_002_basecolor.jpg" id="3_py8fk"]
+[ext_resource type="Texture2D" uid="uid://0n40dx6j6wys" path="res://shaders/triplanar/Stylized_Rocks_002_SD/Stylized_Rocks_002_normal.jpg" id="4_c5pr6"]
+[ext_resource type="Texture2D" uid="uid://bvk57s3sbwe7w" path="res://shaders/triplanar/Stylized_Grass_002_SD/Stylized_Grass_002_basecolor.jpg" id="4_lpfq8"]
+[ext_resource type="Texture2D" uid="uid://gaqjr46n2qie" path="res://shaders/triplanar/Stylized_Grass_002_SD/Stylized_Grass_002_normal.jpg" id="6_n884q"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_d0k2b")
+shader_parameter/top_texture_scale = Vector2(4, 4)
+shader_parameter/normal_strength = 1.0
+shader_parameter/top_texture = ExtResource("4_lpfq8")
+shader_parameter/top_normal = ExtResource("6_n884q")
+shader_parameter/bottom_texture_scale = Vector2(2, 2)
+shader_parameter/bottom_texture = ExtResource("2_f1exl")
+shader_parameter/bottom_normal = ExtResource("2_sgo1e")
+shader_parameter/side_texture_scale = Vector2(2, 2)
+shader_parameter/side_texture = ExtResource("3_py8fk")
+shader_parameter/side_normal = ExtResource("4_c5pr6")
+shader_parameter/blend_offset = 0.25
+shader_parameter/blend_exponent = 3.2
+shader_parameter/roughness = 1.0
