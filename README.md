@@ -12,6 +12,7 @@ Some GODOT shaders I'm working on
 - Simple wind shader
 - Simple triplanar shader (using different textures for top, bottom and sides)
 - Simple sky shader
+- Retro parallax shader (3 layer levels)
 
 ## Artistic Shaders
 - High contrast shader for retro 70s look
