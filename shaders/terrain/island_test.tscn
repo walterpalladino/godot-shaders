@@ -1,0 +1,42 @@
+[gd_scene load_steps=8 format=3 uid="uid://km6meyjs5qfc"]
+
+[ext_resource type="PackedScene" uid="uid://cwkcgd7umtqtc" path="res://shaders/terrain/island.glb" id="1_10dn4"]
+[ext_resource type="Material" uid="uid://c5kb7cn80drdd" path="res://shaders/terrain/terrain_material.tres" id="2_ugf8a"]
+[ext_resource type="Material" uid="uid://dq3fb2u2sb8s0" path="res://shaders/water/water_material.tres" id="3_lpimt"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_bx0dg"]
+sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+
+[sub_resource type="Sky" id="Sky_beh2f"]
+sky_material = SubResource("ProceduralSkyMaterial_bx0dg")
+
+[sub_resource type="Environment" id="Environment_g046j"]
+background_mode = 2
+sky = SubResource("Sky_beh2f")
+tonemap_mode = 2
+glow_enabled = true
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_6vvvw"]
+size = Vector2(300, 300)
+subdivide_width = 300
+subdivide_depth = 300
+
+[node name="island" instance=ExtResource("1_10dn4")]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." index="0"]
+transform = Transform3D(-0.866025, -0.433013, 0.25, 1.74393e-16, 0.5, 0.866025, -0.5, 0.75, -0.433013, 0, 0, 0)
+light_energy = 0.628
+shadow_enabled = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." index="1"]
+environment = SubResource("Environment_g046j")
+
+[node name="Island" parent="." index="2"]
+transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 0, 0, 0)
+surface_material_override/0 = ExtResource("2_ugf8a")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." index="3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.17329, 0)
+mesh = SubResource("PlaneMesh_6vvvw")
+surface_material_override/0 = ExtResource("3_lpimt")

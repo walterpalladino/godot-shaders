@@ -1,0 +1,37 @@
+[gd_resource type="ShaderMaterial" load_steps=12 format=3 uid="uid://c5kb7cn80drdd"]
+
+[ext_resource type="Shader" path="res://shaders/terrain/terrain.gdshader" id="1_ryvr0"]
+[ext_resource type="Texture2D" uid="uid://cvxtmnvxeu1m6" path="res://shaders/terrain/textures/stylized_layered_rock_001_basecolor.jpg" id="2_36rnu"]
+[ext_resource type="Texture2D" uid="uid://bfyx53641i7tc" path="res://shaders/terrain/textures/stylized_layered_rock_001_normal.png" id="2_41nl0"]
+[ext_resource type="Texture2D" uid="uid://d4kvpkuibjgv2" path="res://shaders/terrain/textures/dirt_normal_up.png" id="2_e5k3e"]
+[ext_resource type="Texture2D" uid="uid://drd2hg8iuaei5" path="res://shaders/terrain/textures/sand_down.png" id="4_61jy3"]
+[ext_resource type="Texture2D" uid="uid://bqp6rptf8vw47" path="res://shaders/terrain/textures/dirt_normal_up_normal.png" id="4_jiijf"]
+[ext_resource type="Texture2D" uid="uid://bokdv32jmvjbk" path="res://shaders/terrain/textures/grass_lighted_down.png" id="5_l5fub"]
+[ext_resource type="Texture2D" uid="uid://bj8b7cj0f1lu0" path="res://shaders/terrain/textures/Grass_normal_down.png" id="6_pgpm8"]
+[ext_resource type="Texture2D" uid="uid://cccuhhhhlr5vm" path="res://shaders/terrain/textures/sand_down_normal.png" id="6_xf1r3"]
+[ext_resource type="Texture2D" uid="uid://c0ktb16d2e0nw" path="res://shaders/terrain/textures/grass_lighted_down_normal.png" id="8_lhx12"]
+[ext_resource type="Texture2D" uid="uid://c016k48xkfl3o" path="res://shaders/terrain/textures/grass_normal_down_normal.png" id="10_ywmej"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_ryvr0")
+shader_parameter/smoothness = 0.0
+shader_parameter/layer_blend = 2.4
+shader_parameter/layer_1_texture_scale = 0.5
+shader_parameter/layer_1_texture = ExtResource("2_e5k3e")
+shader_parameter/layer_1_normal = ExtResource("4_jiijf")
+shader_parameter/layer_2_texture_scale = 0.5
+shader_parameter/layer_2_start = 2.0
+shader_parameter/layer_2_texture = ExtResource("4_61jy3")
+shader_parameter/layer_2_normal = ExtResource("6_xf1r3")
+shader_parameter/layer_3_texture_scale = 0.5
+shader_parameter/layer_3_start = 4.0
+shader_parameter/layer_3_texture = ExtResource("5_l5fub")
+shader_parameter/layer_3_normal = ExtResource("8_lhx12")
+shader_parameter/layer_4_texture_scale = 0.5
+shader_parameter/layer_4_start = 12.0
+shader_parameter/layer_4_texture = ExtResource("6_pgpm8")
+shader_parameter/layer_4_normal = ExtResource("10_ywmej")
+shader_parameter/cliff_texture_scale = 1.0
+shader_parameter/cliff_texture = ExtResource("2_36rnu")
+shader_parameter/cliff_normal = ExtResource("2_41nl0")
