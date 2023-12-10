@@ -26,8 +26,9 @@ uniform float layer_4_texture_scale = 1.0f;
 uniform float layer_4_start = 4.0f;
 group_uniforms cliff;
 uniform sampler2D cliff_texture : hint_default_white, filter_nearest, repeat_enable; 
-uniform sampler2D cliff_normal : hint_normal, filter_nearest, repeat_enable; 
+uniform sampler2D cliff_texture_normal : hint_normal, filter_nearest, repeat_enable; 
 uniform float cliff_texture_scale = 1.0f;
+uniform float cliff_presence : hint_range(0.0, 1.0, 0.01) = 0.50f;
 
 
 vec2 random(vec2 uv){
@@ -48,6 +49,19 @@ float noise(vec2 uv) {
                      dot( random(uv_index + vec2(1.0,1.0) ), uv_fract - vec2(1.0,1.0) ), blur.x), blur.y) + 0.5;
 }
 
+vec3 normal_blend(vec3 n1, vec3 n2, float blend) {
+	vec3 n1_unpacked = n1 * 2.0 - 1.0;
+	vec3 n2_unpacked = n2 * 2.0 - 1.0;
+	vec3 n_blended = mix(n1_unpacked, n2_unpacked, blend);
+	return (n_blended + 1.0) * 0.5;
+}
+
+//	Get color intensity (at pointgray scale)
+float get_intensity(vec3 color)
+{
+	return 0.299 * color.r + 0.587 * color.g + 0.114 * color.b;
+}
+
 void fragment() {
 	
 	//	Get the world position
@@ -55,20 +69,17 @@ void fragment() {
 
 	vec3 normal = mat3(INV_VIEW_MATRIX) * NORMAL;
 
-	
 	vec2 uv = UV;
 	
 	vec3 layer1_color = texture(layer_1_texture, pixel_world_position.xz * uv * layer_1_texture_scale).rgb;
 	vec3 layer2_color = texture(layer_2_texture, pixel_world_position.xz * uv * layer_2_texture_scale).rgb;
 	vec3 layer3_color = texture(layer_3_texture, pixel_world_position.xz * uv * layer_3_texture_scale).rgb;
 	vec3 layer4_color = texture(layer_4_texture, pixel_world_position.xz * uv * layer_4_texture_scale).rgb;
-	vec3 cliff_color = texture(cliff_texture, pixel_world_position.xz * uv * cliff_texture_scale).rgb;
 
 	vec3 layer1_normal = texture(layer_1_normal, pixel_world_position.xz * uv * layer_1_texture_scale).rgb;
 	vec3 layer2_normal = texture(layer_2_normal, pixel_world_position.xz * uv * layer_2_texture_scale).rgb;
 	vec3 layer3_normal = texture(layer_3_normal, pixel_world_position.xz * uv * layer_3_texture_scale).rgb;
 	vec3 layer4_normal = texture(layer_4_normal, pixel_world_position.xz * uv * layer_4_texture_scale).rgb;
-	vec3 cliff_normal_value = texture(cliff_normal, pixel_world_position.xz * uv * cliff_texture_scale).rgb;
 	
 	vec3 color = layer1_color;
 	vec3 normal_value = layer1_normal;
@@ -82,25 +93,60 @@ void fragment() {
 		blend /=  layer_blend;
 		blend = clamp(blend, 0.0, 1.0);	
 		color = mix(layer3_color, layer4_color, blend);
-		normal_value = mix(layer3_normal, layer4_normal, blend);
+		normal_value = normal_blend(layer3_normal, layer4_normal, blend);
 	} else
 	if (height > layer_3_start) {
 		blend = height - layer_3_start;
 		blend /=  layer_blend;
 		blend = clamp(blend, 0.0, 1.0);	
 		color = mix(layer2_color, layer3_color, blend);
-		normal_value = mix(layer2_normal, layer3_normal, blend);
+		normal_value = normal_blend(layer2_normal, layer3_normal, blend);
 	} else
 	if (height > layer_2_start) {
 		blend = height - layer_2_start;
 		blend /=  layer_blend;
 		blend = clamp(blend, 0.0, 1.0);	
 		color = mix(layer1_color, layer2_color, blend);
-		normal_value = mix(layer1_normal, layer2_normal, blend);
+		normal_value = normal_blend(layer1_normal, layer2_normal, blend);
 	}
+	
+	//	Check cliff
+	vec3 cliff_normal = abs(normal);
+	float cliff_blend = 0.0;
+	if (cliff_normal.y < cliff_presence + 0.25 * noise(pixel_world_position.xz * 10.0)) {
 		
-	ALBEDO = color;// * ((noise(pixel_world_position.xz * 0.20) + 1.0) / 2.0);
-//	ALBEDO = vec3(blend);
+		//	Face X
+		float side_x_face_blend = clamp(cliff_normal.x, 0.0, 1.0) ;
+		//	Calculate the UV coordinate based on the world position and texture scale
+		vec2 uv_projected_coordinate_x = pixel_world_position.zy;
+		uv = uv_projected_coordinate_x / cliff_texture_scale;
+		//	Get the texture color
+		vec3 albedo_tex_side_x = texture(cliff_texture, uv).rgb;
+		vec3 normal_tex_side_x = texture(cliff_texture_normal, uv).rgb;
+
+		//	Face Z
+		float side_z_face_blend = clamp(cliff_normal.z, 0.0, 1.0) ;
+		//	Calculate the UV coordinate based on the world position and texture scale
+		vec2 uv_projected_coordinate_z = pixel_world_position.xy;
+		uv = uv_projected_coordinate_z / cliff_texture_scale;
+		//	Get the texture color
+		vec3 albedo_tex_side_z = texture(cliff_texture, uv).rgb;
+		vec3 normal_tex_side_z = texture(cliff_texture_normal, uv).rgb;
+	
+		//	Blend cliff
+		vec3 cliff_blended_color = mix(albedo_tex_side_x, albedo_tex_side_z, cliff_normal.z);
+		vec3 cliff_normal_value = normal_blend(normal_tex_side_x, normal_tex_side_z, cliff_normal.z);
+		
+		cliff_blend = 1.0 - cliff_normal.y ;
+		cliff_blend = 2.0 * cliff_blend;
+		cliff_blend = clamp(cliff_blend, 0.0, 1.0);
+
+		color = mix(color, cliff_blended_color, cliff_blend);
+		normal_value = normal_blend(normal_value, cliff_normal_value, cliff_blend);
+	}
+	
+		
+	ALBEDO = color;
 	ROUGHNESS = 1.0 - smoothness;
 	NORMAL_MAP = normal_value;
 	NORMAL_MAP_DEPTH = 2.0;
