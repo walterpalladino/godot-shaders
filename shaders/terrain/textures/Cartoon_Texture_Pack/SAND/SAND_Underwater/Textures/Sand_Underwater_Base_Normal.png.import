@@ -3,20 +3,19 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://c2xx0304wd6fl"
-path.s3tc="res://.godot/imported/Sand_Underwater_Base_Normal.png-052831dd4d17ce5b0aa5c41d859af81f.s3tc.ctex"
+path="res://.godot/imported/Sand_Underwater_Base_Normal.png-052831dd4d17ce5b0aa5c41d859af81f.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
-"vram_texture": true
+"vram_texture": false
 }
 
 [deps]
 
 source_file="res://shaders/terrain/textures/Cartoon_Texture_Pack/SAND/SAND_Underwater/Textures/Sand_Underwater_Base_Normal.png"
-dest_files=["res://.godot/imported/Sand_Underwater_Base_Normal.png-052831dd4d17ce5b0aa5c41d859af81f.s3tc.ctex"]
+dest_files=["res://.godot/imported/Sand_Underwater_Base_Normal.png-052831dd4d17ce5b0aa5c41d859af81f.ctex"]
 
 [params]
 
-compress/mode=2
+compress/mode=3
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1

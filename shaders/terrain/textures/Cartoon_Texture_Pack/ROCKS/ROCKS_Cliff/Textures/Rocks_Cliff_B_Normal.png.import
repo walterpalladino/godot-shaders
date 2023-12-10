@@ -3,20 +3,19 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://cwt80eubusb2x"
-path.s3tc="res://.godot/imported/Rocks_Cliff_B_Normal.png-d2b822623fc33562bf4fa355e7b7d0d1.s3tc.ctex"
+path="res://.godot/imported/Rocks_Cliff_B_Normal.png-d2b822623fc33562bf4fa355e7b7d0d1.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
-"vram_texture": true
+"vram_texture": false
 }
 
 [deps]
 
 source_file="res://shaders/terrain/textures/Cartoon_Texture_Pack/ROCKS/ROCKS_Cliff/Textures/Rocks_Cliff_B_Normal.png"
-dest_files=["res://.godot/imported/Rocks_Cliff_B_Normal.png-d2b822623fc33562bf4fa355e7b7d0d1.s3tc.ctex"]
+dest_files=["res://.godot/imported/Rocks_Cliff_B_Normal.png-d2b822623fc33562bf4fa355e7b7d0d1.ctex"]
 
 [params]
 
-compress/mode=2
+compress/mode=3
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1

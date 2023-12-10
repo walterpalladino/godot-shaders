@@ -3,20 +3,19 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://jsj1ogxcxnog"
-path.s3tc="res://.godot/imported/Sand_Beach_Base_Normal.png-bdbf0c25c9582e42954ced62d69af8db.s3tc.ctex"
+path="res://.godot/imported/Sand_Beach_Base_Normal.png-bdbf0c25c9582e42954ced62d69af8db.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
-"vram_texture": true
+"vram_texture": false
 }
 
 [deps]
 
 source_file="res://shaders/terrain/textures/Cartoon_Texture_Pack/SAND/SAND_Beach/Textures/Sand_Beach_Base_Normal.png"
-dest_files=["res://.godot/imported/Sand_Beach_Base_Normal.png-bdbf0c25c9582e42954ced62d69af8db.s3tc.ctex"]
+dest_files=["res://.godot/imported/Sand_Beach_Base_Normal.png-bdbf0c25c9582e42954ced62d69af8db.ctex"]
 
 [params]
 
-compress/mode=2
+compress/mode=3
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1

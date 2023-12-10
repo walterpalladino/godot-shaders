@@ -1,29 +1,36 @@
 shader_type spatial;
 
+render_mode blend_mix, depth_draw_opaque, cull_back, diffuse_burley, specular_schlick_ggx;
+
 
 group_uniforms general;
 uniform float smoothness : hint_range(0.0, 1.0, 0.1) = 0.5f;
-uniform float layer_blend :hint_range(0.0, 10.0, 0.1) = 0.0;
+uniform float layer_blend : hint_range(0.0, 10.0, 0.1) = 0.0;
+uniform float normal_strength : hint_range(0.01, 6.0, 0.01) = 1.0;
 
 group_uniforms layer1;
 uniform sampler2D layer_1_texture : hint_default_white, filter_nearest, repeat_enable; 
 uniform sampler2D layer_1_normal : hint_normal, filter_nearest, repeat_enable; 
 uniform float layer_1_texture_scale = 1.0f;
+
 group_uniforms layer2;
 uniform sampler2D layer_2_texture : hint_default_white, filter_nearest, repeat_enable; 
 uniform sampler2D layer_2_normal : hint_normal, filter_nearest, repeat_enable; 
 uniform float layer_2_texture_scale = 1.0f;
 uniform float layer_2_start = 1.0f;
+
 group_uniforms layer3;
 uniform sampler2D layer_3_texture : hint_default_white, filter_nearest, repeat_enable; 
 uniform sampler2D layer_3_normal : hint_normal, filter_nearest, repeat_enable; 
 uniform float layer_3_texture_scale = 1.0f;
 uniform float layer_3_start = 2.0f;
+
 group_uniforms layer4;
 uniform sampler2D layer_4_texture : hint_default_white, filter_nearest, repeat_enable; 
 uniform sampler2D layer_4_normal : hint_normal, filter_nearest, repeat_enable; 
 uniform float layer_4_texture_scale = 1.0f;
 uniform float layer_4_start = 4.0f;
+
 group_uniforms cliff;
 uniform sampler2D cliff_texture : hint_default_white, filter_nearest, repeat_enable; 
 uniform sampler2D cliff_texture_normal : hint_normal, filter_nearest, repeat_enable; 
@@ -138,7 +145,7 @@ void fragment() {
 		vec3 cliff_normal_value = normal_blend(normal_tex_side_x, normal_tex_side_z, cliff_normal.z);
 		
 		cliff_blend = 1.0 - cliff_normal.y ;
-		cliff_blend = 2.0 * cliff_blend;
+		cliff_blend = 3.0 * cliff_blend;
 		cliff_blend = clamp(cliff_blend, 0.0, 1.0);
 
 		color = mix(color, cliff_blended_color, cliff_blend);
@@ -149,5 +156,5 @@ void fragment() {
 	ALBEDO = color;
 	ROUGHNESS = 1.0 - smoothness;
 	NORMAL_MAP = normal_value;
-	NORMAL_MAP_DEPTH = 2.0;
+	NORMAL_MAP_DEPTH = normal_strength;
 }

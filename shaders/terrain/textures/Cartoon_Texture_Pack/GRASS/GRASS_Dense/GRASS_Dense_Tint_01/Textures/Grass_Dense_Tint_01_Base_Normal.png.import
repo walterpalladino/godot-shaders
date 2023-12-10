@@ -3,20 +3,19 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://do7ammagekqq2"
-path.s3tc="res://.godot/imported/Grass_Dense_Tint_01_Base_Normal.png-1e00392e72fa125a29b29841e71541b4.s3tc.ctex"
+path="res://.godot/imported/Grass_Dense_Tint_01_Base_Normal.png-1e00392e72fa125a29b29841e71541b4.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
-"vram_texture": true
+"vram_texture": false
 }
 
 [deps]
 
 source_file="res://shaders/terrain/textures/Cartoon_Texture_Pack/GRASS/GRASS_Dense/GRASS_Dense_Tint_01/Textures/Grass_Dense_Tint_01_Base_Normal.png"
-dest_files=["res://.godot/imported/Grass_Dense_Tint_01_Base_Normal.png-1e00392e72fa125a29b29841e71541b4.s3tc.ctex"]
+dest_files=["res://.godot/imported/Grass_Dense_Tint_01_Base_Normal.png-1e00392e72fa125a29b29841e71541b4.ctex"]
 
 [params]
 
-compress/mode=2
+compress/mode=3
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1
