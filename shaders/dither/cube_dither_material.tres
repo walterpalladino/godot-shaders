@@ -1,0 +1,13 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://cvirig6ffswmh"]
+
+[ext_resource type="Shader" path="res://shaders/dither/dither_shader.gdshader" id="1_5g0fe"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_5g0fe")
+shader_parameter/color = Color(0.792157, 0.188235, 0.156863, 1)
+shader_parameter/alpha_cut_off = 0.5
+shader_parameter/shade_tweak = 0.25
+shader_parameter/light_tweak = 1.0
+shader_parameter/sharpness = 0.5
+shader_parameter/scale = 4.0
