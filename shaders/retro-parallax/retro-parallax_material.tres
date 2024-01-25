@@ -9,8 +9,11 @@
 render_priority = 0
 shader = ExtResource("1_nq7dq")
 shader_parameter/layer_1_speed = 0.001
+shader_parameter/layer_1_color_strength = 1.0
 shader_parameter/layer_2_speed = 0.005
+shader_parameter/layer_2_color_strength = 1.0
 shader_parameter/layer_3_speed = 0.01
+shader_parameter/layer_3_color_strength = 1.0
 shader_parameter/layer_1_texture = ExtResource("2_agfi6")
 shader_parameter/layer_2_texture = ExtResource("3_eild0")
 shader_parameter/layer_3_texture = ExtResource("4_82yim")
