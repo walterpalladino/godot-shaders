@@ -1,6 +1,6 @@
 shader_type spatial;
 
-render_mode blend_mix;
+render_mode blend_mix, unshaded;
 
 group_uniforms layers;
 uniform sampler2D layer_1_texture : hint_default_transparent; 
