@@ -6,6 +6,7 @@
 render_priority = 0
 shader = ExtResource("1_xkg0g")
 shader_parameter/color = Color(0, 0.443137, 0.870588, 1)
+shader_parameter/alpha_cut_off = 0.5
 shader_parameter/shade_tweak = 0.25
 shader_parameter/light_tweak = 1.0
 shader_parameter/sharpness = 0.5

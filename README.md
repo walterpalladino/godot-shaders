@@ -19,6 +19,7 @@ Some GODOT shaders I'm working on
 - High contrast shader for retro 70s look
 - Crosshatching shader
 - Dither shader
+- Simple Pixelated shader
 
 ## FXs
 - Sci Fi Shield
