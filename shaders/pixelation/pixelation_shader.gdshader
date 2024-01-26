@@ -4,6 +4,8 @@ render_mode unshaded, depth_draw_opaque;
 
 uniform int pixel_size : hint_range(1, 100, 1) = 4;
 
+uniform bool use_transparency = false;	//	Used to respect background transparencies
+
 uniform sampler2D SCREEN_TEXTURE : hint_screen_texture, filter_linear_mipmap;
 
 void vertex() {
@@ -25,7 +27,7 @@ void fragment() {
 	vec4 pixelated_texture_color = texture(SCREEN_TEXTURE, vec2(x, y) / (VIEWPORT_SIZE));
 
 	//	Respect transparency
-	if (pixelated_texture_color.a==0.0 && texture_color.a==0.0){
+	if (pixelated_texture_color.a==0.0 && texture_color.a==0.0 && use_transparency) {
 		discard;
 	}
 

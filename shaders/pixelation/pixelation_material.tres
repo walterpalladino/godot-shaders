@@ -6,3 +6,4 @@
 render_priority = 0
 shader = ExtResource("1_7xi63")
 shader_parameter/pixel_size = 8
+shader_parameter/use_transparency = false
