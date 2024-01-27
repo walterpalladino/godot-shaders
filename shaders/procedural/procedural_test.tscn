@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://crfpb5v24qpas"]
+
+[ext_resource type="Material" uid="uid://mkvb71d4ywng" path="res://shaders/procedural/procedural_mosaic_material.tres" id="1_rem0i"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_sk758"]
+
+[node name="ProceduralTest" type="Node3D"]
+
+[node name="MosaicCube" type="MeshInstance3D" parent="."]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0.498, 0.498, -0.502)
+mesh = SubResource("BoxMesh_sk758")
+surface_material_override/0 = ExtResource("1_rem0i")

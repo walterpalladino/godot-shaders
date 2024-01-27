@@ -21,6 +21,9 @@ Some GODOT shaders I'm working on
 - Dither shader
 - Simple Pixelated shader
 
+## Procedural Materials
+- Mosaic (Grid) material
+
 ## FXs
 - Sci Fi Shield
 
