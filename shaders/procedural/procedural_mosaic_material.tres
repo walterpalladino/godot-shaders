@@ -7,6 +7,7 @@ render_priority = 0
 shader = ExtResource("1_hujod")
 shader_parameter/color1 = Color(0, 0, 0, 1)
 shader_parameter/color2 = Color(1, 1, 1, 1)
+shader_parameter/opacity = 1.0
 shader_parameter/center = Vector3(2.08165e-12, 2.08165e-12, 2.08165e-12)
 shader_parameter/scale = Vector3(1, 1, 1)
 shader_parameter/mortar_percentile = 0.1

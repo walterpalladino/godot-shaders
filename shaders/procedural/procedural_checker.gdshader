@@ -1,6 +1,5 @@
 shader_type spatial;
 
-//render_mode cull_disabled, depth_draw_always;
 
 uniform vec3 color1 : source_color = vec3(0.0,0.0,0.0);
 uniform vec3 color2 : source_color = vec3(1.0,1.0,1.0);
@@ -10,22 +9,30 @@ uniform float opacity : hint_range(0.0, 1.0, 0.01) = 1.0;
 uniform vec3 center = vec3(0.0,0.0,0.0);
 uniform vec3 scale = vec3(1.0,1.0,1.0);
 
-uniform float mortar_percentile = 0.15;
-
 
 vec3 get_color(vec3 POINT)
 {
+
 	POINT.x = POINT.x - center.x;
 	POINT.y = POINT.y - center.y;
 	POINT.z = POINT.z - center.z;
 
-	POINT.x = abs(mod(POINT.x + .001f, scale.x));
-	POINT.y = abs(mod(POINT.y + .001f, scale.y));
-	POINT.z = abs(mod(POINT.z + .001f, scale.z));
+	if (scale.x != 0.0)
+		POINT.x = (POINT.x + .001f) / scale.x;
+	else
+		POINT.x = 0.0;
+	if (scale.y != 0.0)
+		POINT.y = (POINT.y + .001f) / scale.y;
+	else
+		POINT.y = 0.0;
+	if (scale.z != 0.0)
+		POINT.z = (POINT.z + .001f) / scale.z;
+	else
+		POINT.z = 0.0;
 
-	if (((POINT.x > 0.0) && (POINT.x < mortar_percentile * scale.x)) ||
-		((POINT.y > 0.0) && (POINT.y < mortar_percentile * scale.y)) ||
-		((POINT.z > 0.0) && (POINT.z < mortar_percentile * scale.z)))
+	int check_index = int((floor(POINT.x) + floor(POINT.y) + floor(POINT.z)) );
+	
+	if ((check_index & 1) == 1)
 	{
 		return color1;
 	}
@@ -43,4 +50,3 @@ void fragment() {
 
 	ALPHA = opacity;
 }
-

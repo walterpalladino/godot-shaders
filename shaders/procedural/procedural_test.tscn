@@ -1,8 +1,11 @@
-[gd_scene load_steps=3 format=3 uid="uid://crfpb5v24qpas"]
+[gd_scene load_steps=5 format=3 uid="uid://crfpb5v24qpas"]
 
 [ext_resource type="Material" uid="uid://mkvb71d4ywng" path="res://shaders/procedural/procedural_mosaic_material.tres" id="1_rem0i"]
+[ext_resource type="Material" uid="uid://cd85mxtj8nsie" path="res://shaders/procedural/procedural_checker_material.tres" id="2_gmq08"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_sk758"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_g7v5q"]
 
 [node name="ProceduralTest" type="Node3D"]
 
@@ -10,3 +13,8 @@
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0.498, 0.498, -0.502)
 mesh = SubResource("BoxMesh_sk758")
 surface_material_override/0 = ExtResource("1_rem0i")
+
+[node name="CheckerCube" type="MeshInstance3D" parent="."]
+transform = Transform3D(2, -6.97574e-16, 6.97574e-16, 6.97574e-16, 2, -6.97574e-16, -6.97574e-16, 6.97574e-16, 2, -2.42615, 1.18726, -2.75604)
+mesh = SubResource("BoxMesh_g7v5q")
+surface_material_override/0 = ExtResource("2_gmq08")
