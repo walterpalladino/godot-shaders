@@ -16,7 +16,7 @@ uniform float mortar_percentile = 0.15;
 
 vec3 get_color(vec3 POINT)
 {
-
+	
 	POINT.x = POINT.x - center.x;
 	POINT.y = POINT.y - center.y;
 	POINT.z = POINT.z - center.z;
@@ -37,28 +37,23 @@ vec3 get_color(vec3 POINT)
 	POINT.x = abs(mod(POINT.x, 1.0f));
 	POINT.y = abs(mod(POINT.y, 1.0f));
 	POINT.z = abs(mod(POINT.z, 1.0f));
+	
+	if ((POINT.y < 1.0 - mortar_percentile) && (POINT.y > 0.5))
+	{
+		if ((POINT.x > 0.5 * mortar_percentile) &&
+			(POINT.x < 1.0 - 0.5 * mortar_percentile))
 
-	if (POINT.y < (0.5f - mortar_percentile))
-	{
-		if ((POINT.x > (mortar_percentile / 2.0f)) && (POINT.x < (1.0f - mortar_percentile / 2.0f)))
-		{
-			if (((POINT.z > mortar_percentile) && (POINT.z < 0.5f)) ||
-				((POINT.z > (0.5f + mortar_percentile)) && (POINT.z < 1.0f)))
-			{
+			if (POINT.z > mortar_percentile)
 				return color1;
-			}
-		}
 	}
-	else if ((POINT.y > 0.5) && (POINT.y < (1.0 - mortar_percentile)))
+	else
+	if (POINT.y < 0.5 - mortar_percentile)
 	{
-		if ((POINT.z > (mortar_percentile / 2.0)) && (POINT.z < (1.0 - mortar_percentile / 2.0)))
-		{
-			if (((POINT.x > 0.0) && (POINT.x < (0.5 - mortar_percentile / 2.0))) ||
-				((POINT.x > (0.5 + mortar_percentile / 2.0)) && (POINT.x < 1.0)))
-			{
+		if ((POINT.x < 0.5 - 0.5 * mortar_percentile) ||
+			(POINT.x > 0.5 + 0.5 * mortar_percentile))
+			if ((POINT.z < 0.5 - 0.5 * mortar_percentile) ||
+				(POINT.z > 0.5 + 0.5 * mortar_percentile))
 				return color1;
-			}
-		}
 	}
 	
 	return color2;

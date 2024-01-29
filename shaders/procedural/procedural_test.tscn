@@ -23,6 +23,6 @@ mesh = SubResource("BoxMesh_g7v5q")
 surface_material_override/0 = ExtResource("2_gmq08")
 
 [node name="Brick Cube" type="MeshInstance3D" parent="."]
-transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 6.63068, 2.08165e-12, -2.68241)
+transform = Transform3D(2, 0, 0, 0, 1, 0, 0, 0, 2, 0.721343, 0.754509, -0.190349)
 mesh = SubResource("BoxMesh_q4txi")
 surface_material_override/0 = ExtResource("3_a76iu")
