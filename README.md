@@ -20,6 +20,7 @@ Some GODOT shaders I'm working on
 - Crosshatching shader
 - Dither shader
 - Simple Pixelated shader
+- Simple Wobbly FX
 
 ## Procedural Materials
 - Mosaic (Grid) material
