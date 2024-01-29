@@ -10,3 +10,4 @@ shader_parameter/color2 = Color(1, 1, 0.419608, 1)
 shader_parameter/opacity = 1.0
 shader_parameter/center = Vector3(0, 0, 0)
 shader_parameter/scale = Vector3(1, 1, 1)
+shader_parameter/smoothness = 0.6

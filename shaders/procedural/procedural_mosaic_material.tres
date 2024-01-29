@@ -11,3 +11,4 @@ shader_parameter/opacity = 1.0
 shader_parameter/center = Vector3(2.08165e-12, 2.08165e-12, 2.08165e-12)
 shader_parameter/scale = Vector3(1, 1, 1)
 shader_parameter/mortar_percentile = 0.1
+shader_parameter/smoothness = 0.7

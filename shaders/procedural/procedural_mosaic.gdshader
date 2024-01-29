@@ -12,6 +12,8 @@ uniform vec3 scale = vec3(1.0,1.0,1.0);
 
 uniform float mortar_percentile = 0.15;
 
+uniform float smoothness : hint_range(0.0, 1.0, 0.1) = 0.5;
+
 
 vec3 get_color(vec3 POINT)
 {
@@ -42,5 +44,7 @@ void fragment() {
 	ALBEDO = get_color(pixel_world_position);
 
 	ALPHA = opacity;
+	
+	ROUGHNESS = 1.0 - smoothness;
 }
 
