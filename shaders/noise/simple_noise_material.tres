@@ -1,0 +1,11 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://dtv7gss38ia42"]
+
+[ext_resource type="Shader" path="res://shaders/noise/simple_noise.gdshader" id="1_lm7u3"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_lm7u3")
+shader_parameter/sharpness = 13.5
+shader_parameter/seed = -41.9
+shader_parameter/scale = 2.31
+shader_parameter/scroll_speed = Vector2(0.01, -0.02)
