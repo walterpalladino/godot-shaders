@@ -25,6 +25,7 @@ Some GODOT shaders I'm working on
 ## Procedural Materials
 - Mosaic (Grid) material
 - Checker material
+- Brck Material
 
 ## FXs
 - Sci Fi Shield
