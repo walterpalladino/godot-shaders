@@ -77,16 +77,16 @@ void fragment() {
 	vec3 normal = mat3(INV_VIEW_MATRIX) * NORMAL;
 
 	vec2 uv = UV;
-	
-	vec3 layer1_color = texture(layer_1_texture, pixel_world_position.xz * uv * layer_1_texture_scale).rgb;
-	vec3 layer2_color = texture(layer_2_texture, pixel_world_position.xz * uv * layer_2_texture_scale).rgb;
-	vec3 layer3_color = texture(layer_3_texture, pixel_world_position.xz * uv * layer_3_texture_scale).rgb;
-	vec3 layer4_color = texture(layer_4_texture, pixel_world_position.xz * uv * layer_4_texture_scale).rgb;
 
-	vec3 layer1_normal = texture(layer_1_normal, pixel_world_position.xz * uv * layer_1_texture_scale).rgb;
-	vec3 layer2_normal = texture(layer_2_normal, pixel_world_position.xz * uv * layer_2_texture_scale).rgb;
-	vec3 layer3_normal = texture(layer_3_normal, pixel_world_position.xz * uv * layer_3_texture_scale).rgb;
-	vec3 layer4_normal = texture(layer_4_normal, pixel_world_position.xz * uv * layer_4_texture_scale).rgb;
+	vec3 layer1_color = texture(layer_1_texture, pixel_world_position.xz * layer_1_texture_scale).rgb;
+	vec3 layer2_color = texture(layer_2_texture, pixel_world_position.xz * layer_2_texture_scale).rgb;
+	vec3 layer3_color = texture(layer_3_texture, pixel_world_position.xz * layer_3_texture_scale).rgb;
+	vec3 layer4_color = texture(layer_4_texture, pixel_world_position.xz * layer_4_texture_scale).rgb;
+
+	vec3 layer1_normal = texture(layer_1_normal, pixel_world_position.xz * layer_1_texture_scale).rgb;
+	vec3 layer2_normal = texture(layer_2_normal, pixel_world_position.xz * layer_2_texture_scale).rgb;
+	vec3 layer3_normal = texture(layer_3_normal, pixel_world_position.xz * layer_3_texture_scale).rgb;
+	vec3 layer4_normal = texture(layer_4_normal, pixel_world_position.xz * layer_4_texture_scale).rgb;
 	
 	vec3 color = layer1_color;
 	vec3 normal_value = layer1_normal;
@@ -152,6 +152,10 @@ void fragment() {
 		normal_value = normal_blend(normal_value, cliff_normal_value, cliff_blend);
 	}
 	
+		
+	//vec3 color = texture(layer_1_texture, pixel_world_position.xz * layer_1_texture_scale).rgb;
+	//vec3 normal_value = texture(layer_1_normal, pixel_world_position.xz * uv * layer_1_texture_scale).rgb;
+
 		
 	ALBEDO = color;
 	ROUGHNESS = 1.0 - smoothness;
