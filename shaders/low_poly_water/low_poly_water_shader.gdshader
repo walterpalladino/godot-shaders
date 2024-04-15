@@ -69,7 +69,9 @@ void fragment() {
 	//	Depth calculations
 	float depth_texture = texture(DEPTH_TEXTURE, SCREEN_UV).r * 2.0 - 1.0;
 	float depth = PROJECTION_MATRIX[3][2] / (depth_texture + PROJECTION_MATRIX[2][2]);
-	float depth_blend = exp((depth + VERTEX.z + depth_offset) * -beers_law);
+	depth = depth + VERTEX.z;
+	
+	float depth_blend = exp((depth + depth_offset) * -beers_law);
 	depth_blend = clamp(1.0 - depth_blend, 0.0, 1.0);	
 	float depth_blend_power = clamp(pow(depth_blend, 2.5), 0.0, 1.0);
 
@@ -113,7 +115,7 @@ void fragment() {
 	vec3 foam = color + foam_color * texture(wave, foam_coords).rgb;
 	//	blend the foam based on the masked area
 	ALBEDO =  mix(color, foam, foam_mask);
-	
+	//ALBEDO = vec3(texture(DEPTH_TEXTURE, SCREEN_UV).r);
 	EMISSION = riple;
 	
 	float opacity_adjusted = 1.0;

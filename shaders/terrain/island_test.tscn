@@ -1,8 +1,10 @@
-[gd_scene load_steps=10 format=3 uid="uid://km6meyjs5qfc"]
+[gd_scene load_steps=14 format=3 uid="uid://km6meyjs5qfc"]
 
 [ext_resource type="PackedScene" uid="uid://cwkcgd7umtqtc" path="res://shaders/terrain/island.glb" id="1_10dn4"]
 [ext_resource type="Material" uid="uid://c5kb7cn80drdd" path="res://shaders/terrain/terrain_material.tres" id="2_ugf8a"]
 [ext_resource type="Material" uid="uid://dq3fb2u2sb8s0" path="res://shaders/water/water_material.tres" id="3_lpimt"]
+[ext_resource type="Material" uid="uid://kmhjhlbsxbnk" path="res://shaders/low_poly_water/low_poly_water_material.tres" id="4_1cgfj"]
+[ext_resource type="Material" uid="uid://hhw4udntxbbb" path="res://shaders/low_poly_water/depth_texture_material.tres" id="5_npfr8"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_bx0dg"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -25,6 +27,16 @@ subdivide_depth = 300
 [sub_resource type="BoxMesh" id="BoxMesh_grodv"]
 
 [sub_resource type="SphereMesh" id="SphereMesh_g1v1l"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_infqi"]
+size = Vector2(300, 300)
+subdivide_width = 300
+subdivide_depth = 300
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_0iu7g"]
+size = Vector2(300, 300)
+subdivide_width = 300
+subdivide_depth = 300
 
 [node name="island" instance=ExtResource("1_10dn4")]
 
@@ -55,3 +67,14 @@ surface_material_override/0 = ExtResource("2_ugf8a")
 transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 57.2519, 4.60216, 27.0643)
 mesh = SubResource("SphereMesh_g1v1l")
 surface_material_override/0 = ExtResource("2_ugf8a")
+
+[node name="Sea Low Poly" type="MeshInstance3D" parent="." index="6"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.08165e-12, 3.173, 2.08165e-12)
+mesh = SubResource("PlaneMesh_infqi")
+surface_material_override/0 = ExtResource("4_1cgfj")
+
+[node name="Depth Texture" type="MeshInstance3D" parent="." index="7"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.08165e-12, 3.173, 2.08165e-12)
+visible = false
+mesh = SubResource("PlaneMesh_0iu7g")
+surface_material_override/0 = ExtResource("5_npfr8")
