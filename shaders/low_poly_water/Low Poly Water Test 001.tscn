@@ -59,3 +59,7 @@ mesh = SubResource("PlaneMesh_6flik")
 [node name="SeaBottom2" type="MeshInstance3D" parent="."]
 transform = Transform3D(0.947729, -0.319075, 0, 0.319075, 0.947729, 0, 0, 0, 1, 1.25889, -1.02343, 0)
 mesh = SubResource("PlaneMesh_6flik")
+
+[node name="SeaBottom3" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.175003, -0.0589187, -0.982803, 0.319075, 0.947729, 3.59637e-16, 0.931431, -0.313588, 0.184655, 1.25889, -1.02343, 0)
+mesh = SubResource("PlaneMesh_6flik")

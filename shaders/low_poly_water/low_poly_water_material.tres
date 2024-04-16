@@ -1,41 +1,33 @@
-[gd_resource type="ShaderMaterial" load_steps=6 format=3 uid="uid://kmhjhlbsxbnk"]
+[gd_resource type="ShaderMaterial" load_steps=5 format=3 uid="uid://kmhjhlbsxbnk"]
 
 [ext_resource type="Shader" path="res://shaders/low_poly_water/low_poly_water_shader.gdshader" id="1_i1for"]
-
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_b8fpr"]
-noise_type = 2
-fractal_type = 0
-cellular_distance_function = 1
-
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_d314b"]
-seamless = true
-noise = SubResource("FastNoiseLite_b8fpr")
-
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_onrc7"]
-
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_3da4c"]
-seamless = true
-noise = SubResource("FastNoiseLite_onrc7")
+[ext_resource type="Texture2D" uid="uid://dl3ito4a3a58v" path="res://shaders/low_poly_water/textures/water-foam.jpeg" id="2_0sdw8"]
+[ext_resource type="Texture2D" uid="uid://dew8p45yaq8qp" path="res://shaders/low_poly_water/textures/Caustic_Free.jpg" id="3_fiuo3"]
+[ext_resource type="Texture2D" uid="uid://d2lhv2ys8p7c6" path="res://shaders/low_poly_water/textures/tiling-perlin-noise.png" id="4_d74qd"]
 
 [resource]
 render_priority = 0
 shader = ExtResource("1_i1for")
-shader_parameter/metallic = 0.0
-shader_parameter/roughness = 0.2
-shader_parameter/opacity = 0.5
-shader_parameter/time_scale = 0.01
-shader_parameter/noise_scale = 10.0
-shader_parameter/height_scale = 0.25
 shader_parameter/color_deep = Color(0.0431373, 0.243137, 0.321569, 1)
 shader_parameter/color_shallow = Color(0, 0.74902, 0.788235, 1)
 shader_parameter/beers_law = 3.0
-shader_parameter/depth_offset = 3.65
+shader_parameter/depth_offset = 0.3
 shader_parameter/riples_velocity = Vector2(0.05, 0.05)
-shader_parameter/riples_scale = 3.0
-shader_parameter/riples_strength = 0.5
+shader_parameter/riples_scale = 16.0
+shader_parameter/riples_strength = 0.261
+shader_parameter/metallic = 0.0
+shader_parameter/roughness = 0.2
+shader_parameter/opacity = 0.5
+shader_parameter/riples = ExtResource("3_fiuo3")
+shader_parameter/time_scale = 0.005
+shader_parameter/noise_scale = 10.0
+shader_parameter/height_scale = 0.2
+shader_parameter/wave_noise_texture = ExtResource("4_d74qd")
+shader_parameter/foam_speed = Vector2(0.02, 0.02)
+shader_parameter/foam_amount = 0.4
 shader_parameter/edge_scale = 0.25
 shader_parameter/near = 0.1
 shader_parameter/far = 100.0
+shader_parameter/foam_tiling = Vector2(4, 4)
 shader_parameter/foam_color = Color(0.839216, 1, 0.976471, 1)
-shader_parameter/wave = SubResource("NoiseTexture2D_3da4c")
-shader_parameter/riples = SubResource("NoiseTexture2D_d314b")
+shader_parameter/foam_texture = ExtResource("2_0sdw8")

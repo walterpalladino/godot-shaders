@@ -3,6 +3,7 @@ shader_type spatial;
 group_uniforms water_color;
 uniform vec3 albedo : source_color ;
 uniform vec3 albedo2 : source_color ;
+uniform float fresnel_strength : hint_range(0.0, 10.0, 0.1) = 5.0 ;
 
 uniform float metallic : hint_range(0.0,1.0) = 0; 
 uniform float roughness : hint_range(0.0,1.0) = 0.02; 
@@ -35,7 +36,8 @@ group_uniforms foam_settings;
 uniform float edge_scale = 0.1;
 uniform float near = 0.5;
 uniform float far = 100.0;
-uniform vec3 edge_color : source_color;
+uniform vec3 foam_color : source_color;
+uniform sampler2D foam_texture;
 
 
 
@@ -64,11 +66,12 @@ void fragment() {
 	
 	
 	//	Depth calculations
-	float depth_texture = texture(DEPTH_TEXTURE, SCREEN_UV).r * 2.0 - 1.0;
+	float depth_texture = texture(DEPTH_TEXTURE, SCREEN_UV).r ;
 	float depth = PROJECTION_MATRIX[3][2] / (depth_texture + PROJECTION_MATRIX[2][2]);
 	depth = VERTEX.z + depth;
+	depth = depth - depth_offset;
 
-	float depth_blend = exp((depth + depth_offset) * -beers_law);
+	float depth_blend = exp(depth * -beers_law);
 	depth_blend = clamp(1.0 - depth_blend, 0.0, 1.0);	
 	float depth_blend_power = clamp(pow(depth_blend, 2.5), 0.0, 1.0);
 
@@ -82,13 +85,14 @@ void fragment() {
 	float z_dif = z_depth - z_pos;
 
 	//	Fresnel	
-	float fresnel = fresnel(5.0, NORMAL, VIEW);
+	float fresnel = fresnel(fresnel_strength, NORMAL, VIEW);
 	vec3 surface_color = mix(albedo, albedo2, fresnel);
 	
 	//ALBEDO = mix(surface_color, color, 0.75);
-	vec3 depth_color_adj = mix(edge_color, color, step(edge_scale, z_dif));
+	vec3 depth_color_adj = mix(foam_color, color, step(edge_scale, z_dif));
 	
 	ALBEDO = clamp(surface_color + depth_color_adj,vec3(0.0),vec3(1.0));
+	//ALBEDO = vec3(depth - depth_offset);
 
 	METALLIC = metallic;
 	ROUGHNESS = roughness;

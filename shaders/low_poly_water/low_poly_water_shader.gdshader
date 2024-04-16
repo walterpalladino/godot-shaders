@@ -1,14 +1,6 @@
 shader_type spatial;
 
-
-uniform float metallic : hint_range(0.0,1.0) = 0; 
-uniform float roughness : hint_range(0.0,1.0) = 0.02; 
-uniform float opacity : hint_range(0.0,1.0) = 0.8; 
-
-uniform sampler2D wave;
-uniform float time_scale : hint_range(0.0, 0.2, 0.005) = 0.025; 
-uniform float noise_scale = 10.0;
-uniform float height_scale = 0.15;
+group_uniforms water_color;
 
 //	Deep
 uniform vec3 color_deep : source_color;
@@ -21,11 +13,27 @@ uniform vec2 riples_velocity = vec2(0.1, 0.1);
 uniform float riples_scale = 1.0;
 uniform float riples_strength : hint_range(0.0, 1.0) = 0.25;
 
+uniform float metallic : hint_range(0.0,1.0) = 0; 
+uniform float roughness : hint_range(0.0,1.0) = 0.02; 
+uniform float opacity : hint_range(0.0,1.0) = 0.8; 
+
+group_uniforms water_waves;
+
+uniform sampler2D wave_noise_texture;
+uniform float time_scale : hint_range(0.0, 0.2, 0.005) = 0.025; 
+uniform float noise_scale = 10.0;
+uniform float height_scale = 0.15;
+
+
 //foam
+group_uniforms water_foam;
+uniform vec2 foam_speed = vec2(0.02, 0.02);
+uniform	float foam_amount = 0.40;
 uniform float edge_scale = 0.25;
 uniform float near = 0.1;
 uniform float far = 100.0;
 uniform sampler2D foam_texture;
+uniform vec2 foam_tiling = vec2(4.0, 4.0);
 uniform vec3 foam_color : source_color;
 
 uniform sampler2D DEPTH_TEXTURE : hint_depth_texture, filter_linear_mipmap;
@@ -52,7 +60,7 @@ float rim(float depth){
 
 void vertex() {
 	world_position = (MODEL_MATRIX * vec4(VERTEX, 1.0)).xyz;
-	height = texture(wave, world_position.xz /  noise_scale + TIME * time_scale).r;
+	height = texture(wave_noise_texture, world_position.xz /  noise_scale + TIME * time_scale).r;
 	VERTEX.y += height * height_scale;
 
 	// get the view pos for the low poly normals
@@ -67,11 +75,12 @@ void fragment() {
 	vec3 normal = -normalize( cross( xTangent, yTangent ) );
 
 	//	Depth calculations
-	float depth_texture = texture(DEPTH_TEXTURE, SCREEN_UV).r * 2.0 - 1.0;
+	float depth_texture = texture(DEPTH_TEXTURE, SCREEN_UV).r ;
 	float depth = PROJECTION_MATRIX[3][2] / (depth_texture + PROJECTION_MATRIX[2][2]);
 	depth = depth + VERTEX.z;
+	depth = depth - depth_offset;
 	
-	float depth_blend = exp((depth + depth_offset) * -beers_law);
+	float depth_blend = exp(depth * -beers_law);
 	depth_blend = clamp(1.0 - depth_blend, 0.0, 1.0);	
 	float depth_blend_power = clamp(pow(depth_blend, 2.5), 0.0, 1.0);
 
@@ -80,7 +89,7 @@ void fragment() {
 	vec3 depth_color = mix(color_shallow.rgb, color_deep.rgb, depth_blend_power);
 	vec3 color = mix(screen_color * depth_color, depth_color, depth_blend_power);
 
-	//	Riples
+	//	Riples added later as emmission
 	vec2 riple_coords = UV * riples_scale + (TIME * riples_velocity) ;
 	vec2 riple_coords2 = UV * riples_scale - (TIME * riples_velocity) ;
 
@@ -89,15 +98,10 @@ void fragment() {
 
 	vec3 riple = vec3( pow(riple_color.r * riple_color2.r, 1.2) * riples_strength);
 
-	color += riple;
-	
 	//	Add refractive color
 	vec3 world_view = (INV_VIEW_MATRIX * vec4(VIEW, 0.0)).xyz;	
 
 	color = mix (color_deep, color_shallow, vec3(1.0 - depth_blend_power));
-
-//	ALBEDO = color;
-
 
 	//	Add Foam
 	//	1 - get the depth at that screen corrdinate
@@ -108,22 +112,24 @@ void fragment() {
 	float foam_mask = step(edge_scale, diff);
 	foam_mask = smoothstep(0.0, edge_scale, diff);	
 	foam_mask = 1.0 - foam_mask;
-	//	3 - get the foam color at position
-	float foam_velocity = 0.00010 * sin(TIME * 1.0);
-	//vec2 foam_coords_deform = vec2(1.0 * sin(TIME), 1.0 * sin(TIME));
-	vec2 foam_coords = UV * 10.0 + (TIME * foam_velocity) ;
-	vec3 foam = color + foam_color * texture(wave, foam_coords).rgb;
+	
+	//	shore foam
+	vec2 offset = TIME * foam_speed;
+	vec2 tiling = foam_tiling;
+	vec2 uv_i = vec2( UV.x, foam_amount * depth);
+
+	vec2 uv_o = uv_i * tiling + offset;
+	vec3 foam = texture(foam_texture, uv_o).rgb;
+	
 	//	blend the foam based on the masked area
 	ALBEDO =  mix(color, foam, foam_mask);
-	//ALBEDO = vec3(texture(DEPTH_TEXTURE, SCREEN_UV).r);
+
 	EMISSION = riple;
 	
-	float opacity_adjusted = 1.0;
 	ALPHA = mix(opacity, 1.0, clamp(0.0, 1.0, depth_blend_power + 0.25));
-		
+	
 	METALLIC = metallic;
 	ROUGHNESS = roughness;
 
     NORMAL = normal;
-	
 }
