@@ -120,6 +120,8 @@ void fragment() {
 
 	vec2 uv_o = uv_i * tiling + offset;
 	vec3 foam = texture(foam_texture, uv_o).rgb;
+	foam = foam + foam_color ;
+	foam = clamp(foam, 0.0, 1.0);
 	
 	//	blend the foam based on the masked area
 	ALBEDO =  mix(color, foam, foam_mask);
