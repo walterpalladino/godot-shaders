@@ -1,7 +1,7 @@
 [gd_resource type="ShaderMaterial" load_steps=6 format=3 uid="uid://dq3fb2u2sb8s0"]
 
 [ext_resource type="Shader" path="res://shaders/water/water_shader.gdshader" id="1_r5661"]
-[ext_resource type="Texture2D" uid="uid://dl3ito4a3a58v" path="res://shaders/low_poly_water/textures/water-foam.jpeg" id="2_mn0o1"]
+[ext_resource type="Texture2D" uid="uid://c1q5i27s1nfgl" path="res://shaders/low_poly_water/textures/uvFoam.jpg" id="2_eyqg3"]
 [ext_resource type="Texture2D" uid="uid://1ttpaxrs6cxr" path="res://shaders/water/textures/water-normal.png" id="2_vevxq"]
 [ext_resource type="Texture2D" uid="uid://b5tvs0xtj48k3" path="res://shaders/water/textures/wave_normals_1.jpeg" id="3_l1x44"]
 [ext_resource type="Texture2D" uid="uid://d2lhv2ys8p7c6" path="res://shaders/low_poly_water/textures/tiling-perlin-noise.png" id="4_ecevw"]
@@ -13,7 +13,8 @@ shader_parameter/albedo = Color(0, 0.321569, 0.431373, 1)
 shader_parameter/albedo2 = Color(0.517647, 0.788235, 0.8, 1)
 shader_parameter/fresnel_strength = 5.0
 shader_parameter/metallic = 0.0
-shader_parameter/roughness = 0.02
+shader_parameter/roughness = 0.1
+shader_parameter/opacity = 0.75
 shader_parameter/normal_texture_scale = 1.27
 shader_parameter/normal_texture_strength = 0.42
 shader_parameter/wave_direction = Vector2(10, 10)
@@ -24,11 +25,14 @@ shader_parameter/wave = ExtResource("4_ecevw")
 shader_parameter/texture_normal = ExtResource("2_vevxq")
 shader_parameter/texture_normal2 = ExtResource("3_l1x44")
 shader_parameter/color_deep = Color(0, 0.321569, 0.431373, 1)
-shader_parameter/color_shallow = Color(0.482353, 0.776471, 0.831373, 1)
+shader_parameter/color_shallow = Color(0.482353, 0.776471, 0.631373, 1)
 shader_parameter/beers_law = 2.0
 shader_parameter/depth_offset = 0.5
-shader_parameter/edge_scale = 0.4
-shader_parameter/near = 0.5
+shader_parameter/foam_speed = Vector2(0.77, 0.02)
+shader_parameter/foam_amount = 1.44
+shader_parameter/edge_scale = 0.25
+shader_parameter/near = 0.12
 shader_parameter/far = 100.0
-shader_parameter/foam_color = Color(0.745098, 0.952941, 0.905882, 1)
-shader_parameter/foam_texture = ExtResource("2_mn0o1")
+shader_parameter/foam_color = Color(0.482353, 0.776471, 0.631373, 1)
+shader_parameter/foam_tiling = Vector2(4, 4)
+shader_parameter/foam_texture = ExtResource("2_eyqg3")
