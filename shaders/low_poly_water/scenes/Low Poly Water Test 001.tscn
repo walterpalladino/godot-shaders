@@ -1,6 +1,6 @@
 [gd_scene load_steps=9 format=3 uid="uid://cyledum63ycli"]
 
-[ext_resource type="PackedScene" uid="uid://c5gsq5uefuibs" path="res://shaders/low_poly_water/low_poly_water_plane.tscn" id="1_fc83g"]
+[ext_resource type="PackedScene" uid="uid://c5gsq5uefuibs" path="res://shaders/low_poly_water/scenes/low_poly_water_plane.tscn" id="1_fc83g"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_uf35c"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -50,8 +50,6 @@ mesh = SubResource("CylinderMesh_xyct8")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.87782, -0.30323, 1.66935)
 mesh = SubResource("SphereMesh_vnl1y")
 
-[node name="LowPolyWaterPlane" parent="." instance=ExtResource("1_fc83g")]
-
 [node name="SeaBottom" type="MeshInstance3D" parent="."]
 transform = Transform3D(0.999999, 0.00108208, 0, -0.00108215, 0.999999, 0, 0, 0, 1, 0, -4.08403, 0)
 mesh = SubResource("PlaneMesh_6flik")
@@ -63,3 +61,27 @@ mesh = SubResource("PlaneMesh_6flik")
 [node name="SeaBottom3" type="MeshInstance3D" parent="."]
 transform = Transform3D(0.175003, -0.0589187, -0.982803, 0.319075, 0.947729, 3.59637e-16, 0.931431, -0.313588, 0.184655, 1.25889, -1.02343, 0)
 mesh = SubResource("PlaneMesh_6flik")
+
+[node name="SeaBottom4" type="MeshInstance3D" parent="."]
+transform = Transform3D(-0.117145, 0.0394238, -0.992332, 0.318959, 0.947768, -3.48787e-16, 0.9405, -0.316513, -0.123601, -13.6601, -0.032488, 3.54931)
+mesh = SubResource("PlaneMesh_6flik")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(0.850811, -0.21289, 0.480415, 3.1888e-16, 0.914254, 0.405142, -0.525472, -0.344699, 0.777857, 1.33, 2.21, 3.39)
+
+[node name="Node" type="Node" parent="."]
+
+[node name="LowPolyWaterPlane" parent="Node" instance=ExtResource("1_fc83g")]
+skeleton = NodePath("../..")
+
+[node name="LowPolyWaterPlane2" parent="Node" instance=ExtResource("1_fc83g")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.08165e-12, 2.08165e-12, -10)
+skeleton = NodePath("../..")
+
+[node name="LowPolyWaterPlane3" parent="Node" instance=ExtResource("1_fc83g")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 2.08165e-12, -10)
+skeleton = NodePath("../..")
+
+[node name="LowPolyWaterPlane4" parent="Node" instance=ExtResource("1_fc83g")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 2.08165e-12, 2.08165e-12)
+skeleton = NodePath("../..")

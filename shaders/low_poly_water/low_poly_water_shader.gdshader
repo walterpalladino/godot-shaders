@@ -36,6 +36,12 @@ uniform sampler2D foam_texture;
 uniform vec2 foam_tiling = vec2(4.0, 4.0);
 uniform vec3 foam_color : source_color;
 
+
+//fresnel
+group_uniforms water_fresnel;
+uniform vec3 color_fresnel : source_color;
+uniform float fresnel_strength : hint_range(0.0, 1.0) = 0.5;
+
 uniform sampler2D DEPTH_TEXTURE : hint_depth_texture, filter_linear_mipmap;
 uniform sampler2D SCREEN_TEXTURE : hint_screen_texture, filter_linear_mipmap;
 
@@ -123,8 +129,12 @@ void fragment() {
 	foam = foam + foam_color ;
 	foam = clamp(foam, 0.0, 1.0);
 	
+	float fresnel_value = fresnel(5.0, NORMAL, VIEW) * fresnel_strength;
+	color = mix(color, color_fresnel, fresnel_value);
+	
 	//	blend the foam based on the masked area
-	ALBEDO =  mix(color, foam, foam_mask);
+//	ALBEDO =  mix(color, foam, foam_mask) + 0.25 * basic_fresnel;
+	ALBEDO =  mix(color, foam, foam_mask) ;
 
 	EMISSION = riple;
 	
@@ -134,4 +144,7 @@ void fragment() {
 	ROUGHNESS = roughness;
 
     NORMAL = normal;
+	
+	//ALBEDO = normal; 				// showing normal texture
+	
 }
