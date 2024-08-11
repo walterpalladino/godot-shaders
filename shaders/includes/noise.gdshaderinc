@@ -1,9 +1,9 @@
 
 
 group_uniforms noise;
-uniform float sharpness : hint_range(0.0, 50.0, 0.1) = 10.0;
-uniform float seed : hint_range(-100.0, 100.0, 0.1) = 0.0;
-uniform float scale : hint_range(0.01, 20.0, 0.1) = 1.0;
+uniform float sharpness : hint_range(0.0, 50.0, 0.01) = 10.0;
+uniform float seed : hint_range(-100.0, 100.0, 0.01) = 0.0;
+uniform float scale : hint_range(0.01, 20.0, 0.01) = 1.0;
 
 
 vec3 hash(vec3 p)
