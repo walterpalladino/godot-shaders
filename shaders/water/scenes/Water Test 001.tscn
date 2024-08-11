@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://n1ued6xto1b8"]
 
-[ext_resource type="PackedScene" uid="uid://dxnhd4uksigw7" path="res://shaders/water/water_plane.tscn" id="1_qe3dq"]
+[ext_resource type="PackedScene" uid="uid://dxnhd4uksigw7" path="res://shaders/water/scenes/water_plane.tscn" id="1_epgf7"]
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_xyct8"]
 height = 4.0
@@ -16,7 +16,7 @@ size = Vector2(10, 10)
 
 [node name="Water Test 001" type="Node3D"]
 
-[node name="WaterPlane" parent="." instance=ExtResource("1_qe3dq")]
+[node name="WaterPlane" parent="." instance=ExtResource("1_epgf7")]
 
 [node name="Column" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.20131, 0)
