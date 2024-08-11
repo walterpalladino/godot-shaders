@@ -1,7 +1,7 @@
 [gd_resource type="ShaderMaterial" load_steps=3 format=3 uid="uid://dny2phujf42nn"]
 
 [ext_resource type="Shader" path="res://shaders/wind/wind.gdshader" id="1_34v63"]
-[ext_resource type="Texture2D" uid="uid://bkkrxrbp24al2" path="res://shaders/wind/NormalTree_Leaves_Dark.png" id="2_ppo7m"]
+[ext_resource type="Texture2D" uid="uid://bkkrxrbp24al2" path="res://shaders/wind/textures/NormalTree_Leaves_Dark.png" id="2_ppo7m"]
 
 [resource]
 render_priority = 0

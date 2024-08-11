@@ -4,12 +4,12 @@ importer="scene"
 importer_version=1
 type="PackedScene"
 uid="uid://dmn4qblt6vomt"
-path="res://.godot/imported/normal_tree_8.glb-a86079633f69f6aea0f80828f6d006ac.scn"
+path="res://.godot/imported/normal_tree_8.glb-53ff4c518593c3fb5660569e53878d98.scn"
 
 [deps]
 
-source_file="res://shaders/wind/normal_tree_8.glb"
-dest_files=["res://.godot/imported/normal_tree_8.glb-a86079633f69f6aea0f80828f6d006ac.scn"]
+source_file="res://shaders/wind/models/normal_tree_8.glb"
+dest_files=["res://.godot/imported/normal_tree_8.glb-53ff4c518593c3fb5660569e53878d98.scn"]
 
 [params]
 
@@ -22,6 +22,7 @@ meshes/generate_lods=true
 meshes/create_shadow_meshes=true
 meshes/light_baking=1
 meshes/lightmap_texel_size=0.2
+meshes/force_disable_compression=false
 skins/use_named_skins=true
 animation/import=true
 animation/fps=30
@@ -29,4 +30,5 @@ animation/trimming=false
 animation/remove_immutable_tracks=true
 import_script/path=""
 _subresources={}
+gltf/naming_version=0
 gltf/embedded_image_handling=1

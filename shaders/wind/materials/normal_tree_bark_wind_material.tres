@@ -1,7 +1,7 @@
 [gd_resource type="ShaderMaterial" load_steps=3 format=3 uid="uid://p8x5jj5pu86k"]
 
 [ext_resource type="Shader" path="res://shaders/wind/wind.gdshader" id="1_tdehi"]
-[ext_resource type="Texture2D" uid="uid://b0tww0awmt4uv" path="res://shaders/wind/NormalTree_Bark.png" id="2_l682e"]
+[ext_resource type="Texture2D" uid="uid://b0tww0awmt4uv" path="res://shaders/wind/textures/NormalTree_Bark.png" id="2_l682e"]
 
 [resource]
 render_priority = 0
