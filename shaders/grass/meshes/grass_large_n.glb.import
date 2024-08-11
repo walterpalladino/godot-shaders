@@ -4,12 +4,12 @@ importer="scene"
 importer_version=1
 type="PackedScene"
 uid="uid://cxgkrs755n0ua"
-path="res://.godot/imported/grass_large_n.glb-0870144fd602e17c3d15018b9e2f6d45.scn"
+path="res://.godot/imported/grass_large_n.glb-ab86a365e1483f84e9c03fbb1d56f646.scn"
 
 [deps]
 
-source_file="res://shaders/grass/grass_large_n.glb"
-dest_files=["res://.godot/imported/grass_large_n.glb-0870144fd602e17c3d15018b9e2f6d45.scn"]
+source_file="res://shaders/grass/meshes/grass_large_n.glb"
+dest_files=["res://.godot/imported/grass_large_n.glb-ab86a365e1483f84e9c03fbb1d56f646.scn"]
 
 [params]
 
@@ -22,6 +22,7 @@ meshes/generate_lods=true
 meshes/create_shadow_meshes=true
 meshes/light_baking=1
 meshes/lightmap_texel_size=0.2
+meshes/force_disable_compression=false
 skins/use_named_skins=true
 animation/import=true
 animation/fps=30
@@ -29,4 +30,5 @@ animation/trimming=false
 animation/remove_immutable_tracks=true
 import_script/path=""
 _subresources={}
+gltf/naming_version=0
 gltf/embedded_image_handling=1

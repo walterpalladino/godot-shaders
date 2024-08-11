@@ -1,7 +1,7 @@
 [gd_scene load_steps=9 format=3 uid="uid://ykr8lojvbgee"]
 
-[ext_resource type="PackedScene" uid="uid://cxgkrs755n0ua" path="res://shaders/grass/grass_large_n.glb" id="1_noske"]
-[ext_resource type="Material" uid="uid://lr0ftjth3vm6" path="res://shaders/grass/grass_material.tres" id="2_31fnk"]
+[ext_resource type="PackedScene" uid="uid://cxgkrs755n0ua" path="res://shaders/grass/meshes/grass_large_n.glb" id="1_noske"]
+[ext_resource type="Material" uid="uid://lr0ftjth3vm6" path="res://shaders/grass/materials/grass_material.tres" id="2_31fnk"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_esftx"]
 size = Vector2(10, 10)
