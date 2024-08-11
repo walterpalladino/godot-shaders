@@ -1,0 +1,9 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://bsm6pyf3w7dkr"]
+
+[ext_resource type="Shader" path="res://shaders/fog/fog_shader.gdshader" id="1_s4v2g"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_s4v2g")
+shader_parameter/fog_color = Color(1, 1, 1, 1)
+shader_parameter/depth_range = 10000.0
