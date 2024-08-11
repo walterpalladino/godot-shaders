@@ -15,13 +15,13 @@ dest_files=["res://.godot/imported/Sand_Beach_Base_Normal.png-bdbf0c25c9582e4295
 
 [params]
 
-compress/mode=3
+compress/mode=0
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1
 compress/normal_map=1
 compress/channel_pack=0
-mipmaps/generate=true
+mipmaps/generate=false
 mipmaps/limit=-1
 roughness/mode=0
 roughness/src_normal=""

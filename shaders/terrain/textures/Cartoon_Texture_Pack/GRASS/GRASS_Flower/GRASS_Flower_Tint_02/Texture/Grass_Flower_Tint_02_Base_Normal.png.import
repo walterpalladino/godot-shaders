@@ -3,26 +3,25 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://lu1tbyvcc5s2"
-path.s3tc="res://.godot/imported/Grass_Flower_Tint_02_Base_Normal.png-9861bf66db07fc9c8a2ee1b37bdf5fea.s3tc.ctex"
+path="res://.godot/imported/Grass_Flower_Tint_02_Base_Normal.png-9861bf66db07fc9c8a2ee1b37bdf5fea.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
-"vram_texture": true
+"vram_texture": false
 }
 
 [deps]
 
 source_file="res://shaders/terrain/textures/Cartoon_Texture_Pack/GRASS/GRASS_Flower/GRASS_Flower_Tint_02/Texture/Grass_Flower_Tint_02_Base_Normal.png"
-dest_files=["res://.godot/imported/Grass_Flower_Tint_02_Base_Normal.png-9861bf66db07fc9c8a2ee1b37bdf5fea.s3tc.ctex"]
+dest_files=["res://.godot/imported/Grass_Flower_Tint_02_Base_Normal.png-9861bf66db07fc9c8a2ee1b37bdf5fea.ctex"]
 
 [params]
 
-compress/mode=2
+compress/mode=0
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1
 compress/normal_map=1
 compress/channel_pack=0
-mipmaps/generate=true
+mipmaps/generate=false
 mipmaps/limit=-1
 roughness/mode=0
 roughness/src_normal=""

@@ -15,13 +15,13 @@ dest_files=["res://.godot/imported/Rocks_Cliff_B_Normal.png-d2b822623fc33562bf4f
 
 [params]
 
-compress/mode=3
+compress/mode=0
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1
 compress/normal_map=1
 compress/channel_pack=0
-mipmaps/generate=true
+mipmaps/generate=false
 mipmaps/limit=-1
 roughness/mode=0
 roughness/src_normal=""
