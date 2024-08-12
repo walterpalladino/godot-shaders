@@ -44,6 +44,13 @@ uniform float fresnel_strength : hint_range(0.0, 1.0) = 0.5;
 
 uniform sampler2D DEPTH_TEXTURE : hint_depth_texture, filter_linear_mipmap;
 uniform sampler2D SCREEN_TEXTURE : hint_screen_texture, filter_linear_mipmap;
+/*
+//refraction
+group_uniforms water_refraction;
+#include "res://shaders/includes/noise.gdshaderinc"
+uniform float refraction_strength;    //Force of the effect
+uniform vec2 refraction_speed = vec2(0.0);
+*/
 
 
 //	Varying variables
@@ -80,6 +87,12 @@ void fragment() {
     vec3 yTangent = dFdy( v_view_pos );
 	vec3 normal = -normalize( cross( xTangent, yTangent ) );
 
+	//	Refraction calculations
+	//vec2 refraction_uv = SCREEN_UV;
+	//vec2 refraction_uv_noise = vec2(SCREEN_UV.x + TIME * refraction_speed.x, SCREEN_UV.y + TIME * refraction_speed.y);// - vec2(0.5);
+	//vec3 refraction_noise = get_noise(scale * vec3(refraction_uv_noise, seed)).rgb;
+	//refraction_uv += refraction_noise.xy * refraction_strength;
+
 	//	Depth calculations
 	float depth_texture = texture(DEPTH_TEXTURE, SCREEN_UV).r ;
 	float depth = PROJECTION_MATRIX[3][2] / (depth_texture + PROJECTION_MATRIX[2][2]);
@@ -90,11 +103,6 @@ void fragment() {
 	depth_blend = clamp(1.0 - depth_blend, 0.0, 1.0);	
 	float depth_blend_power = clamp(pow(depth_blend, 2.5), 0.0, 1.0);
 
-	vec3 screen_color = textureLod(SCREEN_TEXTURE, SCREEN_UV, depth_blend_power * 2.5).rgb;
-	//	TODO : review
-	vec3 depth_color = mix(color_shallow.rgb, color_deep.rgb, depth_blend_power);
-	vec3 color = mix(screen_color * depth_color, depth_color, depth_blend_power);
-
 	//	Riples added later as emmission
 	vec2 riple_coords = UV * riples_scale + (TIME * riples_velocity) ;
 	vec2 riple_coords2 = UV * riples_scale - (TIME * riples_velocity) ;
@@ -104,16 +112,16 @@ void fragment() {
 
 	vec3 riple = vec3( pow(riple_color.r * riple_color2.r, 1.2) * riples_strength);
 
-	//	Add refractive color
-	vec3 world_view = (INV_VIEW_MATRIX * vec4(VIEW, 0.0)).xyz;	
+	vec3 color_based_on_depth = mix (color_deep, color_shallow, vec3(1.0 - depth_blend_power));
 
-	color = mix (color_deep, color_shallow, vec3(1.0 - depth_blend_power));
+	vec3 color = color_based_on_depth ;
 
 	//	Add Foam
 	//	1 - get the depth at that screen corrdinate
 	float z_depth = rim(texture(DEPTH_TEXTURE, SCREEN_UV).x);
 	float z_pos = rim(FRAGCOORD.z);
 	float diff = z_depth - z_pos;
+	diff = depth_blend;
 	//	2 - create the area mask affected by the foam	
 	float foam_mask = step(edge_scale, diff);
 	foam_mask = smoothstep(0.0, edge_scale, diff);	
@@ -133,18 +141,49 @@ void fragment() {
 	color = mix(color, color_fresnel, fresnel_value);
 	
 	//	blend the foam based on the masked area
-//	ALBEDO =  mix(color, foam, foam_mask) + 0.25 * basic_fresnel;
-	ALBEDO =  mix(color, foam, foam_mask) ;
+	vec3 mixed_color = mix(color, foam, foam_mask);
+	//ALBEDO = mixed_color ;
 
+
+//	vec3 screen_background_color = texture(SCREEN_TEXTURE, refraction_uv).rgb;
+	vec3 screen_background_color = texture(SCREEN_TEXTURE, SCREEN_UV).rgb;
+	
+	//ALBEDO = color_based_on_depth;
+	//ALBEDO = screen_background_color;
+	//vec3 tmp_color = mix(screen_background_color, color_based_on_depth, depth_blend);
+	//ALBEDO = mix(tmp_color, foam, foam_mask) ;
+	//ALBEDO = tmp_color;
+	
+	//ALBEDO = vec3(foam_mask);
+	//ALBEDO = vec3(depth_blend);
+	//ALBEDO = screen_background_color;
+//	float alpha = mix(opacity, 1.0, clamp(0.0, 1.0, depth_blend_power + 0.25));
+	//float alpha = mix(opacity, 1.0, 1.0 - clamp(0.0, 1.0, depth_blend_power));
+	//alpha = clamp(0.0, 1.0, alpha);
+	vec3 color_with_opacity = mix(color_based_on_depth, screen_background_color, (1.0 - depth_blend_power) * (1.0 - opacity));
+	//ALBEDO = color_with_opacity;
+	
+	mixed_color = mix(color_with_opacity, foam, foam_mask);
+	ALBEDO = mixed_color ;
+	
+	
 	EMISSION = riple;
 	
-	ALPHA = mix(opacity, 1.0, clamp(0.0, 1.0, depth_blend_power + 0.25));
 	
+//	ALBEDO = mix(mixed_color, screen_background_color, alpha);
+//	ALBEDO = vec3(alpha);
+	
+	//ALPHA = mix(opacity, 1.0, clamp(0.0, 1.0, depth_blend_power + 0.25));
+//	ALPHA = mix(opacity, 1.0, clamp(0.0, 1.0, depth_blend_power));
+	//ALPHA = 1.0 - smoothstep(opacity, 1.0, clamp(0.0, 1.0, depth_blend_power));
+//	ALPHA = clamp(0.0, 1.0, opacity * 10.0);
+	//ALPHA = alpha;
+	//ALBEDO = vec3(depth_blend);
+	//ALBEDO = vec3(depth);
+
 	METALLIC = metallic;
 	ROUGHNESS = roughness;
 
     NORMAL = normal;
-	
-	//ALBEDO = normal; 				// showing normal texture
 	
 }
