@@ -3,8 +3,8 @@ shader_type spatial;
 group_uniforms water_color;
 
 //	Deep
-uniform vec3 color_deep : source_color;
-uniform vec3 color_shallow : source_color;
+uniform vec3 deep_color : source_color;
+uniform vec3 shallow_color : source_color;
 uniform float beers_law = 2.0;	//	Attenuation of light
 uniform float depth_offset = -0.75;
 
@@ -39,7 +39,7 @@ uniform vec3 foam_color : source_color;
 
 //fresnel
 group_uniforms water_fresnel;
-uniform vec3 color_fresnel : source_color;
+uniform vec3 fresnel_color : source_color;
 uniform float fresnel_strength : hint_range(0.0, 1.0) = 0.5;
 
 uniform sampler2D DEPTH_TEXTURE : hint_depth_texture, filter_linear_mipmap;
@@ -112,7 +112,7 @@ void fragment() {
 
 	vec3 riple = vec3( pow(riple_color.r * riple_color2.r, 1.2) * riples_strength);
 
-	vec3 color_based_on_depth = mix (color_deep, color_shallow, vec3(1.0 - depth_blend_power));
+	vec3 color_based_on_depth = mix (deep_color, shallow_color, vec3(1.0 - depth_blend_power));
 
 	vec3 color = color_based_on_depth ;
 
@@ -137,50 +137,26 @@ void fragment() {
 	foam = foam + foam_color ;
 	foam = clamp(foam, 0.0, 1.0);
 	
-	float fresnel_value = fresnel(5.0, NORMAL, VIEW) * fresnel_strength;
-	color = mix(color, color_fresnel, fresnel_value);
+	float fresnel_value = fresnel(5.0, normal, VIEW) * fresnel_strength;
+	color = mix(color, fresnel_color, fresnel_value);
 	
 	//	blend the foam based on the masked area
 	vec3 mixed_color = mix(color, foam, foam_mask);
-	//ALBEDO = mixed_color ;
 
-
-//	vec3 screen_background_color = texture(SCREEN_TEXTURE, refraction_uv).rgb;
+	//	Color down the water
 	vec3 screen_background_color = texture(SCREEN_TEXTURE, SCREEN_UV).rgb;
 	
-	//ALBEDO = color_based_on_depth;
-	//ALBEDO = screen_background_color;
-	//vec3 tmp_color = mix(screen_background_color, color_based_on_depth, depth_blend);
-	//ALBEDO = mix(tmp_color, foam, foam_mask) ;
-	//ALBEDO = tmp_color;
-	
-	//ALBEDO = vec3(foam_mask);
-	//ALBEDO = vec3(depth_blend);
-	//ALBEDO = screen_background_color;
-//	float alpha = mix(opacity, 1.0, clamp(0.0, 1.0, depth_blend_power + 0.25));
-	//float alpha = mix(opacity, 1.0, 1.0 - clamp(0.0, 1.0, depth_blend_power));
-	//alpha = clamp(0.0, 1.0, alpha);
-	vec3 color_with_opacity = mix(color_based_on_depth, screen_background_color, (1.0 - depth_blend_power) * (1.0 - opacity));
-	//ALBEDO = color_with_opacity;
-	
+	//	Mix water color with background based on opacity
+	vec3 color_with_opacity = mix(mixed_color, screen_background_color, (1.0 - depth_blend_power) * (1.0 - opacity));
+
+	//	Set water or foam color	
 	mixed_color = mix(color_with_opacity, foam, foam_mask);
-	ALBEDO = mixed_color ;
-	
+
+	//	Set the shader attributes	
+	ALBEDO = mixed_color;
 	
 	EMISSION = riple;
 	
-	
-//	ALBEDO = mix(mixed_color, screen_background_color, alpha);
-//	ALBEDO = vec3(alpha);
-	
-	//ALPHA = mix(opacity, 1.0, clamp(0.0, 1.0, depth_blend_power + 0.25));
-//	ALPHA = mix(opacity, 1.0, clamp(0.0, 1.0, depth_blend_power));
-	//ALPHA = 1.0 - smoothstep(opacity, 1.0, clamp(0.0, 1.0, depth_blend_power));
-//	ALPHA = clamp(0.0, 1.0, opacity * 10.0);
-	//ALPHA = alpha;
-	//ALBEDO = vec3(depth_blend);
-	//ALBEDO = vec3(depth);
-
 	METALLIC = metallic;
 	ROUGHNESS = roughness;
 
