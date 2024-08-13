@@ -28,10 +28,8 @@ uniform float height_scale = 0.15;
 //foam
 group_uniforms water_foam;
 uniform vec2 foam_speed = vec2(0.02, 0.02);
-uniform	float foam_amount = 0.40;
-uniform float edge_scale = 0.25;
-uniform float near = 0.1;
-uniform float far = 100.0;
+uniform	float foam_amount : hint_range(0.0, 10.0, 0.01) = 0.40;
+uniform float edge_scale : hint_range(0.0, 5.0, 0.01) = 0.25;
 uniform sampler2D foam_texture;
 uniform vec2 foam_tiling = vec2(4.0, 4.0);
 uniform vec3 foam_color : source_color;
@@ -44,19 +42,11 @@ uniform float fresnel_strength : hint_range(0.0, 1.0) = 0.5;
 
 uniform sampler2D DEPTH_TEXTURE : hint_depth_texture, filter_linear_mipmap;
 uniform sampler2D SCREEN_TEXTURE : hint_screen_texture, filter_linear_mipmap;
-/*
-//refraction
-group_uniforms water_refraction;
-#include "res://shaders/includes/noise.gdshaderinc"
-uniform float refraction_strength;    //Force of the effect
-uniform vec2 refraction_speed = vec2(0.0);
-*/
 
 
 //	Varying variables
-varying float height;
-varying vec3 world_position;
-varying vec3 v_view_pos;
+varying vec3 v_view_pos;	//	used to calculate normal based on displaced vertex
+
 
 //	Fresnel will adjust the color of albedo depending 
 //	on the angle the camera is viewing the mesh.
@@ -64,16 +54,10 @@ float fresnel (float amount, vec3 normal, vec3 view) {
 	return pow((1.0 - clamp(dot(normalize(normal), normalize(view)), 0.0, 1.0)), amount);	
 }
 
-//	Calculates impact scaling depth buffer data against
-//	near / far planes
-float rim(float depth){
-	depth = 2.0 * depth - 1.0;
-	return near * far / (far + depth * (near - far));
-}
 
 void vertex() {
-	world_position = (MODEL_MATRIX * vec4(VERTEX, 1.0)).xyz;
-	height = texture(wave_noise_texture, world_position.xz /  noise_scale + TIME * time_scale).r;
+	vec3 world_position = (MODEL_MATRIX * vec4(VERTEX, 1.0)).xyz;
+	float height = texture(wave_noise_texture, world_position.xz /  noise_scale + TIME * time_scale).r;
 	VERTEX.y += height * height_scale;
 
 	// get the view pos for the low poly normals
@@ -87,11 +71,6 @@ void fragment() {
     vec3 yTangent = dFdy( v_view_pos );
 	vec3 normal = -normalize( cross( xTangent, yTangent ) );
 
-	//	Refraction calculations
-	//vec2 refraction_uv = SCREEN_UV;
-	//vec2 refraction_uv_noise = vec2(SCREEN_UV.x + TIME * refraction_speed.x, SCREEN_UV.y + TIME * refraction_speed.y);// - vec2(0.5);
-	//vec3 refraction_noise = get_noise(scale * vec3(refraction_uv_noise, seed)).rgb;
-	//refraction_uv += refraction_noise.xy * refraction_strength;
 
 	//	Depth calculations
 	float depth_texture = texture(DEPTH_TEXTURE, SCREEN_UV).r ;
@@ -117,14 +96,9 @@ void fragment() {
 	vec3 color = color_based_on_depth ;
 
 	//	Add Foam
-	//	1 - get the depth at that screen corrdinate
-	float z_depth = rim(texture(DEPTH_TEXTURE, SCREEN_UV).x);
-	float z_pos = rim(FRAGCOORD.z);
-	float diff = z_depth - z_pos;
-	diff = depth_blend;
-	//	2 - create the area mask affected by the foam	
-	float foam_mask = step(edge_scale, diff);
-	foam_mask = smoothstep(0.0, edge_scale, diff);	
+	//	Calculate the area mask affected by the foam	
+	float foam_mask = step(edge_scale, depth_blend);
+	foam_mask = smoothstep(0.0, edge_scale, depth_blend);	
 	foam_mask = 1.0 - foam_mask;
 	
 	//	shore foam
