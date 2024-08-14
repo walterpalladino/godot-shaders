@@ -30,4 +30,4 @@ shader_parameter/foam_tiling = Vector2(2, 2)
 shader_parameter/foam_color = Color(0.5246, 0.84882, 0.86, 1)
 shader_parameter/foam_texture = ExtResource("2_pjt5m")
 shader_parameter/fresnel_color = Color(0.517647, 0.835294, 0.85098, 1)
-shader_parameter/fresnel_strength = 0.48
+shader_parameter/fresnel_strength = 0.504

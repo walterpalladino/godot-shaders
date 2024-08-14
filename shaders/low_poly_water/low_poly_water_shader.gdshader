@@ -112,10 +112,11 @@ void fragment() {
 	foam = clamp(foam, 0.0, 1.0);
 	
 	float fresnel_value = fresnel(5.0, normal, VIEW) * fresnel_strength;
-	color = mix(color, fresnel_color, fresnel_value);
+	//color = mix(color, fresnel_color, fresnel_value);
 	
 	//	blend the foam based on the masked area
 	vec3 mixed_color = mix(color, foam, foam_mask);
+
 
 	//	Color down the water
 	vec3 screen_background_color = texture(SCREEN_TEXTURE, SCREEN_UV).rgb;
@@ -129,7 +130,7 @@ void fragment() {
 	//	Set the shader attributes	
 	ALBEDO = mixed_color;
 	
-	EMISSION = riple;
+	EMISSION = riple + fresnel_color * fresnel_value;
 	
 	METALLIC = metallic;
 	ROUGHNESS = roughness;
