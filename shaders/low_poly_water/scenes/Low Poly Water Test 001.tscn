@@ -50,6 +50,10 @@ environment = SubResource("Environment_2e4po")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.69121, -0.990572, 0.210869)
 mesh = SubResource("CylinderMesh_xyct8")
 
+[node name="Column3" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.641704, -0.245425, 0, 0.766952, 0.205345, 0, 0, 0, 1, -5.66254, 1.37786, -8.07134)
+mesh = SubResource("CylinderMesh_xyct8")
+
 [node name="Column2" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.72617, -1.46928, 1.66035)
 mesh = SubResource("CylinderMesh_xyct8")
@@ -76,7 +80,7 @@ transform = Transform3D(-0.117145, 0.0394238, -0.992332, 0.318959, 0.947768, -3.
 mesh = SubResource("PlaneMesh_6flik")
 
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(0.850811, -0.21289, 0.480415, 3.1888e-16, 0.914254, 0.405142, -0.525472, -0.344699, 0.777857, 1.33, 2.21, 3.39)
+transform = Transform3D(-0.21644, -0.395538, 0.892582, 3.1888e-16, 0.914254, 0.405142, -0.976296, 0.0876887, -0.197881, -2.24, 2.21, -7.29)
 
 [node name="Node" type="Node" parent="."]
 
@@ -99,3 +103,8 @@ skeleton = NodePath("../..")
 transform = Transform3D(1.74071, -9.50639e-16, -1.47727, 6.97574e-16, 2, -1.04636e-15, 0.984847, 2.63635e-16, 2.61107, -5.73981, 2.08165e-12, -2.982)
 mesh = SubResource("PrismMesh_1fdg2")
 surface_material_override/0 = SubResource("StandardMaterial3D_yiv85")
+
+[node name="ReflectionProbe" type="ReflectionProbe" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.67017, -2.75317, -3.44067)
+visible = false
+size = Vector3(31.3403, 25.5063, 26.8813)

@@ -1,5 +1,7 @@
 shader_type spatial;
 
+render_mode depth_draw_always, cull_disabled, diffuse_lambert, specular_schlick_ggx;
+
 group_uniforms water_color;
 
 //	Deep
@@ -14,6 +16,7 @@ uniform float riples_scale = 1.0;
 uniform float riples_strength : hint_range(0.0, 1.0) = 0.25;
 
 uniform float metallic : hint_range(0.0,1.0) = 0; 
+uniform float specular : hint_range(0.0,1.0) = 0; 
 uniform float roughness : hint_range(0.0,1.0) = 0.02; 
 uniform float opacity : hint_range(0.0,1.0) = 0.8; 
 
@@ -133,6 +136,7 @@ void fragment() {
 	EMISSION = riple + fresnel_color * fresnel_value;
 	
 	METALLIC = metallic;
+	SPECULAR = specular;
 	ROUGHNESS = roughness;
 
     NORMAL = normal;

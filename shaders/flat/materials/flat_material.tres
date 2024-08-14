@@ -1,0 +1,8 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://01bh2sis4445"]
+
+[ext_resource type="Shader" path="res://shaders/flat/flat_shader.gdshader" id="1_6jkbc"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_6jkbc")
+shader_parameter/color = Color(0.760784, 0.313726, 0.286275, 1)
