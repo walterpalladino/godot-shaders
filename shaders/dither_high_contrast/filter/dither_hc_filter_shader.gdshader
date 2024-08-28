@@ -86,23 +86,22 @@ void fragment() {
 
 	//Brightness adjustment
 	texture_color = mix(vec3(0.0), texture_color, brightness);
-	//Contrast adjustment	
+	//Contrast adjustment
     texture_color = mix(vec3(0.5), texture_color, contrast);
 	//	Saturation
-	texture_color = mix(vec3(dot(vec3(1.0), texture_color) * 0.33333), texture_color, saturation);		
+	texture_color = mix(vec3(dot(vec3(1.0), texture_color) * 0.33333), texture_color, saturation);
 
 	float gray_value = intensity_from_color(texture_color.rgb);
-	
+
 	bool shaded = is_shaded(
 		FRAGCOORD.xy * (1.0 / float(scale)),
 		light_base + clamp(gray_value + sharpness, 0.0, 1.0 + sharpness) * light_strength);
-	
+
 	vec3 color = vec3(1.0);
 	if (!shaded) {
-		color = vec3(0.0);		
+		color = vec3(0.0);
 	}
-	
+
 	ALBEDO = vec3(gray_value);
 	ALBEDO = color;
 }
-

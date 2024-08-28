@@ -43,7 +43,7 @@ vec4 getPatternColor(vec2 uv, float intensity)
 	vec4 pCol2 = texture(texture_pattern, patternUV2);
 	vec4 pCol3 = texture(texture_pattern, patternUV3);
 	vec4 pCol4 = texture(texture_pattern, patternUV4);
-	
+
 	if(intensity > threshold_1)
 		return vec4(1.0, 1.0, 1.0, 1.0);
 	if(intensity > threshold_2)
@@ -59,12 +59,12 @@ vec4 getPatternColor(vec2 uv, float intensity)
 void fragment() {
 
 	vec3 screen_color = texture(SCREEN_TEXTURE, SCREEN_UV).rgb;
-	
+
 	screen_color = mix(vec3(0.0), screen_color, input_brightness);
 	screen_color = mix(vec3(0.5), screen_color, input_contrast);
-	
+
 	screen_color = clamp(screen_color, 0.0, 1.0);
-	
+
 	float intensity = getIntensity(screen_color);
 
 	vec4 pattern_color = getPatternColor(SCREEN_UV, intensity);

@@ -87,20 +87,20 @@ void fragment() {
 	//ALBEDO = color.rgb * material_tex.rgb;
 	ALPHA *= material_tex.a;
 	ALPHA_SCISSOR_THRESHOLD = alpha_cut_off;
-	
+
 }
 
 void light() {
-	
+
 	float f = ATTENUATION;
-	
+
 	bool shaded = is_shaded(
 		FRAGCOORD.xy * (1.0 / scale),
 		light_base + clamp(dot(NORMAL, LIGHT) + sharpness, 0.0, 1.0 + sharpness) * f);
-	
+
 	if (shaded) {
-		DIFFUSE_LIGHT = vec3(1.0);	
+		DIFFUSE_LIGHT = vec3(1.0);
 	} else {
-		DIFFUSE_LIGHT = vec3(0.0);		
+		DIFFUSE_LIGHT = vec3(0.0);
 	}
 }

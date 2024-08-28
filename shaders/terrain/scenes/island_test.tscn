@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://cwkcgd7umtqtc" path="res://shaders/terrain/meshes/island.glb" id="1_vesag"]
 [ext_resource type="Material" uid="uid://c5kb7cn80drdd" path="res://shaders/terrain/materials/terrain_material.tres" id="2_kmqs2"]
 [ext_resource type="Material" uid="uid://dq3fb2u2sb8s0" path="res://shaders/water/materials/water_material.tres" id="3_17law"]
-[ext_resource type="Material" uid="uid://kmhjhlbsxbnk" path="res://shaders/low_poly_water/materials/low_poly_water_material.tres" id="4_uqljr"]
+[ext_resource type="Material" uid="uid://buafad3huhdai" path="res://shaders/low_poly_water/materials/low_poly_ocean_material.tres" id="4_oy7gu"]
 [ext_resource type="Material" uid="uid://hhw4udntxbbb" path="res://shaders/low_poly_water/materials/depth_texture_material.tres" id="5_d5tjs"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_bx0dg"]
@@ -50,6 +50,7 @@ environment = SubResource("Environment_g046j")
 
 [node name="Island" parent="." index="2"]
 transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 0, 0, 0)
+lod_bias = 0.001
 surface_material_override/0 = ExtResource("2_kmqs2")
 
 [node name="Sea" type="MeshInstance3D" parent="." index="3"]
@@ -64,14 +65,14 @@ mesh = SubResource("BoxMesh_grodv")
 surface_material_override/0 = ExtResource("2_kmqs2")
 
 [node name="Sphere" type="MeshInstance3D" parent="." index="5"]
-transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 57.2519, 4.60216, 27.0643)
+transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 57.2519, 4.83591, 27.0643)
 mesh = SubResource("SphereMesh_g1v1l")
 surface_material_override/0 = ExtResource("2_kmqs2")
 
 [node name="Sea Low Poly" type="MeshInstance3D" parent="." index="6"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.08165e-12, 3.173, 2.08165e-12)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.6, 0)
 mesh = SubResource("PlaneMesh_infqi")
-surface_material_override/0 = ExtResource("4_uqljr")
+surface_material_override/0 = ExtResource("4_oy7gu")
 
 [node name="Depth Texture" type="MeshInstance3D" parent="." index="7"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.08165e-12, 3.173, 2.08165e-12)

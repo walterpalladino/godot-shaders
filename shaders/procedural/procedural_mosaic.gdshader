@@ -44,7 +44,6 @@ void fragment() {
 	ALBEDO = get_color(pixel_world_position);
 
 	ALPHA = opacity;
-	
+
 	ROUGHNESS = 1.0 - smoothness;
 }
-

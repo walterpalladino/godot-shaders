@@ -5,9 +5,9 @@ uniform vec3 albedo : source_color ;
 uniform vec3 albedo2 : source_color ;
 uniform float fresnel_strength : hint_range(0.0, 10.0, 0.1) = 5.0 ;
 
-uniform float metallic : hint_range(0.0,1.0) = 0; 
-uniform float roughness : hint_range(0.0,1.0) = 0.02; 
-uniform float opacity : hint_range(0.0,1.0) = 0.8; 
+uniform float metallic : hint_range(0.0,1.0) = 0;
+uniform float roughness : hint_range(0.0,1.0) = 0.02;
+uniform float opacity : hint_range(0.0,1.0) = 0.8;
 
 group_uniforms waves_settings;
 uniform sampler2D wave;
@@ -18,7 +18,7 @@ uniform float normal_texture_strength = 1.0f;
 
 uniform vec2 wave_direction = vec2(2.0, 0.0);
 uniform vec2 wave_direction2 = vec2(0.0, 1.0);
-//uniform float time_scale : hint_range(0.0, 0.2, 0.005) = 0.025; 
+//uniform float time_scale : hint_range(0.0, 0.2, 0.005) = 0.025;
 uniform float noise_scale = 10.0;
 uniform float height_scale = 0.15;
 
@@ -52,7 +52,7 @@ varying vec3 world_position;
 
 
 float fresnel (float amount, vec3 normal, vec3 view) {
-	return pow((1.0 - clamp(dot(normalize(normal), normalize(view)), 0.0, 1.0)), amount);	
+	return pow((1.0 - clamp(dot(normalize(normal), normalize(view)), 0.0, 1.0)), amount);
 }
 
 float edge(float depth) {
@@ -67,8 +67,8 @@ void vertex () {
 }
 
 void fragment() {
-	
-	
+
+
 	//	Depth calculations
 	float depth_texture = texture(DEPTH_TEXTURE, SCREEN_UV).r ;
 	float depth = PROJECTION_MATRIX[3][2] / (depth_texture + PROJECTION_MATRIX[2][2]);
@@ -76,24 +76,24 @@ void fragment() {
 	depth = depth - depth_offset;
 
 	float depth_blend = exp(depth * -beers_law);
-	depth_blend = clamp(1.0 - depth_blend, 0.0, 1.0);	
+	depth_blend = clamp(1.0 - depth_blend, 0.0, 1.0);
 	float depth_blend_power = clamp(pow(depth_blend, 2.5), 0.0, 1.0);
 
 	vec3 screen_color = textureLod(SCREEN_TEXTURE, SCREEN_UV, depth_blend_power * 2.5).rgb;
 	vec3 depth_color = mix(color_shallow.rgb, color_deep.rgb, depth_blend_power);
 	vec3 color = mix(screen_color * depth_color, depth_color, depth_blend_power);
-	
+
 	// Getting edge depth calc
 	float z_depth = edge(texture(DEPTH_TEXTURE, SCREEN_UV).x);
 	float z_pos = edge(FRAGCOORD.z);
 	float z_dif = z_depth - z_pos;
 
 
-	//	Create the area mask affected by the foam	
+	//	Create the area mask affected by the foam
 	float foam_mask = step(edge_scale, z_dif);
-	foam_mask = smoothstep(0.0, edge_scale, z_dif);	
+	foam_mask = smoothstep(0.0, edge_scale, z_dif);
 	foam_mask = 1.0 - foam_mask;
-	
+
 	//	Shore foam
 	vec2 offset = TIME * foam_speed;
 	vec2 tiling = foam_tiling;
@@ -104,13 +104,13 @@ void fragment() {
 	foam = foam + foam_color ;
 	foam = clamp(foam, 0.0, 1.0);
 
-	//	Fresnel	
+	//	Fresnel
 	float fresnel = fresnel(fresnel_strength, NORMAL, VIEW);
 	vec3 surface_color = mix(albedo, albedo2, fresnel);
-	
+
 	//ALBEDO = mix(surface_color, color, 0.75);
 	vec3 depth_color_adj = mix(foam, color, step(edge_scale, z_dif));
-	
+
 //	ALBEDO =  mix(color, foam, foam_mask);
 	ALBEDO = clamp(surface_color + depth_color_adj,vec3(0.0),vec3(1.0));
 	//ALBEDO = vec3(depth - depth_offset);
@@ -121,8 +121,8 @@ void fragment() {
 	ALPHA = mix(opacity, 1.0, clamp(0.0, 1.0, depth_blend_power + 0.25));
 
 	//	Time calculations
-	vec2 time = (TIME / 1000.0 * wave_direction) ; 
-	vec2 time2 = (TIME / 1000.0 * wave_direction2) ; 
+	vec2 time = (TIME / 1000.0 * wave_direction) ;
+	vec2 time2 = (TIME / 1000.0 * wave_direction2) ;
 	//	Blend
 	vec3 normal_blend = mix(texture(texture_normal, world_position.xz / normal_texture_scale + time).rgb, texture(texture_normal2, world_position.xz / normal_texture_scale + time2).rgb, 0.5);
 	NORMAL_MAP = normal_blend;

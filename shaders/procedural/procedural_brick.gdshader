@@ -16,7 +16,7 @@ uniform float mortar_percentile = 0.15;
 
 vec3 get_color(vec3 POINT)
 {
-	
+
 	POINT.x = POINT.x - center.x;
 	POINT.y = POINT.y - center.y;
 	POINT.z = POINT.z - center.z;
@@ -37,7 +37,7 @@ vec3 get_color(vec3 POINT)
 	POINT.x = abs(mod(POINT.x, 1.0f));
 	POINT.y = abs(mod(POINT.y, 1.0f));
 	POINT.z = abs(mod(POINT.z, 1.0f));
-	
+
 	if ((POINT.y < 1.0 - mortar_percentile) && (POINT.y > 0.5))
 	{
 		if ((POINT.x > 0.5 * mortar_percentile) &&
@@ -55,7 +55,7 @@ vec3 get_color(vec3 POINT)
 				(POINT.z > 0.5 + 0.5 * mortar_percentile))
 				return color1;
 	}
-	
+
 	return color2;
 }
 
@@ -66,6 +66,6 @@ void fragment() {
 	ALBEDO = get_color(pixel_world_position);
 
 	ALPHA = opacity;
-	
+
 	ROUGHNESS = 1.0 - smoothness;
 }

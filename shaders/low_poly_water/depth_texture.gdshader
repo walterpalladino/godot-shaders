@@ -10,12 +10,12 @@ void vertex() {
 }
 
 void fragment() {
-	float depth_texture = texture(DEPTH_TEXTURE, SCREEN_UV).r; 
+	float depth_texture = texture(DEPTH_TEXTURE, SCREEN_UV).r;
 	//	Working with compatibility
 	//	depth_texture = depth_texture * 2.0 - 1.0;
 	float depth = PROJECTION_MATRIX[3][2] / (depth_texture + PROJECTION_MATRIX[2][2]);
 	depth = VERTEX.z + depth;	//	Adjust camera position
-	
+
 	ALBEDO = vec3(depth * 0.01);
 }
 

@@ -12,7 +12,7 @@ uniform float wind_frequency = 0.0f;
 
 
 void vertex() {
-	
+
 	vec3 position = VERTEX;
 
 	position.x += wind_strength.x * sin(TIME * wind_frequency) * (1.0 - UV.y);

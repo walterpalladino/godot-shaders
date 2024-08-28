@@ -32,7 +32,7 @@ vec3 get_color(vec3 POINT)
 		POINT.z = 0.0;
 
 	int check_index = int((floor(POINT.x) + floor(POINT.y) + floor(POINT.z)) );
-	
+
 	if ((check_index & 1) == 1)
 	{
 		return color1;
@@ -50,6 +50,6 @@ void fragment() {
 	ALBEDO = get_color(pixel_world_position);
 
 	ALPHA = opacity;
-	
+
 	ROUGHNESS = 1.0 - smoothness;
 }

@@ -17,22 +17,22 @@ void sky() {
 
 	float horizon_blend = abs(EYEDIR.y / horizon_intensity) - offset_horizon;
 	horizon_blend = clamp(horizon_blend, 0.0, 1.0);
-	
+
 	vec3 sky_color = vec3(1.0);
 
-	sky_color = mix(horizon_color, azimut_color, horizon_blend);			
+	sky_color = mix(horizon_color, azimut_color, horizon_blend);
 
 	// Sun
 	float sun_distance = distance(EYEDIR.xyz, LIGHT0_DIRECTION);
 	float sun_disc = 1.0 - clamp(sun_distance / sun_radius, 0.0, 1.0);
-	
+
 	// option to render flat sun
 	if (flat_sun == true) {
 		sun_disc = roundEven(sun_disc);
 	}
-	
+
 	vec3 sun = (sun_disc * sun_color.rgb) ;
-	
+
 	sky_color += sun;
 
 	COLOR = sky_color;

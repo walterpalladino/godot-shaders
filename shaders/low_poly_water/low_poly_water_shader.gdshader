@@ -15,15 +15,15 @@ uniform vec2 riples_velocity = vec2(0.1, 0.1);
 uniform float riples_scale = 1.0;
 uniform float riples_strength : hint_range(0.0, 1.0) = 0.25;
 
-uniform float metallic : hint_range(0.0,1.0) = 0; 
-uniform float specular : hint_range(0.0,1.0) = 0; 
-uniform float roughness : hint_range(0.0,1.0) = 0.02; 
-uniform float opacity : hint_range(0.0,1.0) = 0.8; 
+uniform float metallic : hint_range(0.0,1.0) = 0;
+uniform float specular : hint_range(0.0,1.0) = 0;
+uniform float roughness : hint_range(0.0,1.0) = 0.02;
+uniform float opacity : hint_range(0.0,1.0) = 0.8;
 
 group_uniforms water_waves;
 
 uniform sampler2D wave_noise_texture;
-uniform float time_scale : hint_range(0.0, 0.2, 0.005) = 0.025; 
+uniform float time_scale : hint_range(0.0, 0.2, 0.005) = 0.025;
 uniform float noise_scale = 10.0;
 uniform float height_scale = 0.15;
 
@@ -51,10 +51,10 @@ uniform sampler2D SCREEN_TEXTURE : hint_screen_texture, filter_linear_mipmap;
 varying vec3 v_view_pos;	//	used to calculate normal based on displaced vertex
 
 
-//	Fresnel will adjust the color of albedo depending 
+//	Fresnel will adjust the color of albedo depending
 //	on the angle the camera is viewing the mesh.
 float fresnel (float amount, vec3 normal, vec3 view) {
-	return pow((1.0 - clamp(dot(normalize(normal), normalize(view)), 0.0, 1.0)), amount);	
+	return pow((1.0 - clamp(dot(normalize(normal), normalize(view)), 0.0, 1.0)), amount);
 }
 
 
@@ -69,7 +69,7 @@ void vertex() {
 
 void fragment() {
 
-	//	Normal calculation based on vertex displacement	
+	//	Normal calculation based on vertex displacement
 	vec3 xTangent = dFdx( v_view_pos );
     vec3 yTangent = dFdy( v_view_pos );
 	vec3 normal = -normalize( cross( xTangent, yTangent ) );
@@ -80,9 +80,9 @@ void fragment() {
 	float depth = PROJECTION_MATRIX[3][2] / (depth_texture + PROJECTION_MATRIX[2][2]);
 	depth = depth + VERTEX.z;
 	depth = depth - depth_offset;
-	
+
 	float depth_blend = exp(depth * -beers_law);
-	depth_blend = clamp(1.0 - depth_blend, 0.0, 1.0);	
+	depth_blend = clamp(1.0 - depth_blend, 0.0, 1.0);
 	float depth_blend_power = clamp(pow(depth_blend, 2.5), 0.0, 1.0);
 
 	//	Riples added later as emmission
@@ -99,11 +99,11 @@ void fragment() {
 	vec3 color = color_based_on_depth ;
 
 	//	Add Foam
-	//	Calculate the area mask affected by the foam	
+	//	Calculate the area mask affected by the foam
 	float foam_mask = step(edge_scale, depth_blend);
-	foam_mask = smoothstep(0.0, edge_scale, depth_blend);	
+	foam_mask = smoothstep(0.0, edge_scale, depth_blend);
 	foam_mask = 1.0 - foam_mask;
-	
+
 	//	shore foam
 	vec2 offset = TIME * foam_speed;
 	vec2 tiling = foam_tiling;
@@ -113,32 +113,32 @@ void fragment() {
 	vec3 foam = texture(foam_texture, uv_o).rgb;
 	foam = foam + foam_color ;
 	foam = clamp(foam, 0.0, 1.0);
-	
+
 	float fresnel_value = fresnel(5.0, normal, VIEW) * fresnel_strength;
 	//color = mix(color, fresnel_color, fresnel_value);
-	
+
 	//	blend the foam based on the masked area
 	vec3 mixed_color = mix(color, foam, foam_mask);
 
 
 	//	Color down the water
 	vec3 screen_background_color = texture(SCREEN_TEXTURE, SCREEN_UV).rgb;
-	
+
 	//	Mix water color with background based on opacity
 	vec3 color_with_opacity = mix(mixed_color, screen_background_color, (1.0 - depth_blend_power) * (1.0 - opacity));
 
-	//	Set water or foam color	
+	//	Set water or foam color
 	mixed_color = mix(color_with_opacity, foam, foam_mask);
 
-	//	Set the shader attributes	
+	//	Set the shader attributes
 	ALBEDO = mixed_color;
-	
+
 	EMISSION = riple + fresnel_color * fresnel_value;
-	
+
 	METALLIC = metallic;
 	SPECULAR = specular;
 	ROUGHNESS = roughness;
 
     NORMAL = normal;
-	
+
 }

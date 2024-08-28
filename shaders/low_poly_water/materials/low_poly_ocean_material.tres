@@ -16,6 +16,7 @@ shader_parameter/riples_velocity = Vector2(0.02, 0.025)
 shader_parameter/riples_scale = 32.0
 shader_parameter/riples_strength = 0.25
 shader_parameter/metallic = 0.0
+shader_parameter/specular = 0.0
 shader_parameter/roughness = 0.02
 shader_parameter/opacity = 0.52
 shader_parameter/riples = ExtResource("3_mxmr6")

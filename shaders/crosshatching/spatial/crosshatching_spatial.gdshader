@@ -9,7 +9,7 @@ render_mode unshaded, depth_draw_always, cull_back;
 
 
 uniform vec3 albedo : source_color = vec3(1.0) ;
-uniform sampler2D material_texture : hint_default_white; 
+uniform sampler2D material_texture : hint_default_white;
 
 uniform sampler2D texture_pattern;
 uniform vec2 pattern_tiling = vec2(1.0, 1.0);
@@ -52,7 +52,7 @@ vec4 getPatternColor(vec2 uv, float intensity)
 	vec4 pCol2 = texture(texture_pattern, patternUV2);
 	vec4 pCol3 = texture(texture_pattern, patternUV3);
 	vec4 pCol4 = texture(texture_pattern, patternUV4);
-	
+
 	if(intensity > threshold_1)
 		return vec4(1.0, 1.0, 1.0, 1.0);
 	if(intensity > threshold_2)
@@ -71,7 +71,7 @@ vec4 getPatternColor(vec2 uv, float intensity)
 
 void fragment() {
 
-	vec3 world_view = (INV_VIEW_MATRIX * vec4(VIEW, 0.0)).xyz;	
+	vec3 world_view = (INV_VIEW_MATRIX * vec4(VIEW, 0.0)).xyz;
 
 	if (use_custom_direction) {
 		world_view = normalize(custom_direction);
@@ -81,14 +81,14 @@ void fragment() {
 	//	to calculate how much the light affects it
 	float _dot = dot(normalize(world_view), normalize(NORMAL));
 	_dot = clamp(_dot, 0.0, 1.0);
-	
+
 	if (invert_direction)
 		_dot = 1.0 - _dot;
 
 	vec3 vertex_color = albedo * brightness;
 	float intensity = getIntensity(vertex_color);
 	//vec3 color = vec3(intensity);
-	
+
 	vec4 pattern_color = getPatternColor(SCREEN_UV, intensity * _dot);
 	//vec3 final_color = mix(color.rgb, vertex_color, 0.750);
 	//vec3 final_color = color.rgb + vertex_color * 0.5;
@@ -97,12 +97,12 @@ void fragment() {
 	//ALBEDO = vec3(intensity);
 	//vec4 background_color = vec4(0.0, 0.0, 0.0, 1.0);
 	vec3 pattern_color_rgb = pattern_color.rgb;
-	
+
 	pattern_color_rgb = mix(vec3(0.0), pattern_color_rgb, hatch_brightness);
 
 	pattern_color_rgb = mix(vec3(0.5), pattern_color_rgb, hatch_contrast);;
 	pattern_color_rgb = clamp(pattern_color_rgb, 0.0, 1.0);
-	
+
 	ALBEDO = pattern_color_rgb * albedo;//(intensity + 0.25);
 	//ALBEDO = pattern_color.rgb * (intensity) * albedo;
 //	ALBEDO = pattern_color.rgb;
@@ -111,4 +111,3 @@ void fragment() {
 	//ALPHA = color.a;
 	//ALBEDO = albedo;
 }
-

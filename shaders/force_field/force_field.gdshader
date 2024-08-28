@@ -5,10 +5,10 @@ render_mode cull_disabled;
 //depth_test_disable;
 
 
-uniform sampler2D shield_texture : hint_default_white; 
+uniform sampler2D shield_texture : hint_default_white;
 uniform vec4 shield_albedo : source_color = vec4(1.0);
 uniform vec4 shield_emission : source_color = vec4(1.0);
-uniform float emission_amount: hint_range(0.0, 24.0) = 5.0f; 
+uniform float emission_amount: hint_range(0.0, 24.0) = 5.0f;
 uniform float rim_steepness : hint_range(0.0f, 24.0f) = 3.0f; //higher values mean a smaller rim.
 
 
@@ -23,13 +23,13 @@ uniform float pattern_scroll_speed = 0.025;
 
 void vertex() {
 	UV = UV * uv_scale.xy + uv_offset.xy;
-	
+
 //	float pulse_distance = sin(TIME * pulsing_speed) * 0.1 * pulsing_strength;
 //	VERTEX += NORMAL * pulse_distance;
 }
 
 void fragment() {
-	
+
 	float scrolling_time = TIME * pattern_scroll_speed;
 
 	vec2 base_uv = UV + vec2(0.0, scrolling_time);

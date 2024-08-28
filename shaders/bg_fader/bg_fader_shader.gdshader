@@ -35,26 +35,26 @@ void fragment() {
 	//ALBEDO = color;
 	ALBEDO = vec3(0.0);
 	*/
-	
+
 	vec2 uv = SCREEN_UV;
-	
+
 	vec3 screen_color = texture(SCREEN_TEXTURE, uv).rgb;
 	vec3 normal = texture(NORMAL_TEXTURE, uv).rgb;
 	float roughness =  texture(NORMAL_TEXTURE, uv).w;
-	
+
 	float depth = texture(DEPTH_TEXTURE, SCREEN_UV).x;
 	vec3 ndc = vec3(SCREEN_UV * 2.0 - 1.0, depth);
 	vec4 view = INV_PROJECTION_MATRIX * vec4(ndc, 1.0);
 	view.xyz /= view.w;
 	float linear_depth = -view.z / clipping_far_plane;
-	
+
 	//float cut = step(cut_distance, linear_depth);
 	float cut = smoothstep(cut_distance - cut_smoothness, cut_distance + cut_smoothness, linear_depth);
-	
+
 	vec3 final_color = mix(screen_color, background_color, cut);
-	
+
 	ALBEDO = final_color;
-	
+
 	//ALBEDO = vec3( -view.z / 4000.0 ); 	// showing original depth texture
 	//ALBEDO = vec3(linear_depth); 	// showing depth texture
 	//ALBEDO = normal; 				// showing normal texture
@@ -67,7 +67,7 @@ void fragment() {
 	//ALBEDO=view.rgb;
 	//ALBEDO=vec3(-view.z);
 	//ALBEDO = vec3(linear_depth); 	// showing depth texture
-	
+
 }
 
 //void light() {

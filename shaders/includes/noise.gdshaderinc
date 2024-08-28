@@ -49,8 +49,8 @@ vec4 get_noise( vec3 uv )
             (shard_noise(8.0*uv,sharpness) * .25) +
             (shard_noise(4.0*uv,sharpness) * .5)
         ),1.);
-    
+
 	//C = clamp(C, 0.0, 1.0);
-	
+
     return C;
 }

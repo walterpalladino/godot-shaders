@@ -39,7 +39,7 @@ vec4 getPatternColor(vec2 uv, float intensity)
 	vec4 pCol2 = texture(texture_pattern, patternUV2);
 	vec4 pCol3 = texture(texture_pattern, patternUV3);
 	vec4 pCol4 = texture(texture_pattern, patternUV4);
-	
+
 	if(intensity > threshold_1)
 		return vec4(1.0, 1.0, 1.0, 1.0);
 	if(intensity > threshold_2)
@@ -61,7 +61,7 @@ void fragment() {
 	vec3 vertex_color = albedo * brightness;
 	float intensity = getIntensity(vertex_color);
 	//vec3 color = vec3(intensity);
-	
+
 	vec4 pattern_color = getPatternColor(SCREEN_UV, intensity);
 	//vec3 final_color = mix(color.rgb, vertex_color, 0.750);
 	//vec3 final_color = color.rgb + vertex_color * 0.5;

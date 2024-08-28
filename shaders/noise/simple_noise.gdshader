@@ -16,7 +16,7 @@ void fragment() {
 
 
 	vec3 noise = get_noise(scale * vec3(uv, seed)).rgb;
-	 
+
 	ALBEDO = noise;
 
 }
