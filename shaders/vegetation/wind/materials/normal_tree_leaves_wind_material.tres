@@ -1,0 +1,15 @@
+[gd_resource type="ShaderMaterial" load_steps=3 format=3 uid="uid://dny2phujf42nn"]
+
+[ext_resource type="Shader" path="res://shaders/vegetation/wind/wind.gdshader" id="1_34v63"]
+[ext_resource type="Texture2D" uid="uid://bkkrxrbp24al2" path="res://shaders/vegetation/wind/textures/NormalTree_Leaves_Dark.png" id="2_ppo7m"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_34v63")
+shader_parameter/alpha_cut_off = 0.5
+shader_parameter/color = Color(0.235294, 0.588235, 0.172549, 1)
+shader_parameter/wind_strength = Vector2(0.3, 0.2)
+shader_parameter/wind_frequency = 0.5
+shader_parameter/min_height = 0.5
+shader_parameter/max_height = 5.0
+shader_parameter/material_texture = ExtResource("2_ppo7m")

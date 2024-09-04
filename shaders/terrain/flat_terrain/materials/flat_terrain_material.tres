@@ -1,0 +1,25 @@
+[gd_resource type="ShaderMaterial" load_steps=6 format=3 uid="uid://r6atq0rpyrva"]
+
+[ext_resource type="Shader" path="res://shaders/terrain/flat_terrain/flat_terrain.gdshader" id="1_p6x27"]
+[ext_resource type="Texture2D" uid="uid://c0ktb16d2e0nw" path="res://shaders/terrain/layered_terrain/textures/grass_lighted_down_normal.png" id="2_o2cp0"]
+[ext_resource type="Texture2D" uid="uid://bokdv32jmvjbk" path="res://shaders/terrain/layered_terrain/textures/grass_lighted_down.png" id="3_b6lj7"]
+[ext_resource type="Texture2D" uid="uid://c016k48xkfl3o" path="res://shaders/terrain/layered_terrain/textures/grass_normal_down_normal.png" id="4_i7t2o"]
+[ext_resource type="Texture2D" uid="uid://bj8b7cj0f1lu0" path="res://shaders/terrain/layered_terrain/textures/grass_normal_down.png" id="5_818f1"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_p6x27")
+shader_parameter/top_texture_scale = Vector2(2, 2)
+shader_parameter/top_texture_normal_strength = 2.0
+shader_parameter/top_texture = ExtResource("5_818f1")
+shader_parameter/top_normal = ExtResource("4_i7t2o")
+shader_parameter/top_mix_texture_scale = Vector2(2, 2)
+shader_parameter/top_texture_mix_normal_strength = 2.0
+shader_parameter/top_texture_mix_strength = 0.38
+shader_parameter/top_mix_texture = ExtResource("3_b6lj7")
+shader_parameter/top_mix_normal = ExtResource("2_o2cp0")
+shader_parameter/roughness = 1.0
+shader_parameter/specular = 0.0
+shader_parameter/sharpness = 10.0
+shader_parameter/seed = 0.0
+shader_parameter/scale = 4.95

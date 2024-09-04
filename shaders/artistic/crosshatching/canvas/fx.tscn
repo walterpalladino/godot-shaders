@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://cs4mt05q3qs3h"]
+
+[ext_resource type="Material" uid="uid://qbqg30huyn1a" path="res://shaders/artistic/crosshatching/canvas/fx_crosshatch_material.tres" id="1_sxgq6"]
+
+[sub_resource type="QuadMesh" id="QuadMesh_x4s7h"]
+size = Vector2(2, 2)
+
+[node name="fx" type="Node3D"]
+
+[node name="area" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.16808)
+mesh = SubResource("QuadMesh_x4s7h")
+surface_material_override/0 = ExtResource("1_sxgq6")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2.00524)
+
+[node name="CSGBox3D" type="CSGBox3D" parent="."]

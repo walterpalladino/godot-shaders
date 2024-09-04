@@ -1,0 +1,11 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://y143q1aoosx0"]
+
+[ext_resource type="Shader" path="res://shaders/artistic/bg_fader/bg_fader_shader.gdshader" id="1_8u0i5"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_8u0i5")
+shader_parameter/background_color = Color(0, 0, 0, 1)
+shader_parameter/clipping_far_plane = 262.4
+shader_parameter/cut_distance = 0.06
+shader_parameter/cut_smoothness = 0.018

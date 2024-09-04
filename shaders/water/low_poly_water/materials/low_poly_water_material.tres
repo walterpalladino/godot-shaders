@@ -1,0 +1,34 @@
+[gd_resource type="ShaderMaterial" load_steps=5 format=3 uid="uid://kmhjhlbsxbnk"]
+
+[ext_resource type="Shader" path="res://shaders/water/low_poly_water/low_poly_water_shader.gdshader" id="1_i1for"]
+[ext_resource type="Texture2D" uid="uid://c1q5i27s1nfgl" path="res://shaders/water/low_poly_water/textures/uvFoam.jpg" id="2_pjt5m"]
+[ext_resource type="Texture2D" uid="uid://dew8p45yaq8qp" path="res://shaders/water/low_poly_water/textures/Caustic_Free.jpg" id="3_fiuo3"]
+[ext_resource type="Texture2D" uid="uid://d2lhv2ys8p7c6" path="res://shaders/water/low_poly_water/textures/tiling-perlin-noise.png" id="4_d74qd"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_i1for")
+shader_parameter/deep_color = Color(0, 0.270588, 0.388235, 1)
+shader_parameter/shallow_color = Color(0, 0.74902, 0.788235, 1)
+shader_parameter/beers_law = 3.0
+shader_parameter/depth_offset = 0.3
+shader_parameter/riples_velocity = Vector2(0.05, 0.05)
+shader_parameter/riples_scale = 8.0
+shader_parameter/riples_strength = 0.25
+shader_parameter/metallic = 0.0
+shader_parameter/specular = 0.583
+shader_parameter/roughness = 0.2
+shader_parameter/opacity = 0.5
+shader_parameter/riples = ExtResource("3_fiuo3")
+shader_parameter/time_scale = 0.005
+shader_parameter/noise_scale = 10.0
+shader_parameter/height_scale = 0.2
+shader_parameter/wave_noise_texture = ExtResource("4_d74qd")
+shader_parameter/foam_speed = Vector2(0.13, 0.22)
+shader_parameter/foam_amount = 1.49
+shader_parameter/edge_scale = 0.66
+shader_parameter/foam_tiling = Vector2(2, 2)
+shader_parameter/foam_color = Color(0.5246, 0.84882, 0.86, 1)
+shader_parameter/foam_texture = ExtResource("2_pjt5m")
+shader_parameter/fresnel_color = Color(0.517647, 0.835294, 0.85098, 1)
+shader_parameter/fresnel_strength = 0.504

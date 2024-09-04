@@ -1,0 +1,10 @@
+[gd_resource type="ShaderMaterial" load_steps=3 format=3 uid="uid://bom56uuxy5337"]
+
+[ext_resource type="Shader" path="res://shaders/artistic/masked_view/masked_view.gdshader" id="1_o6v6y"]
+[ext_resource type="Texture2D" uid="uid://kbtm0pr0xkft" path="res://shaders/artistic/masked_view/textures/blur_mask_bw_01.png" id="2_l0vb8"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_o6v6y")
+shader_parameter/background_color = Color(0, 0, 0, 1)
+shader_parameter/mask_texture = ExtResource("2_l0vb8")

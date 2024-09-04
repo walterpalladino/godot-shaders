@@ -1,0 +1,13 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://dov2yuu34fhd5"]
+
+[ext_resource type="Shader" path="res://shaders/artistic/crosshatching/spatial/crosshatching_spatial.gdshader" id="1_h77qt"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_h77qt")
+shader_parameter/albedo = Color(1, 1, 1, 1)
+shader_parameter/pattern_tiling = Vector2(1, 1)
+shader_parameter/threshold_1 = 0.75
+shader_parameter/threshold_2 = 0.5
+shader_parameter/threshold_3 = 0.25
+shader_parameter/threshold_4 = 0.05

@@ -1,0 +1,14 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://b1hcysg486ofi"]
+
+[ext_resource type="Shader" path="res://shaders/artistic/dither_high_contrast/filter/dither_hc_filter_shader.gdshader" id="1_l0pl6"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_l0pl6")
+shader_parameter/brightness = 1.23
+shader_parameter/contrast = 0.98
+shader_parameter/saturation = 1.0
+shader_parameter/sharpness = 2.08165e-12
+shader_parameter/scale = 3
+shader_parameter/light_base = 0.2
+shader_parameter/light_strength = 1.37

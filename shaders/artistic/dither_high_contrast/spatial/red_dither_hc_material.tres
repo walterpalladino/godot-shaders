@@ -1,0 +1,14 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://cuxb20rsw3pa3"]
+
+[ext_resource type="Shader" path="res://shaders/artistic/dither_high_contrast/spatial/dither_hc_shader.gdshader" id="1_nfjqq"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_nfjqq")
+shader_parameter/color_light = Color(1, 0, 0, 1)
+shader_parameter/color_dark = Color(0, 0, 0, 1)
+shader_parameter/color = Color(0.729412, 0.0431373, 0.054902, 1)
+shader_parameter/alpha_cut_off = 0.5
+shader_parameter/sharpness = 0.53
+shader_parameter/scale = 3.81
+shader_parameter/light_base = 0.2

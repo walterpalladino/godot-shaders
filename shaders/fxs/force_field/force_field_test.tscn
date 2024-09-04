@@ -1,0 +1,69 @@
+[gd_scene load_steps=13 format=3 uid="uid://c4662vchwpc7r"]
+
+[ext_resource type="Material" uid="uid://dgv2rlqybi0ai" path="res://shaders/fxs/force_field/force_field_material.tres" id="1_s4f6e"]
+[ext_resource type="PackedScene" uid="uid://c3aqmshnh1mpk" path="res://shaders/fxs/force_field/force_shield_f_2.tscn" id="2_w84j7"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_hnj00"]
+sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+
+[sub_resource type="Sky" id="Sky_17s35"]
+sky_material = SubResource("ProceduralSkyMaterial_hnj00")
+
+[sub_resource type="Environment" id="Environment_4ckxv"]
+background_mode = 2
+sky = SubResource("Sky_17s35")
+tonemap_mode = 2
+glow_enabled = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ldpxu"]
+albedo_color = Color(0.223529, 0.309804, 0.0470588, 1)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_2c5eq"]
+material = SubResource("StandardMaterial3D_ldpxu")
+size = Vector2(10, 10)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rmcyo"]
+albedo_color = Color(0.517647, 0.196078, 0.152941, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_qtyr7"]
+material = SubResource("StandardMaterial3D_rmcyo")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ij3jq"]
+albedo_color = Color(0.231373, 0.380392, 0.588235, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_i4tg6"]
+material = SubResource("StandardMaterial3D_ij3jq")
+
+[sub_resource type="SphereMesh" id="SphereMesh_cxf4c"]
+material = ExtResource("1_s4f6e")
+radius = 1.5
+height = 3.0
+
+[node name="force_field_test" type="Node3D"]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.749999, -0.43301, 0, 0, 0)
+shadow_enabled = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_4ckxv")
+
+[node name="Background" type="MeshInstance3D" parent="."]
+mesh = SubResource("PlaneMesh_2c5eq")
+
+[node name="Block1" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.08165e-12, 0.5, 1.25)
+mesh = SubResource("BoxMesh_qtyr7")
+
+[node name="Block2" type="MeshInstance3D" parent="."]
+transform = Transform3D(2, 0, 0, 0, 1, 0, 0, 0, 0.2, 0.5, 0.5, -1.455)
+mesh = SubResource("BoxMesh_i4tg6")
+
+[node name="Force Shield" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.895507, 0, -0.315434)
+visible = false
+mesh = SubResource("SphereMesh_cxf4c")
+
+[node name="force_shield_f2" parent="." instance=ExtResource("2_w84j7")]
+transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 0, 0, 0)

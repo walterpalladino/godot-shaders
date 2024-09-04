@@ -5,5 +5,5 @@
 [resource]
 render_priority = 0
 shader = ExtResource("1_s4v2g")
-shader_parameter/fog_color = Color(1, 1, 1, 1)
-shader_parameter/depth_range = 1245.3
+shader_parameter/fog_color = Color(0.894922, 0.894922, 0.894922, 1)
+shader_parameter/depth_range = 694.1
