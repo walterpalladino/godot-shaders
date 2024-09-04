@@ -1,8 +1,8 @@
 /*
 	2D noise (Perlin noise)
-	
+
 	From : https://godotshaders.com/snippet/2d-noise/
-	
+
 */
 
 
