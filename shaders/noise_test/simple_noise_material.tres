@@ -1,6 +1,6 @@
 [gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://dtv7gss38ia42"]
 
-[ext_resource type="Shader" path="res://shaders/noise/simple_noise.gdshader" id="1_lm7u3"]
+[ext_resource type="Shader" path="res://shaders/noise_test/simple_noise.gdshader" id="1_lm7u3"]
 
 [resource]
 render_priority = 0

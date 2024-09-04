@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://qbyn3jihphc" path="res://models/Ultimate Nature Pack/models/PalmTree_1.fbx" id="1_8ksh3"]
 [ext_resource type="PackedScene" uid="uid://dkj8u0rh01o0l" path="res://models/Ultimate Nature Pack/models/BirchTree_1.fbx" id="2_2tjr4"]
-[ext_resource type="Material" uid="uid://b6igf1jpqoq5w" path="res://shaders/pixelation/pixelation_material.tres" id="3_41bo2"]
+[ext_resource type="Material" uid="uid://b6igf1jpqoq5w" path="res://shaders/artistic/pixelation/pixelation_material.tres" id="3_41bo2"]
 [ext_resource type="PackedScene" uid="uid://xlv7cdj11dmm" path="res://models/Ultimate Nature Pack/models/Bush_1.fbx" id="4_cpypq"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_bsdq3"]

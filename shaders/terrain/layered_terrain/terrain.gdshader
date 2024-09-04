@@ -10,29 +10,34 @@ uniform float normal_strength : hint_range(0.01, 6.0, 0.01) = 1.0;
 
 group_uniforms layer1;
 uniform sampler2D layer_1_texture : hint_default_white, filter_nearest, repeat_enable;
+uniform vec3 layer_1_color : source_color = vec3(1.0, 1.0, 1.0);
 uniform sampler2D layer_1_normal : hint_normal, filter_nearest, repeat_enable;
 uniform float layer_1_texture_scale = 1.0f;
 
 group_uniforms layer2;
 uniform sampler2D layer_2_texture : hint_default_white, filter_nearest, repeat_enable;
+uniform vec3 layer_2_color : source_color = vec3(1.0, 1.0, 1.0);
 uniform sampler2D layer_2_normal : hint_normal, filter_nearest, repeat_enable;
 uniform float layer_2_texture_scale = 1.0f;
 uniform float layer_2_start = 1.0f;
 
 group_uniforms layer3;
 uniform sampler2D layer_3_texture : hint_default_white, filter_nearest, repeat_enable;
+uniform vec3 layer_3_color : source_color = vec3(1.0, 1.0, 1.0);
 uniform sampler2D layer_3_normal : hint_normal, filter_nearest, repeat_enable;
 uniform float layer_3_texture_scale = 1.0f;
 uniform float layer_3_start = 2.0f;
 
 group_uniforms layer4;
 uniform sampler2D layer_4_texture : hint_default_white, filter_nearest, repeat_enable;
+uniform vec3 layer_4_color : source_color = vec3(1.0, 1.0, 1.0);
 uniform sampler2D layer_4_normal : hint_normal, filter_nearest, repeat_enable;
 uniform float layer_4_texture_scale = 1.0f;
 uniform float layer_4_start = 4.0f;
 
 group_uniforms cliff;
 uniform sampler2D cliff_texture : hint_default_white, filter_nearest, repeat_enable;
+uniform vec3 cliff_color : source_color = vec3(1.0, 1.0, 1.0);
 uniform sampler2D cliff_texture_normal : hint_normal, filter_nearest, repeat_enable;
 uniform float cliff_texture_scale = 1.0f;
 uniform float cliff_presence : hint_range(0.0, 1.0, 0.01) = 0.50f;
@@ -80,10 +85,10 @@ void fragment() {
 
 	vec2 uv = UV;
 
-	vec3 layer1_color = texture(layer_1_texture, pixel_world_position.xz * layer_1_texture_scale).rgb;
-	vec3 layer2_color = texture(layer_2_texture, pixel_world_position.xz * layer_2_texture_scale).rgb;
-	vec3 layer3_color = texture(layer_3_texture, pixel_world_position.xz * layer_3_texture_scale).rgb;
-	vec3 layer4_color = texture(layer_4_texture, pixel_world_position.xz * layer_4_texture_scale).rgb;
+	vec3 layer1_color = texture(layer_1_texture, pixel_world_position.xz * layer_1_texture_scale).rgb * layer_1_color;
+	vec3 layer2_color = texture(layer_2_texture, pixel_world_position.xz * layer_2_texture_scale).rgb * layer_2_color;
+	vec3 layer3_color = texture(layer_3_texture, pixel_world_position.xz * layer_3_texture_scale).rgb * layer_3_color;
+	vec3 layer4_color = texture(layer_4_texture, pixel_world_position.xz * layer_4_texture_scale).rgb * layer_4_color;
 
 	vec3 layer1_normal = texture(layer_1_normal, pixel_world_position.xz * layer_1_texture_scale).rgb;
 	vec3 layer2_normal = texture(layer_2_normal, pixel_world_position.xz * layer_2_texture_scale).rgb;
@@ -134,7 +139,7 @@ void fragment() {
 			vec2 uv_projected_coordinate_x = pixel_world_position.zy;
 			uv = uv_projected_coordinate_x / cliff_texture_scale;
 			//	Get the texture color
-			vec3 albedo_tex_side_x = texture(cliff_texture, uv).rgb;
+			vec3 albedo_tex_side_x = texture(cliff_texture, uv).rgb * cliff_color;
 			vec3 normal_tex_side_x = texture(cliff_texture_normal, uv).rgb;
 
 			//	Face Z
@@ -143,7 +148,7 @@ void fragment() {
 			vec2 uv_projected_coordinate_z = pixel_world_position.xy;
 			uv = uv_projected_coordinate_z / cliff_texture_scale;
 			//	Get the texture color
-			vec3 albedo_tex_side_z = texture(cliff_texture, uv).rgb;
+			vec3 albedo_tex_side_z = texture(cliff_texture, uv).rgb * cliff_color;
 			vec3 normal_tex_side_z = texture(cliff_texture_normal, uv).rgb;
 
 			//	Blend cliff

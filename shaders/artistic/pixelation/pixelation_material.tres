@@ -1,6 +1,6 @@
 [gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://b6igf1jpqoq5w"]
 
-[ext_resource type="Shader" path="res://shaders/pixelation/pixelation_shader.gdshader" id="1_7xi63"]
+[ext_resource type="Shader" path="res://shaders/artistic/pixelation/pixelation_shader.gdshader" id="1_7xi63"]
 
 [resource]
 render_priority = 0

@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://dueeb5xh7jb3q"]
 
-[ext_resource type="Material" uid="uid://dtv7gss38ia42" path="res://shaders/noise/simple_noise_material.tres" id="1_u4tvd"]
+[ext_resource type="Material" uid="uid://dtv7gss38ia42" path="res://shaders/noise_test/simple_noise_material.tres" id="1_u4tvd"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_0sgxb"]
 
