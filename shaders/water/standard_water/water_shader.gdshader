@@ -28,6 +28,12 @@ uniform vec4 color_shallow : source_color;
 uniform float beers_law = 2.0;	//	Attenuation of light
 uniform float depth_offset = -0.75;
 
+uniform sampler2D riples ;
+uniform vec2 riples_velocity = vec2(0.1, 0.1);
+uniform float riples_scale = 1.0;
+uniform float riples_strength : hint_range(0.0, 1.0) = 0.25;
+
+
 uniform sampler2D DEPTH_TEXTURE : hint_depth_texture, filter_linear_mipmap;
 uniform sampler2D SCREEN_TEXTURE : hint_screen_texture, filter_linear_mipmap;
 
@@ -37,11 +43,11 @@ group_uniforms foam_settings;
 uniform vec2 foam_speed = vec2(0.02, 0.02);
 uniform	float foam_amount = 0.40;
 uniform float edge_scale = 0.1;
-uniform float near = 0.5;
-uniform float far = 100.0;
 uniform vec3 foam_color : source_color;
 uniform sampler2D foam_texture;
 uniform vec2 foam_tiling = vec2(4.0, 4.0);
+
+
 
 
 
@@ -55,12 +61,9 @@ float fresnel (float amount, vec3 normal, vec3 view) {
 	return pow((1.0 - clamp(dot(normalize(normal), normalize(view)), 0.0, 1.0)), amount);
 }
 
-float edge(float depth) {
-	depth = 2.0 * depth - 1.0;
-	return near * far / (far + depth * (near - far));
-}
 
 void vertex () {
+	
 	world_position = (MODEL_MATRIX * vec4(VERTEX, 1.0)).xyz;
 	height = texture(wave, world_position.xz /  noise_scale + TIME / 1000.0  * wave_direction).r;
 	VERTEX.y += height * height_scale;
@@ -83,18 +86,14 @@ void fragment() {
 	vec3 depth_color = mix(color_shallow.rgb, color_deep.rgb, depth_blend_power);
 	vec3 color = mix(screen_color * depth_color, depth_color, depth_blend_power);
 
-	// Getting edge depth calc
-	float z_depth = edge(texture(DEPTH_TEXTURE, SCREEN_UV).x);
-	float z_pos = edge(FRAGCOORD.z);
-	float z_dif = z_depth - z_pos;
 
-
-	//	Create the area mask affected by the foam
-	float foam_mask = step(edge_scale, z_dif);
-	foam_mask = smoothstep(0.0, edge_scale, z_dif);
+	//	Add Foam
+	//	Calculate the area mask affected by the foam
+	float foam_mask = step(edge_scale, depth_blend);
+	foam_mask = smoothstep(0.0, edge_scale, depth_blend);
 	foam_mask = 1.0 - foam_mask;
 
-	//	Shore foam
+	//	shore foam
 	vec2 offset = TIME * foam_speed;
 	vec2 tiling = foam_tiling;
 	vec2 uv_i = vec2( UV.x, foam_amount * depth);
@@ -103,22 +102,36 @@ void fragment() {
 	vec3 foam = texture(foam_texture, uv_o).rgb;
 	foam = foam + foam_color ;
 	foam = clamp(foam, 0.0, 1.0);
-
+	
 	//	Fresnel
 	float fresnel = fresnel(fresnel_strength, NORMAL, VIEW);
 	vec3 surface_color = mix(albedo, albedo2, fresnel);
 
 	//ALBEDO = mix(surface_color, color, 0.75);
-	vec3 depth_color_adj = mix(foam, color, step(edge_scale, z_dif));
+//	vec3 depth_color_adj = mix(foam, color, step(edge_scale, z_dif));
 
 //	ALBEDO =  mix(color, foam, foam_mask);
-	ALBEDO = clamp(surface_color + depth_color_adj,vec3(0.0),vec3(1.0));
+	//ALBEDO = clamp(surface_color + depth_color_adj,vec3(0.0),vec3(1.0));
 	//ALBEDO = vec3(depth - depth_offset);
-
+	//ALBEDO = vec3(depth);
+	//ALBEDO = color;
+	ALBEDO =  mix(color, foam, foam_mask);
+	
 	METALLIC = metallic;
 	ROUGHNESS = roughness;
-	//EMISSION = riple;
-	ALPHA = mix(opacity, 1.0, clamp(0.0, 1.0, depth_blend_power + 0.25));
+	
+	
+	//	Riples added later as emmission
+	vec2 riple_coords = UV * riples_scale + (TIME * riples_velocity) ;
+	vec2 riple_coords2 = UV * riples_scale - (TIME * riples_velocity) ;
+
+	vec3 riple_color = texture(riples, riple_coords).rgb;
+	vec3 riple_color2 = texture(riples, riple_coords2).rgb;
+
+	vec3 riple = vec3( pow(riple_color.r * riple_color2.r, 1.2) * riples_strength);
+
+	EMISSION = riple;
+	//ALPHA = mix(opacity, 1.0, clamp(0.0, 1.0, depth_blend_power + 0.25));
 
 	//	Time calculations
 	vec2 time = (TIME / 1000.0 * wave_direction) ;
