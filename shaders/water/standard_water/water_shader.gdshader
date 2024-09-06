@@ -40,6 +40,7 @@ uniform sampler2D SCREEN_TEXTURE : hint_screen_texture, filter_linear_mipmap;
 
 //	Foam
 group_uniforms foam_settings;
+uniform bool enable_foam = true;
 uniform vec2 foam_speed = vec2(0.02, 0.02);
 uniform	float foam_amount = 0.40;
 uniform float edge_scale = 0.1;
@@ -84,9 +85,8 @@ void fragment() {
 
 	vec3 screen_color = textureLod(SCREEN_TEXTURE, SCREEN_UV, depth_blend_power * 2.5).rgb;
 	vec3 depth_color = mix(color_shallow.rgb, color_deep.rgb, depth_blend_power);
-	vec3 color = mix(screen_color * depth_color, depth_color, depth_blend_power);
-
-	ALBEDO = color;
+	vec3 color = mix(screen_color, vec3(1.0), depth_blend_power);
+	color = mix(color * depth_color, depth_color, opacity);
 
 	//	Add Foam
 	//	Calculate the area mask affected by the foam
@@ -101,31 +101,11 @@ void fragment() {
 
 	vec2 uv_o = uv_i * tiling + offset;
 	vec3 foam = texture(foam_texture, uv_o).rgb;
-	foam = foam + foam_color ;
 	foam = clamp(foam, 0.0, 1.0);
 
-	//foam = texture(foam_texture, world_position.xz + offset + foam_amount * depth).rgb;
-	//foam *= depth;
-	//foam = clamp(foam, 0.0, 1.0);
-	//foam = foam + foam_color ;
-	//foam = clamp(foam, 0.0, 1.0);
 
 	//	Fresnel
 	float fresnel = fresnel(fresnel_strength, NORMAL, VIEW);
-	vec3 surface_color = mix(albedo, albedo2, fresnel);
-
-	//ALBEDO = mix(surface_color, color, 0.75);
-//	vec3 depth_color_adj = mix(foam, color, step(edge_scale, z_dif));
-
-//	ALBEDO =  mix(color, foam, foam_mask);
-	//ALBEDO = clamp(surface_color + depth_color_adj,vec3(0.0),vec3(1.0));
-	//ALBEDO = vec3(depth - depth_offset);
-	//ALBEDO = vec3(depth);
-	//ALBEDO = color;
-	//ALBEDO =  mix(color, foam, foam_mask);
-
-	METALLIC = metallic;
-	ROUGHNESS = roughness;
 
 
 	//	Riples added later as emmission
@@ -137,9 +117,17 @@ void fragment() {
 
 	vec3 riple = vec3( pow(riple_color.r * riple_color2.r, 1.2) * riples_strength);
 
-	EMISSION = riple;
-	EMISSION =  mix(riple, foam, foam_mask);
-	//ALPHA = mix(opacity, 1.0, clamp(0.0, 1.0, depth_blend_power + 0.25));
+
+	if (enable_foam)
+		EMISSION =  mix(riple, foam, foam_mask);
+	else
+		EMISSION = riple;
+
+	if (enable_foam)
+		ALBEDO = mix(color, foam_color, foam_mask);
+	else
+		ALBEDO = color;
+
 
 	//	Time calculations
 	vec2 time = (TIME / 1000.0 * wave_direction) ;
@@ -148,4 +136,8 @@ void fragment() {
 	vec3 normal_blend = mix(texture(texture_normal, world_position.xz / normal_texture_scale + time).rgb, texture(texture_normal2, world_position.xz / normal_texture_scale + time2).rgb, 0.5);
 	NORMAL_MAP = normal_blend;
 	NORMAL_MAP_DEPTH = normal_texture_strength;
+
+	METALLIC = metallic;
+	ROUGHNESS = roughness;
+
 }
