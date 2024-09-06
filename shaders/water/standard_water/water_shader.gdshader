@@ -63,7 +63,7 @@ float fresnel (float amount, vec3 normal, vec3 view) {
 
 
 void vertex () {
-	
+
 	world_position = (MODEL_MATRIX * vec4(VERTEX, 1.0)).xyz;
 	height = texture(wave, world_position.xz /  noise_scale + TIME / 1000.0  * wave_direction).r;
 	VERTEX.y += height * height_scale;
@@ -86,6 +86,7 @@ void fragment() {
 	vec3 depth_color = mix(color_shallow.rgb, color_deep.rgb, depth_blend_power);
 	vec3 color = mix(screen_color * depth_color, depth_color, depth_blend_power);
 
+	ALBEDO = color;
 
 	//	Add Foam
 	//	Calculate the area mask affected by the foam
@@ -102,7 +103,13 @@ void fragment() {
 	vec3 foam = texture(foam_texture, uv_o).rgb;
 	foam = foam + foam_color ;
 	foam = clamp(foam, 0.0, 1.0);
-	
+
+	//foam = texture(foam_texture, world_position.xz + offset + foam_amount * depth).rgb;
+	//foam *= depth;
+	//foam = clamp(foam, 0.0, 1.0);
+	//foam = foam + foam_color ;
+	//foam = clamp(foam, 0.0, 1.0);
+
 	//	Fresnel
 	float fresnel = fresnel(fresnel_strength, NORMAL, VIEW);
 	vec3 surface_color = mix(albedo, albedo2, fresnel);
@@ -115,12 +122,12 @@ void fragment() {
 	//ALBEDO = vec3(depth - depth_offset);
 	//ALBEDO = vec3(depth);
 	//ALBEDO = color;
-	ALBEDO =  mix(color, foam, foam_mask);
-	
+	//ALBEDO =  mix(color, foam, foam_mask);
+
 	METALLIC = metallic;
 	ROUGHNESS = roughness;
-	
-	
+
+
 	//	Riples added later as emmission
 	vec2 riple_coords = UV * riples_scale + (TIME * riples_velocity) ;
 	vec2 riple_coords2 = UV * riples_scale - (TIME * riples_velocity) ;
@@ -131,6 +138,7 @@ void fragment() {
 	vec3 riple = vec3( pow(riple_color.r * riple_color2.r, 1.2) * riples_strength);
 
 	EMISSION = riple;
+	EMISSION =  mix(riple, foam, foam_mask);
 	//ALPHA = mix(opacity, 1.0, clamp(0.0, 1.0, depth_blend_power + 0.25));
 
 	//	Time calculations
