@@ -16,7 +16,7 @@ uniform float riples_scale = 1.0;
 uniform float riples_strength : hint_range(0.0, 1.0) = 0.25;
 
 uniform float metallic : hint_range(0.0,1.0) = 0;
-uniform float specular : hint_range(0.0,1.0) = 0;
+uniform float specular : hint_range(0.0,1.0) = 0.8;
 uniform float roughness : hint_range(0.0,1.0) = 0.02;
 uniform float opacity : hint_range(0.0,1.0) = 0.8;
 

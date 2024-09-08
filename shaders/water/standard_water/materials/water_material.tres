@@ -15,6 +15,7 @@ shader_parameter/albedo2 = Color(0.517647, 0.788235, 0.8, 1)
 shader_parameter/fresnel_strength = 5.0
 shader_parameter/metallic = 0.0
 shader_parameter/roughness = 0.2
+shader_parameter/specular = 0.8
 shader_parameter/opacity = 0.75
 shader_parameter/normal_texture_scale = 1.27
 shader_parameter/normal_texture_strength = 0.42

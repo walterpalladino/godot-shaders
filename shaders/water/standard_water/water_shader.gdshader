@@ -7,6 +7,7 @@ uniform float fresnel_strength : hint_range(0.0, 10.0, 0.1) = 5.0 ;
 
 uniform float metallic : hint_range(0.0,1.0) = 0;
 uniform float roughness : hint_range(0.0,1.0) = 0.02;
+uniform float specular : hint_range(0.0,1.0) = 0.8;
 uniform float opacity : hint_range(0.0,1.0) = 0.8;
 
 group_uniforms waves_settings;
@@ -139,5 +140,5 @@ void fragment() {
 
 	METALLIC = metallic;
 	ROUGHNESS = roughness;
-
+	SPECULAR = specular;
 }
