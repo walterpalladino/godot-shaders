@@ -37,6 +37,7 @@ uniform float riples_strength : hint_range(0.0, 1.0) = 0.25;
 
 uniform sampler2D DEPTH_TEXTURE : hint_depth_texture, filter_linear_mipmap;
 uniform sampler2D SCREEN_TEXTURE : hint_screen_texture, filter_linear_mipmap;
+//uniform sampler2D NORMAL_ROUGHNESS_TEXTURE : hint_normal_roughness_texture, filter_linear_mipmap;
 
 
 //	Foam
@@ -69,6 +70,7 @@ void vertex () {
 	world_position = (MODEL_MATRIX * vec4(VERTEX, 1.0)).xyz;
 	height = texture(wave, world_position.xz /  noise_scale + TIME / 1000.0  * wave_direction).r;
 	VERTEX.y += height * height_scale;
+
 }
 
 void fragment() {
@@ -118,7 +120,6 @@ void fragment() {
 
 	vec3 riple = vec3( pow(riple_color.r * riple_color2.r, 1.2) * riples_strength);
 
-
 	if (enable_foam)
 		EMISSION =  mix(riple, foam, foam_mask);
 	else
@@ -141,4 +142,7 @@ void fragment() {
 	METALLIC = metallic;
 	ROUGHNESS = roughness;
 	SPECULAR = specular;
+
+//	ALBEDO = texture(NORMAL_ROUGHNESS_TEXTURE, SCREEN_UV).rgb;
+
 }

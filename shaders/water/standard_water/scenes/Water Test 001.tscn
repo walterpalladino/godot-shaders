@@ -1,6 +1,7 @@
-[gd_scene load_steps=9 format=3 uid="uid://n1ued6xto1b8"]
+[gd_scene load_steps=11 format=3 uid="uid://n1ued6xto1b8"]
 
 [ext_resource type="PackedScene" uid="uid://dxnhd4uksigw7" path="res://shaders/water/standard_water/scenes/water_plane.tscn" id="1_epgf7"]
+[ext_resource type="Material" uid="uid://dq3fb2u2sb8s0" path="res://shaders/water/standard_water/materials/water_material.tres" id="2_el5m5"]
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_xyct8"]
 height = 4.0
@@ -22,6 +23,9 @@ albedo_color = Color(0.87, 0.65975, 0.3654, 1)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_con4f"]
 albedo_color = Color(0.76, 0.660947, 0.4104, 1)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_cp2ve"]
+size = Vector2(10, 10)
 
 [node name="Water Test 001" type="Node3D"]
 
@@ -53,3 +57,8 @@ surface_material_override/0 = SubResource("StandardMaterial3D_ocioi")
 transform = Transform3D(-0.43778, 0.388509, -3.27345, -4.14832e-08, 0.921151, 1.38557, 7.31692, 0.023245, -0.195854, -3.98662, -0.200028, 1.40712)
 mesh = SubResource("PlaneMesh_acedp")
 surface_material_override/0 = SubResource("StandardMaterial3D_con4f")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="."]
+visible = false
+mesh = SubResource("PlaneMesh_cp2ve")
+surface_material_override/0 = ExtResource("2_el5m5")

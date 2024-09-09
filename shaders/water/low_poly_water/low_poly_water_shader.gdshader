@@ -20,10 +20,11 @@ uniform float specular : hint_range(0.0,1.0) = 0.8;
 uniform float roughness : hint_range(0.0,1.0) = 0.02;
 uniform float opacity : hint_range(0.0,1.0) = 0.8;
 
+// waves settings
 group_uniforms water_waves;
 
 uniform sampler2D wave_noise_texture;
-uniform float time_scale : hint_range(0.0, 0.2, 0.005) = 0.025;
+uniform vec2 waves_speed = vec2(1.0, 0.0);
 uniform float noise_scale = 10.0;
 uniform float height_scale = 0.15;
 
@@ -57,11 +58,19 @@ float fresnel (float amount, vec3 normal, vec3 view) {
 	return pow((1.0 - clamp(dot(normalize(normal), normalize(view)), 0.0, 1.0)), amount);
 }
 
+vec3 get_vertex_position(mat4 model_matrix, vec3 vertex) {
+
+	vec3 world_position = (model_matrix * vec4(vertex, 1.0)).xyz;
+	float height = texture(wave_noise_texture, world_position.xz /  noise_scale + TIME * waves_speed / 1000.0).r;
+	vertex.y += height * height_scale;
+
+	return vertex;
+}
+
 
 void vertex() {
-	vec3 world_position = (MODEL_MATRIX * vec4(VERTEX, 1.0)).xyz;
-	float height = texture(wave_noise_texture, world_position.xz /  noise_scale + TIME * time_scale).r;
-	VERTEX.y += height * height_scale;
+
+	VERTEX = get_vertex_position(MODEL_MATRIX, VERTEX);
 
 	// get the view pos for the low poly normals
 	v_view_pos = (MODELVIEW_MATRIX * vec4(VERTEX, 0.0)).xyz;
