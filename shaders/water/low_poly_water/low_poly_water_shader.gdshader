@@ -10,15 +10,19 @@ uniform vec3 shallow_color : source_color;
 uniform float beers_law = 2.0;	//	Attenuation of light
 uniform float depth_offset = -0.75;
 
-uniform sampler2D riples ;
-uniform vec2 riples_velocity = vec2(0.1, 0.1);
-uniform float riples_scale = 1.0;
-uniform float riples_strength : hint_range(0.0, 1.0) = 0.25;
 
 uniform float metallic : hint_range(0.0,1.0) = 0;
 uniform float specular : hint_range(0.0,1.0) = 0.8;
 uniform float roughness : hint_range(0.0,1.0) = 0.02;
 uniform float opacity : hint_range(0.0,1.0) = 0.8;
+
+group_uniforms water_riples;
+uniform sampler2D riples ;
+uniform vec3 riples_color : source_color = vec3(1.0);
+uniform vec2 riples_velocity = vec2(0.1, 0.1);
+uniform float riples_scale = 1.0;
+uniform float riples_strength : hint_range(0.0, 1.0) = 0.25;
+
 
 // waves settings
 group_uniforms water_waves;
@@ -142,7 +146,7 @@ void fragment() {
 	//	Set the shader attributes
 	ALBEDO = mixed_color;
 
-	EMISSION = riple + fresnel_color * fresnel_value;
+	EMISSION = riple * riples_color + fresnel_color * fresnel_value;
 
 	METALLIC = metallic;
 	SPECULAR = specular;
