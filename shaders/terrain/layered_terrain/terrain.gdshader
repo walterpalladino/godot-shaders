@@ -7,6 +7,7 @@ group_uniforms general;
 uniform float smoothness : hint_range(0.0, 1.0, 0.1) = 0.5f;
 uniform float layer_blend : hint_range(0.0, 10.0, 0.1) = 0.0;
 uniform float normal_strength : hint_range(0.01, 6.0, 0.01) = 1.0;
+uniform bool make_flat = false;
 
 group_uniforms layer1;
 uniform sampler2D layer_1_texture : hint_default_white, filter_nearest, repeat_enable;
@@ -44,6 +45,10 @@ uniform float cliff_presence : hint_range(0.0, 1.0, 0.01) = 0.50f;
 uniform float cliff_blend : hint_range(0.0, 10.0, 0.01) = 0.50f;
 
 
+//	Varying variables
+varying vec3 v_view_pos;	//	used to calculate normal based on displaced vertex
+
+
 vec2 random(vec2 uv){
     uv = vec2( dot(uv, vec2(127.1,311.7) ),
                dot(uv, vec2(269.5,183.3) ) );
@@ -75,7 +80,18 @@ float get_intensity(vec3 color)
 	return 0.299 * color.r + 0.587 * color.g + 0.114 * color.b;
 }
 
+
+void vertex() {
+	// get the view pos for the low poly normals
+	v_view_pos = (MODELVIEW_MATRIX * vec4(VERTEX, 0.0)).xyz;
+}
+
 void fragment() {
+
+	//	Normal calculation based on vertex displacement
+	vec3 xTangent = dFdx( v_view_pos );
+    vec3 yTangent = dFdy( v_view_pos );
+	vec3 normal_flat = -normalize( cross( xTangent, yTangent ) );
 
 	//	Get the world position
 	vec3 pixel_world_position = (INV_VIEW_MATRIX * vec4(VERTEX, 1.0)).xyz;
@@ -171,6 +187,12 @@ void fragment() {
 
 	ALBEDO = color;
 	ROUGHNESS = 1.0 - smoothness;
-	NORMAL_MAP = normal_value;
-	NORMAL_MAP_DEPTH = normal_strength;
+
+	if (make_flat) {
+		NORMAL = normal_flat;
+	} else {
+		NORMAL_MAP = normal_value;
+		NORMAL_MAP_DEPTH = normal_strength;
+	}
+
 }

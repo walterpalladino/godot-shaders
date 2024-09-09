@@ -86,4 +86,3 @@ vec4 color_burn(vec4 base, vec4 blend){
 vec4 linear_burn (vec4 base, vec4 blend){
 	return base + blend - 1.0;
 }
-
