@@ -53,11 +53,9 @@ void fragment() {
 	vec3 normal_tex_mix_top = texture(top_mix_normal, uv_mix).rgb;
 
 	ALBEDO = mix(albedo_tex_top, albedo_tex_mix_top, noise) ;
-	//ALBEDO = vec3(noise);
-	//ALBEDO = mix(normal_tex_top, normal_tex_mix_top, noise) ;
 
 	NORMAL_MAP = mix(normal_tex_top, normal_tex_mix_top, noise) ;
-	NORMAL_MAP_DEPTH = mix(top_texture_normal_strength, top_texture_mix_strength, noise) ;
+	NORMAL_MAP_DEPTH = mix(top_texture_normal_strength, top_texture_mix_normal_strength, noise) ;
 
 	ROUGHNESS = roughness;
 
