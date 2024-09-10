@@ -74,13 +74,6 @@ vec3 normal_blend(vec3 n1, vec3 n2, float blend) {
 	return (n_blended + 1.0) * 0.5;
 }
 
-//	Get color intensity (at pointgray scale)
-float get_intensity(vec3 color)
-{
-	return 0.299 * color.r + 0.587 * color.g + 0.114 * color.b;
-}
-
-
 void vertex() {
 	// get the view pos for the low poly normals
 	v_view_pos = (MODELVIEW_MATRIX * vec4(VERTEX, 0.0)).xyz;
