@@ -29,6 +29,12 @@ uniform vec4 color_shallow : source_color;
 uniform float beers_law = 2.0;	//	Attenuation of light
 uniform float depth_offset = -0.75;
 
+group_uniforms water_texture_waves;
+uniform bool wave_texture_enabled;
+uniform vec2 wave_texture_speed = vec2(-50.0, -50.0);
+uniform sampler2D wave_texture;
+uniform float wave_texture_strength = 2.5;
+
 uniform sampler2D riples ;
 uniform vec2 riples_velocity = vec2(0.1, 0.1);
 uniform float riples_scale = 1.0;
@@ -55,21 +61,48 @@ uniform vec2 foam_tiling = vec2(4.0, 4.0);
 
 
 //	Varying variables
-varying float height;
-varying vec3 world_position;
-
+//varying float height;
+varying vec3 v_view_pos;	//	used to calculate normal based on displaced vertex
+varying vec3 vertex_world_position;
+varying float wave_height_at_pos;
 
 
 float fresnel (float amount, vec3 normal, vec3 view) {
 	return pow((1.0 - clamp(dot(normalize(normal), normalize(view)), 0.0, 1.0)), amount);
 }
 
+vec3 get_vertex_position(mat4 model_matrix, vec3 vertex) {
+
+	vec3 world_position = (model_matrix * vec4(vertex, 1.0)).xyz;
+	float height = texture(wave, world_position.xz /  noise_scale + TIME * wave_direction / 1000.0).r;
+	vertex.y += height * height_scale;
+
+	return vertex;
+}
+
+float get_wave_height(mat4 model_matrix, vec3 vertex) {
+
+	vec3 world_position = (model_matrix * vec4(vertex, 1.0)).xyz;
+	float wave_height = wave_texture_strength * texture(wave_texture, world_position.xz / wave_texture_speed + TIME * wave_direction / 1000.0).r;
+	return wave_height * height_scale;
+
+}
+
 
 void vertex () {
-
-	world_position = (MODEL_MATRIX * vec4(VERTEX, 1.0)).xyz;
+/*
+	vertex_world_position = (MODEL_MATRIX * vec4(VERTEX, 1.0)).xyz;
 	height = texture(wave, world_position.xz /  noise_scale + TIME / 1000.0  * wave_direction).r;
 	VERTEX.y += height * height_scale;
+*/
+	VERTEX = get_vertex_position(MODEL_MATRIX, VERTEX);
+	if (wave_texture_enabled) {
+		wave_height_at_pos = get_wave_height(MODEL_MATRIX, VERTEX);
+		VERTEX.y += wave_height_at_pos;
+	}
+	vertex_world_position = VERTEX;
+	// get the view pos for the low poly normals
+	v_view_pos = (MODELVIEW_MATRIX * vec4(VERTEX, 0.0)).xyz;
 
 }
 
@@ -130,12 +163,16 @@ void fragment() {
 	else
 		ALBEDO = color;
 
+	if (wave_height_at_pos > 0.05) {
+		ALBEDO += pow(wave_height_at_pos, 2.0);
+	}
+
 
 	//	Time calculations
 	vec2 time = (TIME / 1000.0 * wave_direction) ;
 	vec2 time2 = (TIME / 1000.0 * wave_direction2) ;
 	//	Blend
-	vec3 normal_blend = mix(texture(texture_normal, world_position.xz / normal_texture_scale + time).rgb, texture(texture_normal2, world_position.xz / normal_texture_scale + time2).rgb, 0.5);
+	vec3 normal_blend = mix(texture(texture_normal, vertex_world_position.xz / normal_texture_scale + time).rgb, texture(texture_normal2, vertex_world_position.xz / normal_texture_scale + time2).rgb, 0.5);
 	NORMAL_MAP = normal_blend;
 	NORMAL_MAP_DEPTH = normal_texture_strength;
 
