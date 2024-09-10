@@ -42,7 +42,7 @@ uniform vec3 cliff_color : source_color = vec3(1.0, 1.0, 1.0);
 uniform sampler2D cliff_texture_normal : hint_normal, filter_nearest, repeat_enable;
 uniform float cliff_texture_scale = 1.0f;
 uniform float cliff_presence : hint_range(0.0, 1.0, 0.01) = 0.50f;
-uniform float cliff_blend : hint_range(0.0, 10.0, 0.01) = 0.50f;
+uniform float cliff_blend : hint_range(0.0, 5.0, 0.01) = 0.50f;
 
 
 //	Varying variables
@@ -142,38 +142,39 @@ void fragment() {
 		normal_value = normal_blend(layer1_normal, layer2_normal, blend);
 	}
 
+
 	//	Check cliff
 	if (cliff_presence > 0.0) {
-		float noise_value = noise(pixel_world_position.xz) * 0.01;
+
 		vec3 cliff_normal = abs(world_normal);
-		//float cliff_blend = 0.0;
-		if (abs(cliff_normal.y) < cliff_presence - noise_value) {
 
-			//	Face X
-			float side_x_face_blend = clamp(cliff_normal.x, 0.0, 1.0) ;
-			//	Calculate the UV coordinate based on the world position and texture scale
-			vec2 uv_projected_coordinate_x = pixel_world_position.zy;
-			uv = uv_projected_coordinate_x / cliff_texture_scale;
-			//	Get the texture color
-			vec3 albedo_tex_side_x = texture(cliff_texture, uv).rgb * cliff_color;
-			vec3 normal_tex_side_x = texture(cliff_texture_normal, uv).rgb;
+		//	Face X
+		float side_x_face_blend = clamp(cliff_normal.x, 0.0, 1.0) ;
+		//	Calculate the UV coordinate based on the world position and texture scale
+		vec2 uv_projected_coordinate_x = pixel_world_position.zy;
+		uv = uv_projected_coordinate_x / cliff_texture_scale;
+		//	Get the texture color
+		vec3 albedo_tex_side_x = texture(cliff_texture, uv).rgb * cliff_color;
+		vec3 normal_tex_side_x = texture(cliff_texture_normal, uv).rgb;
 
-			//	Face Z
-			float side_z_face_blend = clamp(cliff_normal.z, 0.0, 1.0) ;
-			//	Calculate the UV coordinate based on the world position and texture scale
-			vec2 uv_projected_coordinate_z = pixel_world_position.xy;
-			uv = uv_projected_coordinate_z / cliff_texture_scale;
-			//	Get the texture color
-			vec3 albedo_tex_side_z = texture(cliff_texture, uv).rgb * cliff_color;
-			vec3 normal_tex_side_z = texture(cliff_texture_normal, uv).rgb;
+		//	Face Z
+		float side_z_face_blend = clamp(cliff_normal.z, 0.0, 1.0) ;
+		//	Calculate the UV coordinate based on the world position and texture scale
+		vec2 uv_projected_coordinate_z = pixel_world_position.xy;
+		uv = uv_projected_coordinate_z / cliff_texture_scale;
+		//	Get the texture color
+		vec3 albedo_tex_side_z = texture(cliff_texture, uv).rgb * cliff_color;
+		vec3 normal_tex_side_z = texture(cliff_texture_normal, uv).rgb;
 
-			//	Blend cliff
-			vec3 cliff_blended_color = mix(albedo_tex_side_x, albedo_tex_side_z, cliff_normal.z);
-			vec3 cliff_normal_value = normal_blend(normal_tex_side_x, normal_tex_side_z, cliff_normal.z);
+		//	Blend cliff x-z
+		vec3 cliff_blended_color = mix(albedo_tex_side_x, albedo_tex_side_z, cliff_normal.z);
+		vec3 cliff_normal_value = normal_blend(normal_tex_side_x, normal_tex_side_z, cliff_normal.z);
 
-			float cliff_blend_value = 1.0 - cliff_normal.y ;
-			//cliff_blend = 3.0 * cliff_blend;
-			cliff_blend_value = 10.0 * pow(cliff_blend_value, cliff_blend);
+		//	Blend Cliff on surface
+		if (abs(cliff_normal.y) < cliff_presence) {
+
+			float cliff_blend_value = cliff_presence - cliff_normal.y ;
+			cliff_blend_value = 20.0 * pow(cliff_blend_value, cliff_blend);
 			cliff_blend_value = clamp(cliff_blend_value, 0.0, 1.0);
 
 			color = mix(color, cliff_blended_color, cliff_blend_value);

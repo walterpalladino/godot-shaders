@@ -41,6 +41,6 @@ shader_parameter/layer_4_normal = ExtResource("10_g6lbt")
 shader_parameter/cliff_color = Color(1, 1, 1, 1)
 shader_parameter/cliff_texture_scale = 3.0
 shader_parameter/cliff_presence = 0.67
-shader_parameter/cliff_blend = 0.0
+shader_parameter/cliff_blend = 0.68
 shader_parameter/cliff_texture = ExtResource("2_tfa7f")
 shader_parameter/cliff_texture_normal = ExtResource("2_lmhv6")
