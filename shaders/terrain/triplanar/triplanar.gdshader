@@ -6,17 +6,19 @@ render_mode diffuse_burley;
 group_uniforms top_texture;
 uniform sampler2D top_texture : source_color,filter_linear_mipmap,repeat_enable;
 uniform sampler2D top_normal : hint_roughness_normal,filter_linear_mipmap,repeat_enable;
+uniform float top_normal_strength = 1.0;
 uniform vec2 top_texture_scale = vec2(1.0);
-uniform float normal_strength = 1.0;
 
 group_uniforms bottom_texture;
 uniform sampler2D bottom_texture : source_color,filter_linear_mipmap,repeat_enable;
 uniform sampler2D bottom_normal : hint_roughness_normal,filter_linear_mipmap,repeat_enable;
+uniform float bottom_normal_strength = 1.0;
 uniform vec2 bottom_texture_scale = vec2(1.0);
 
 group_uniforms side_texture;
 uniform sampler2D side_texture : source_color,filter_linear_mipmap,repeat_enable;
 uniform sampler2D side_normal : hint_roughness_normal,filter_linear_mipmap,repeat_enable;
+uniform float side_normal_strength = 1.0;
 uniform vec2 side_texture_scale = vec2(1.0);
 
 group_uniforms blend;
@@ -25,6 +27,7 @@ uniform float blend_exponent : hint_range(1.0, 20.0, 0.1) = 3.57f;
 
 group_uniforms general;
 uniform float roughness : hint_range(0.0, 1.0, 0.1) = 1.0;
+uniform float specular : hint_range(0.0, 1.0, 0.1) = 0.0;
 
 
 
@@ -37,6 +40,7 @@ void fragment() {
 
 	vec3 color = vec3(1.0);
 	vec3 new_normal = vec3(0.0);
+	float new_normal_strength = 0.0;
 
 
 	//	Calculate the blended normal to be used to assign to faces
@@ -59,6 +63,7 @@ void fragment() {
 
 	color = albedo_tex_top * top_face_blend;
 	new_normal = normal_tex_top * top_face_blend;
+	new_normal_strength = top_normal_strength * top_face_blend;
 
 
 	//	Bottom Face
@@ -74,6 +79,7 @@ void fragment() {
 
 	color += albedo_tex_bottom * bottom_face_blend;
 	new_normal += normal_tex_bottom * bottom_face_blend;
+	new_normal_strength += bottom_normal_strength * bottom_face_blend;
 
 
 	//	Sides
@@ -90,6 +96,8 @@ void fragment() {
 
 	color += albedo_tex_side_x * side_x_face_blend;
 	new_normal += normal_tex_side_x * side_x_face_blend;
+	new_normal_strength += side_normal_strength * side_x_face_blend;
+
 
 	//	Face Z
 	float side_z_face_blend = clamp(abs(normal.z), 0.0, 1.0) * blended_normal.z;
@@ -104,15 +112,16 @@ void fragment() {
 
 	color += albedo_tex_side_z * side_z_face_blend;
 	new_normal += normal_tex_side_z * side_z_face_blend;
+	new_normal_strength += side_normal_strength * side_z_face_blend;
 
 
 	ALBEDO = color;
 
 	NORMAL_MAP = new_normal;
-	NORMAL_MAP_DEPTH = normal_strength;
+	NORMAL_MAP_DEPTH = new_normal_strength;
 
 	ROUGHNESS = roughness;
 
 	METALLIC = 0.0;
-	SPECULAR = 0.0;
+	SPECULAR = specular;
 }

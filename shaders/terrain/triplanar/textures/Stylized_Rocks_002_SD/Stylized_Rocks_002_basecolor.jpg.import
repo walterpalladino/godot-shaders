@@ -1,0 +1,35 @@
+[remap]
+
+importer="texture"
+type="CompressedTexture2D"
+uid="uid://bmwsii0wf4h61"
+path.s3tc="res://.godot/imported/Stylized_Rocks_002_basecolor.jpg-75e431174c87f4003d5f2e17333ecfbc.s3tc.ctex"
+metadata={
+"imported_formats": ["s3tc_bptc"],
+"vram_texture": true
+}
+
+[deps]
+
+source_file="res://shaders/terrain/triplanar/textures/Stylized_Rocks_002_SD/Stylized_Rocks_002_basecolor.jpg"
+dest_files=["res://.godot/imported/Stylized_Rocks_002_basecolor.jpg-75e431174c87f4003d5f2e17333ecfbc.s3tc.ctex"]
+
+[params]
+
+compress/mode=2
+compress/high_quality=false
+compress/lossy_quality=0.7
+compress/hdr_compression=1
+compress/normal_map=0
+compress/channel_pack=0
+mipmaps/generate=true
+mipmaps/limit=-1
+roughness/mode=-3
+roughness/src_normal="res://shaders/terrain/triplanar/textures/Stylized_Grass_003_SD/Stylized_Grass_003_normal.jpg"
+process/fix_alpha_border=true
+process/premult_alpha=false
+process/normal_map_invert_y=false
+process/hdr_as_srgb=false
+process/hdr_clamp_exposure=false
+process/size_limit=0
+detect_3d/compress_to=0
