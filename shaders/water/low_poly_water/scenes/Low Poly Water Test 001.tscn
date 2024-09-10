@@ -1,6 +1,7 @@
-[gd_scene load_steps=12 format=3 uid="uid://cyledum63ycli"]
+[gd_scene load_steps=13 format=3 uid="uid://cyledum63ycli"]
 
 [ext_resource type="PackedScene" uid="uid://c5gsq5uefuibs" path="res://shaders/water/low_poly_water/scenes/low_poly_water_plane.tscn" id="1_fc83g"]
+[ext_resource type="PackedScene" uid="uid://suy6ks2kup03" path="res://shaders/water/low_poly_water/scenes/hex_grid_big.tscn" id="2_d7fny"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_uf35c"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -82,21 +83,29 @@ mesh = SubResource("PlaneMesh_6flik")
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(-0.21644, -0.395538, 0.892582, 3.1888e-16, 0.914254, 0.405142, -0.976296, 0.0876887, -0.197881, -2.24, 2.21, -7.29)
 
-[node name="Node" type="Node" parent="."]
+[node name="Beach Water" type="Node3D" parent="."]
 
-[node name="LowPolyWaterPlane" parent="Node" instance=ExtResource("1_fc83g")]
+[node name="LowPolyWaterPlane" parent="Beach Water" instance=ExtResource("1_fc83g")]
 skeleton = NodePath("../..")
 
-[node name="LowPolyWaterPlane2" parent="Node" instance=ExtResource("1_fc83g")]
+[node name="LowPolyWaterPlane2" parent="Beach Water" instance=ExtResource("1_fc83g")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.08165e-12, 2.08165e-12, -10)
 skeleton = NodePath("../..")
 
-[node name="LowPolyWaterPlane3" parent="Node" instance=ExtResource("1_fc83g")]
+[node name="LowPolyWaterPlane3" parent="Beach Water" instance=ExtResource("1_fc83g")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 2.08165e-12, -10)
 skeleton = NodePath("../..")
 
-[node name="LowPolyWaterPlane4" parent="Node" instance=ExtResource("1_fc83g")]
+[node name="LowPolyWaterPlane4" parent="Beach Water" instance=ExtResource("1_fc83g")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 2.08165e-12, 2.08165e-12)
+skeleton = NodePath("../..")
+
+[node name="LowPolyWaterPlane5" parent="Beach Water" instance=ExtResource("1_fc83g")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20, 2.08165e-12, -10)
+skeleton = NodePath("../..")
+
+[node name="LowPolyWaterPlane6" parent="Beach Water" instance=ExtResource("1_fc83g")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20, 2.08165e-12, 2.08165e-12)
 skeleton = NodePath("../..")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
@@ -108,3 +117,8 @@ surface_material_override/0 = SubResource("StandardMaterial3D_yiv85")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.67017, -2.75317, -3.44067)
 visible = false
 size = Vector3(31.3403, 25.5063, 26.8813)
+
+[node name="Beach Water Hex" type="Node3D" parent="."]
+visible = false
+
+[node name="hex-grid-big" parent="Beach Water Hex" instance=ExtResource("2_d7fny")]
