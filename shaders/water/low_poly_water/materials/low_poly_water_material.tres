@@ -1,9 +1,10 @@
-[gd_resource type="ShaderMaterial" load_steps=5 format=3 uid="uid://kmhjhlbsxbnk"]
+[gd_resource type="ShaderMaterial" load_steps=6 format=3 uid="uid://kmhjhlbsxbnk"]
 
 [ext_resource type="Shader" path="res://shaders/water/low_poly_water/low_poly_water_shader.gdshader" id="1_i1for"]
 [ext_resource type="Texture2D" uid="uid://c1q5i27s1nfgl" path="res://shaders/water/low_poly_water/textures/uvFoam.jpg" id="2_pjt5m"]
 [ext_resource type="Texture2D" uid="uid://dew8p45yaq8qp" path="res://shaders/water/low_poly_water/textures/Caustic_Free.jpg" id="3_fiuo3"]
 [ext_resource type="Texture2D" uid="uid://d2lhv2ys8p7c6" path="res://shaders/water/low_poly_water/textures/tiling-perlin-noise.png" id="4_d74qd"]
+[ext_resource type="Texture2D" uid="uid://efw8wh3hyefd" path="res://shaders/water/low_poly_water/textures/caustic-v3.jpg" id="5_e4rf7"]
 
 [resource]
 render_priority = 0
@@ -25,6 +26,10 @@ shader_parameter/waves_speed = Vector2(10, 10)
 shader_parameter/noise_scale = 10.0
 shader_parameter/height_scale = 0.2
 shader_parameter/wave_noise_texture = ExtResource("4_d74qd")
+shader_parameter/wave_texture_enabled = true
+shader_parameter/wave_texture_speed = Vector2(-50, -50)
+shader_parameter/wave_texture_strength = 2.5
+shader_parameter/wave_texture = ExtResource("5_e4rf7")
 shader_parameter/foam_speed = Vector2(0.13, 0.22)
 shader_parameter/foam_amount = 1.49
 shader_parameter/edge_scale = 0.66

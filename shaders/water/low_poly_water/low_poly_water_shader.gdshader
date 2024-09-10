@@ -32,6 +32,11 @@ uniform vec2 waves_speed = vec2(1.0, 0.0);
 uniform float noise_scale = 10.0;
 uniform float height_scale = 0.15;
 
+group_uniforms water_texture_waves;
+uniform bool wave_texture_enabled;
+uniform vec2 wave_texture_speed = vec2(-50.0, -50.0);
+uniform sampler2D wave_texture;
+uniform float wave_texture_strength = 2.5;
 
 //foam
 group_uniforms water_foam;
@@ -54,7 +59,8 @@ uniform sampler2D SCREEN_TEXTURE : hint_screen_texture, filter_linear_mipmap;
 
 //	Varying variables
 varying vec3 v_view_pos;	//	used to calculate normal based on displaced vertex
-
+varying vec3 vertex_world_pos;
+varying float wave_height_at_pos;
 
 //	Fresnel will adjust the color of albedo depending
 //	on the angle the camera is viewing the mesh.
@@ -71,16 +77,31 @@ vec3 get_vertex_position(mat4 model_matrix, vec3 vertex) {
 	return vertex;
 }
 
+float get_wave_height(mat4 model_matrix, vec3 vertex) {
+
+	vec3 world_position = (model_matrix * vec4(vertex, 1.0)).xyz;
+	float wave_height = wave_texture_strength * texture(wave_texture, world_position.xz / wave_texture_speed + TIME * waves_speed / 1000.0).r;
+	return wave_height * height_scale;
+
+}
 
 void vertex() {
 
 	VERTEX = get_vertex_position(MODEL_MATRIX, VERTEX);
-
+	if (wave_texture_enabled) {
+		wave_height_at_pos = get_wave_height(MODEL_MATRIX, VERTEX);
+		VERTEX.y += wave_height_at_pos;
+	}
+	vertex_world_pos = VERTEX;
 	// get the view pos for the low poly normals
 	v_view_pos = (MODELVIEW_MATRIX * vec4(VERTEX, 0.0)).xyz;
+
 }
 
 void fragment() {
+
+//	vec3 world_normal = cross( dFdx(vertex_world_pos), dFdy(vertex_world_pos) );
+//	world_normal = -normalize(world_normal);
 
 	//	Normal calculation based on vertex displacement
 	vec3 xTangent = dFdx( v_view_pos );
@@ -143,6 +164,10 @@ void fragment() {
 	//	Set water or foam color
 	mixed_color = mix(color_with_opacity, foam, foam_mask);
 
+	if (wave_height_at_pos > 0.05) {
+		mixed_color += pow(wave_height_at_pos, 2.0);
+	}
+
 	//	Set the shader attributes
 	ALBEDO = mixed_color;
 
@@ -153,5 +178,4 @@ void fragment() {
 	ROUGHNESS = roughness;
 
     NORMAL = normal;
-
 }
