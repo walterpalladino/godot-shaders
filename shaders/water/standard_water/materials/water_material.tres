@@ -11,9 +11,10 @@
 [resource]
 render_priority = 0
 shader = ExtResource("1_erggs")
-shader_parameter/albedo = Color(0, 0.321569, 0.431373, 1)
-shader_parameter/albedo2 = Color(0.517647, 0.788235, 0.8, 1)
-shader_parameter/fresnel_strength = 5.0
+shader_parameter/color_deep = Color(0, 0.321569, 0.431373, 1)
+shader_parameter/color_shallow = Color(0.414, 0.69, 0.552, 1)
+shader_parameter/beers_law = 2.0
+shader_parameter/depth_offset = 0.5
 shader_parameter/metallic = 0.0
 shader_parameter/roughness = 0.2
 shader_parameter/specular = 0.8
@@ -27,10 +28,6 @@ shader_parameter/height_scale = 0.24
 shader_parameter/wave = ExtResource("5_nc1ed")
 shader_parameter/texture_normal = ExtResource("3_bc4j8")
 shader_parameter/texture_normal2 = ExtResource("4_lavmw")
-shader_parameter/color_deep = Color(0, 0.321569, 0.431373, 1)
-shader_parameter/color_shallow = Color(0.414, 0.69, 0.552, 1)
-shader_parameter/beers_law = 2.0
-shader_parameter/depth_offset = 0.5
 shader_parameter/wave_texture_enabled = false
 shader_parameter/wave_texture_speed = Vector2(-50, -50)
 shader_parameter/wave_texture_strength = 2.5

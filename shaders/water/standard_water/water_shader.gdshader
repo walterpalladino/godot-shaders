@@ -1,9 +1,11 @@
 shader_type spatial;
 
 group_uniforms water_color;
-uniform vec3 albedo : source_color ;
-uniform vec3 albedo2 : source_color ;
-uniform float fresnel_strength : hint_range(0.0, 10.0, 0.1) = 5.0 ;
+
+uniform vec4 color_deep : source_color;
+uniform vec4 color_shallow : source_color;
+uniform float beers_law = 2.0;	//	Attenuation of light
+uniform float depth_offset = -0.75;
 
 uniform float metallic : hint_range(0.0,1.0) = 0;
 uniform float roughness : hint_range(0.0,1.0) = 0.02;
@@ -23,11 +25,6 @@ uniform vec2 wave_direction2 = vec2(0.0, 1.0);
 uniform float noise_scale = 10.0;
 uniform float height_scale = 0.15;
 
-group_uniforms water_depth;
-uniform vec4 color_deep : source_color;
-uniform vec4 color_shallow : source_color;
-uniform float beers_law = 2.0;	//	Attenuation of light
-uniform float depth_offset = -0.75;
 
 group_uniforms water_texture_waves;
 uniform bool wave_texture_enabled;
@@ -67,9 +64,6 @@ varying vec3 vertex_world_position;
 varying float wave_height_at_pos;
 
 
-float fresnel (float amount, vec3 normal, vec3 view) {
-	return pow((1.0 - clamp(dot(normalize(normal), normalize(view)), 0.0, 1.0)), amount);
-}
 
 vec3 get_vertex_position(mat4 model_matrix, vec3 vertex) {
 
@@ -138,10 +132,6 @@ void fragment() {
 	vec2 uv_o = uv_i * tiling + offset;
 	vec3 foam = texture(foam_texture, uv_o).rgb;
 	foam = clamp(foam, 0.0, 1.0);
-
-
-	//	Fresnel
-	float fresnel = fresnel(fresnel_strength, NORMAL, VIEW);
 
 
 	//	Riples added later as emmission

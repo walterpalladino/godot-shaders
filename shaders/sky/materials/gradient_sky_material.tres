@@ -4,11 +4,11 @@
 
 [resource]
 shader = ExtResource("1_sd8a4")
-shader_parameter/azimut_color = Color(0.94, 0.79618, 0.4606, 1)
-shader_parameter/horizon_color = Color(1, 0.3795, 0.27, 1)
-shader_parameter/offset_horizon = 1.49012e-08
-shader_parameter/horizon_intensity = 0.397
-shader_parameter/ground_color = Color(0.37, 0.1998, 0.1147, 1)
-shader_parameter/sun_color = Color(0.951992, 0.495771, 9.62615e-07, 1)
-shader_parameter/sun_radius = 0.237
+shader_parameter/azimut_color = Color(0.69, 1, 1, 1)
+shader_parameter/horizon_color = Color(0.388235, 0.854902, 1, 1)
+shader_parameter/offset_horizon = 0.3
+shader_parameter/horizon_intensity = 0.313
+shader_parameter/ground_color = Color(0.37, 0.23384, 0.1147, 1)
+shader_parameter/sun_color = Color(0.95, 0.95, 0.95, 1)
+shader_parameter/sun_radius = 0.1
 shader_parameter/flat_sun = false
