@@ -1,0 +1,203 @@
+[gd_scene load_steps=16 format=3 uid="uid://b44g5rvivpe5p"]
+
+[ext_resource type="PackedScene" uid="uid://cwkcgd7umtqtc" path="res://shaders/terrain/layered_terrain/meshes/island.glb" id="1_ur6xn"]
+[ext_resource type="Material" uid="uid://c5kb7cn80drdd" path="res://shaders/terrain/layered_terrain/materials/terrain_material.tres" id="2_7chm4"]
+[ext_resource type="PackedScene" uid="uid://c3jpq45m2g23y" path="res://shaders/terrain/layered_terrain/scenes/terrain_02_flat.tscn" id="2_p1roc"]
+[ext_resource type="Material" uid="uid://dq3fb2u2sb8s0" path="res://shaders/water/standard_water/materials/water_material.tres" id="3_8ul4n"]
+[ext_resource type="Shader" path="res://shaders/sky/gradient_sky.gdshader" id="3_ckf7f"]
+[ext_resource type="Material" uid="uid://hhw4udntxbbb" path="res://shaders/water/low_poly_water/materials/depth_texture_material.tres" id="5_eve0l"]
+[ext_resource type="Material" uid="uid://kmhjhlbsxbnk" path="res://shaders/water/low_poly_water/materials/low_poly_water_material.tres" id="7_7qf4g"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_cd081"]
+shader = ExtResource("3_ckf7f")
+shader_parameter/azimut_color = Color(0.72, 0.878667, 1, 1)
+shader_parameter/horizon_color = Color(0.0823529, 0.6, 1, 1)
+shader_parameter/offset_horizon = 1.49012e-08
+shader_parameter/horizon_intensity = 0.291
+shader_parameter/ground_color = Color(0.0823529, 0.6, 1, 1)
+shader_parameter/sun_color = Color(1, 1, 1, 1)
+shader_parameter/sun_radius = 0.1
+shader_parameter/flat_sun = false
+
+[sub_resource type="Sky" id="Sky_5cy5d"]
+sky_material = SubResource("ShaderMaterial_cd081")
+
+[sub_resource type="Environment" id="Environment_g046j"]
+background_mode = 2
+sky = SubResource("Sky_5cy5d")
+ambient_light_source = 2
+ambient_light_color = Color(0.780392, 0.741176, 0.639216, 1)
+tonemap_mode = 2
+glow_enabled = true
+fog_enabled = true
+fog_mode = 1
+fog_light_color = Color(0.0823529, 0.6, 1, 1)
+fog_density = 1.0
+fog_sky_affect = 0.0
+fog_depth_begin = 157.0
+fog_depth_end = 338.8
+volumetric_fog_density = 0.0579
+volumetric_fog_length = 17.45
+volumetric_fog_detail_spread = 0.870551
+volumetric_fog_ambient_inject = 0.1
+volumetric_fog_sky_affect = 0.0
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_6vvvw"]
+size = Vector2(300, 300)
+subdivide_width = 300
+subdivide_depth = 300
+
+[sub_resource type="BoxMesh" id="BoxMesh_grodv"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_g1v1l"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_0iu7g"]
+size = Vector2(300, 300)
+subdivide_width = 300
+subdivide_depth = 300
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_infqi"]
+size = Vector2(300, 300)
+subdivide_width = 300
+subdivide_depth = 300
+
+[node name="island" instance=ExtResource("1_ur6xn")]
+
+[node name="terrain_02_flat" parent="." index="0" instance=ExtResource("2_p1roc")]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." index="1"]
+transform = Transform3D(-0.866025, -0.433013, 0.25, 1.74393e-16, 0.5, 0.866025, -0.5, 0.75, -0.433012, 0, 0, 0)
+light_energy = 0.504
+shadow_enabled = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." index="2"]
+environment = SubResource("Environment_g046j")
+
+[node name="Island" parent="." index="3"]
+transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 0, 0, 0)
+visible = false
+lod_bias = 0.001
+surface_material_override/0 = ExtResource("2_7chm4")
+
+[node name="Sea" type="MeshInstance3D" parent="." index="4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.17329, 0)
+visible = false
+mesh = SubResource("PlaneMesh_6vvvw")
+surface_material_override/0 = ExtResource("3_8ul4n")
+
+[node name="Box" type="MeshInstance3D" parent="." index="5"]
+transform = Transform3D(10.1038, -10.7901, 1.92738e-15, 6.47407, 16.8396, -4.22e-16, -4.18544e-15, 6.97574e-15, 4, 39.438, 0.844865, 16.0226)
+mesh = SubResource("BoxMesh_grodv")
+surface_material_override/0 = ExtResource("2_7chm4")
+
+[node name="Sphere" type="MeshInstance3D" parent="." index="6"]
+transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 57.2519, 4.83591, 27.0643)
+mesh = SubResource("SphereMesh_g1v1l")
+surface_material_override/0 = ExtResource("2_7chm4")
+
+[node name="Depth Texture" type="MeshInstance3D" parent="." index="7"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.08165e-12, 3.173, 2.08165e-12)
+visible = false
+mesh = SubResource("PlaneMesh_0iu7g")
+surface_material_override/0 = ExtResource("5_eve0l")
+
+[node name="Node3D" type="Node3D" parent="." index="8"]
+
+[node name="Sea Low Poly" type="MeshInstance3D" parent="Node3D" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 50, 0.868, -50)
+mesh = SubResource("PlaneMesh_infqi")
+skeleton = NodePath("../..")
+surface_material_override/0 = ExtResource("7_7qf4g")
+
+[node name="Sea Low Poly2" type="MeshInstance3D" parent="Node3D" index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 350, 0.868, -50)
+mesh = SubResource("PlaneMesh_infqi")
+skeleton = NodePath("../..")
+surface_material_override/0 = ExtResource("7_7qf4g")
+
+[node name="Sea Low Poly3" type="MeshInstance3D" parent="Node3D" index="2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 650, 0.868, -50)
+mesh = SubResource("PlaneMesh_infqi")
+skeleton = NodePath("../..")
+surface_material_override/0 = ExtResource("7_7qf4g")
+
+[node name="Sea Low Poly4" type="MeshInstance3D" parent="Node3D" index="3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 950, 0.868, -50)
+mesh = SubResource("PlaneMesh_infqi")
+skeleton = NodePath("../..")
+surface_material_override/0 = ExtResource("7_7qf4g")
+
+[node name="Sea Low Poly5" type="MeshInstance3D" parent="Node3D" index="4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 50, 0.868, -350)
+mesh = SubResource("PlaneMesh_infqi")
+skeleton = NodePath("../..")
+surface_material_override/0 = ExtResource("7_7qf4g")
+
+[node name="Sea Low Poly6" type="MeshInstance3D" parent="Node3D" index="5"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 350, 0.868, -350)
+mesh = SubResource("PlaneMesh_infqi")
+skeleton = NodePath("../..")
+surface_material_override/0 = ExtResource("7_7qf4g")
+
+[node name="Sea Low Poly7" type="MeshInstance3D" parent="Node3D" index="6"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 650, 0.868, -350)
+mesh = SubResource("PlaneMesh_infqi")
+skeleton = NodePath("../..")
+surface_material_override/0 = ExtResource("7_7qf4g")
+
+[node name="Sea Low Poly8" type="MeshInstance3D" parent="Node3D" index="7"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 950, 0.868, -350)
+mesh = SubResource("PlaneMesh_infqi")
+skeleton = NodePath("../..")
+surface_material_override/0 = ExtResource("7_7qf4g")
+
+[node name="Sea Low Poly9" type="MeshInstance3D" parent="Node3D" index="8"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 50, 0.868, -650)
+mesh = SubResource("PlaneMesh_infqi")
+skeleton = NodePath("../..")
+surface_material_override/0 = ExtResource("7_7qf4g")
+
+[node name="Sea Low Poly10" type="MeshInstance3D" parent="Node3D" index="9"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 350, 0.868, -650)
+mesh = SubResource("PlaneMesh_infqi")
+skeleton = NodePath("../..")
+surface_material_override/0 = ExtResource("7_7qf4g")
+
+[node name="Sea Low Poly11" type="MeshInstance3D" parent="Node3D" index="10"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 650, 0.868, -650)
+mesh = SubResource("PlaneMesh_infqi")
+skeleton = NodePath("../..")
+surface_material_override/0 = ExtResource("7_7qf4g")
+
+[node name="Sea Low Poly12" type="MeshInstance3D" parent="Node3D" index="11"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 950, 0.868, -650)
+mesh = SubResource("PlaneMesh_infqi")
+skeleton = NodePath("../..")
+surface_material_override/0 = ExtResource("7_7qf4g")
+
+[node name="Sea Low Poly13" type="MeshInstance3D" parent="Node3D" index="12"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 50, 0.868, -950)
+mesh = SubResource("PlaneMesh_infqi")
+skeleton = NodePath("../..")
+surface_material_override/0 = ExtResource("7_7qf4g")
+
+[node name="Sea Low Poly14" type="MeshInstance3D" parent="Node3D" index="13"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 350, 0.868, -950)
+mesh = SubResource("PlaneMesh_infqi")
+skeleton = NodePath("../..")
+surface_material_override/0 = ExtResource("7_7qf4g")
+
+[node name="Sea Low Poly15" type="MeshInstance3D" parent="Node3D" index="14"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 650, 0.868, -950)
+mesh = SubResource("PlaneMesh_infqi")
+skeleton = NodePath("../..")
+surface_material_override/0 = ExtResource("7_7qf4g")
+
+[node name="Sea Low Poly16" type="MeshInstance3D" parent="Node3D" index="15"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 950, 0.868, -950)
+mesh = SubResource("PlaneMesh_infqi")
+skeleton = NodePath("../..")
+surface_material_override/0 = ExtResource("7_7qf4g")
+
+[node name="Camera3D" type="Camera3D" parent="." index="9"]
+transform = Transform3D(0.786935, 0.29537, -0.541747, 0, 0.877983, 0.478692, 0.617036, -0.376699, 0.690916, 112.84, 30.16, -281.73)

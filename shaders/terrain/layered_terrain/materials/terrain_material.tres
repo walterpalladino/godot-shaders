@@ -1,4 +1,4 @@
-[gd_resource type="ShaderMaterial" load_steps=12 format=3 uid="uid://c5kb7cn80drdd"]
+[gd_resource type="ShaderMaterial" load_steps=13 format=3 uid="uid://c5kb7cn80drdd"]
 
 [ext_resource type="Shader" path="res://shaders/terrain/layered_terrain/terrain.gdshader" id="1_ryvr0"]
 [ext_resource type="Texture2D" uid="uid://dvbsr6uppnom5" path="res://shaders/terrain/layered_terrain/textures/Cartoon_Texture_Pack/ROCKS/ROCKS_Cliff/Textures/Rocks_Cliff_A_Normal.png" id="2_lmhv6"]
@@ -11,6 +11,7 @@
 [ext_resource type="Texture2D" uid="uid://chicuhlrqphuq" path="res://shaders/terrain/layered_terrain/textures/Cartoon_Texture_Pack/GRASS/GRASS_Dense/GRASS_Dense_Tint_02/Textures/Grass_Dense_Tint_02_Base_Basecolor_A.png" id="9_edd1r"]
 [ext_resource type="Texture2D" uid="uid://rtuepvl56x5r" path="res://shaders/terrain/layered_terrain/textures/Cartoon_Texture_Pack/GRASS/GRASS_Flower/GRASS_Flower_Tint_02/Texture/Grass_Flower_Tint_02_FlowerBlue_B_Normal.png" id="10_g6lbt"]
 [ext_resource type="Texture2D" uid="uid://cd3eap1vy73ge" path="res://shaders/terrain/layered_terrain/textures/Cartoon_Texture_Pack/GRASS/GRASS_Flower/GRASS_Flower_Tint_02/Texture/Grass_Flower_Tint_02_FlowerBlue_B_Basecolor.png" id="11_u31ri"]
+[ext_resource type="Texture2D" uid="uid://5qh7rbpkoh3y" path="res://shaders/terrain/textures/grunge-stained-paper-texture.jpg" id="12_h77ov"]
 
 [resource]
 render_priority = 0
@@ -44,3 +45,7 @@ shader_parameter/cliff_presence = 0.67
 shader_parameter/cliff_blend = 0.68
 shader_parameter/cliff_texture = ExtResource("2_tfa7f")
 shader_parameter/cliff_texture_normal = ExtResource("2_lmhv6")
+shader_parameter/stain_texture_color = Color(0.8, 0.752, 0.68, 1)
+shader_parameter/stain_texture_scale = 32.0
+shader_parameter/stain_texture_strength = 0.87
+shader_parameter/stain_texture = ExtResource("12_h77ov")

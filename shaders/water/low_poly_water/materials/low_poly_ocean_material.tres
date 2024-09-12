@@ -1,9 +1,10 @@
-[gd_resource type="ShaderMaterial" load_steps=5 format=3 uid="uid://buafad3huhdai"]
+[gd_resource type="ShaderMaterial" load_steps=6 format=3 uid="uid://buafad3huhdai"]
 
 [ext_resource type="Shader" path="res://shaders/water/low_poly_water/low_poly_water_shader.gdshader" id="1_ruxts"]
 [ext_resource type="Texture2D" uid="uid://c1q5i27s1nfgl" path="res://shaders/water/low_poly_water/textures/uvFoam.jpg" id="2_7qyyi"]
 [ext_resource type="Texture2D" uid="uid://dew8p45yaq8qp" path="res://shaders/water/low_poly_water/textures/Caustic_Free.jpg" id="3_mxmr6"]
 [ext_resource type="Texture2D" uid="uid://d2lhv2ys8p7c6" path="res://shaders/water/low_poly_water/textures/tiling-perlin-noise.png" id="4_hag45"]
+[ext_resource type="Texture2D" uid="uid://efw8wh3hyefd" path="res://shaders/water/low_poly_water/textures/caustic-v3.jpg" id="5_j44j6"]
 
 [resource]
 render_priority = 0
@@ -12,18 +13,23 @@ shader_parameter/deep_color = Color(3.59887e-07, 0.188737, 0.258353, 1)
 shader_parameter/shallow_color = Color(1.2111e-05, 0.549323, 0.724702, 1)
 shader_parameter/beers_law = 2.0
 shader_parameter/depth_offset = 0.82
-shader_parameter/riples_velocity = Vector2(0.02, 0.025)
-shader_parameter/riples_scale = 32.0
-shader_parameter/riples_strength = 0.25
 shader_parameter/metallic = 0.0
 shader_parameter/specular = 0.0
 shader_parameter/roughness = 0.02
 shader_parameter/opacity = 0.52
+shader_parameter/riples_color = Color(1, 1, 1, 1)
+shader_parameter/riples_velocity = Vector2(0.02, 0.025)
+shader_parameter/riples_scale = 32.0
+shader_parameter/riples_strength = 0.25
 shader_parameter/riples = ExtResource("3_mxmr6")
-shader_parameter/time_scale = 0.01
+shader_parameter/waves_speed = Vector2(1, 0)
 shader_parameter/noise_scale = 10.0
 shader_parameter/height_scale = 0.65
 shader_parameter/wave_noise_texture = ExtResource("4_hag45")
+shader_parameter/wave_texture_enabled = false
+shader_parameter/wave_texture_speed = Vector2(-50, -50)
+shader_parameter/wave_texture_strength = 2.5
+shader_parameter/wave_texture = ExtResource("5_j44j6")
 shader_parameter/foam_speed = Vector2(0.1, 0.1)
 shader_parameter/foam_amount = 1.23
 shader_parameter/edge_scale = 0.81

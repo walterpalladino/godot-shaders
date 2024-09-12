@@ -62,7 +62,7 @@ void fragment() {
 	color = mix(color * depth_color, depth_color, opacity);
 
 	ALBEDO = color;
-	
+
 	float depth_value = PROJECTION_MATRIX[3][2] / (depth_texture + PROJECTION_MATRIX[2][2]);
 	depth_value = VERTEX.z + depth_value;
 	depth_value = 1.0 - depth_value / 4000.0;
@@ -93,7 +93,7 @@ void fragment() {
 	ROUGHNESS = roughness;
 	SPECULAR = specular;
 
-	
+
 }
 
 //void light() {

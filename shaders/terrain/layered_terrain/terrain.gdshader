@@ -45,6 +45,13 @@ uniform float cliff_presence : hint_range(0.0, 1.0, 0.01) = 0.50f;
 uniform float cliff_blend : hint_range(0.0, 5.0, 0.01) = 0.50f;
 
 
+group_uniforms terrain_stain;
+uniform sampler2D stain_texture : hint_default_white, filter_nearest, repeat_enable;
+uniform vec3 stain_texture_color : source_color = vec3(1.0, 1.0, 1.0);
+uniform float stain_texture_scale = 1.0f;
+uniform float stain_texture_strength : hint_range(0.0, 1.0, 0.01) = 0.0f;
+
+
 //	Varying variables
 varying vec3 v_view_pos;	//	used to calculate normal based on displaced vertex
 
@@ -178,6 +185,8 @@ void fragment() {
 	//vec3 color = texture(layer_1_texture, pixel_world_position.xz * layer_1_texture_scale).rgb;
 	//vec3 normal_value = texture(layer_1_normal, pixel_world_position.xz * uv * layer_1_texture_scale).rgb;
 
+	vec3 stain_color = texture(stain_texture, pixel_world_position.xz / stain_texture_scale).rgb * stain_texture_color;
+	color = mix(color, color * stain_color, stain_texture_strength) ;
 
 	ALBEDO = color;
 	ROUGHNESS = 1.0 - smoothness;
