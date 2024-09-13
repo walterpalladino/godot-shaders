@@ -69,21 +69,22 @@ transform = Transform3D(0.999999, 0.00108208, 0, -0.00108215, 0.999999, 0, 0, 0,
 mesh = SubResource("PlaneMesh_6flik")
 
 [node name="SeaBottom2" type="MeshInstance3D" parent="."]
-transform = Transform3D(0.947729, -0.319075, 0, 0.319075, 0.947729, 0, 0, 0, 1, 1.25889, -1.02343, 0)
+transform = Transform3D(0.947729, -0.319075, 0, 0.319075, 0.947729, 0, 0, 0, 1, 4.57692, -1.02343, -5.49875)
 mesh = SubResource("PlaneMesh_6flik")
 
 [node name="SeaBottom3" type="MeshInstance3D" parent="."]
-transform = Transform3D(0.175003, -0.0589187, -0.982803, 0.319075, 0.947729, 3.59637e-16, 0.931431, -0.313588, 0.184655, 1.25889, -1.02343, 0)
+transform = Transform3D(0.536903, -0.180688, -0.824066, 0.318959, 0.947768, -1.02907e-08, 0.781024, -0.262844, 0.566492, 0.872405, -0.911787, 0)
 mesh = SubResource("PlaneMesh_6flik")
 
 [node name="SeaBottom4" type="MeshInstance3D" parent="."]
-transform = Transform3D(-0.117145, 0.0394238, -0.992332, 0.318959, 0.947768, -3.48787e-16, 0.9405, -0.316513, -0.123601, -13.6601, -0.032488, 3.54931)
+transform = Transform3D(-0.117145, 0.0394239, -1.25034, 0.318959, 0.947768, 2.12083e-07, 0.940501, -0.316514, -0.155737, -9.85238, 0.17844, 3.54931)
 mesh = SubResource("PlaneMesh_6flik")
 
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(-0.21644, -0.395538, 0.892582, 3.1888e-16, 0.914254, 0.405142, -0.976296, 0.0876887, -0.197881, -2.24, 2.21, -7.29)
 
 [node name="Beach Water" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.26769, 0, 0)
 
 [node name="LowPolyWaterPlane" parent="Beach Water" instance=ExtResource("1_fc83g")]
 skeleton = NodePath("../..")

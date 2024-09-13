@@ -1,7 +1,7 @@
 [gd_resource type="ShaderMaterial" load_steps=6 format=3 uid="uid://kmhjhlbsxbnk"]
 
 [ext_resource type="Shader" path="res://shaders/water/low_poly_water/low_poly_water_shader.gdshader" id="1_i1for"]
-[ext_resource type="Texture2D" uid="uid://c1q5i27s1nfgl" path="res://shaders/water/low_poly_water/textures/uvFoam.jpg" id="2_pjt5m"]
+[ext_resource type="Texture2D" uid="uid://chrxrh4bantqp" path="res://shaders/water/low_poly_water/textures/seafoam.png" id="2_8hklh"]
 [ext_resource type="Texture2D" uid="uid://dew8p45yaq8qp" path="res://shaders/water/low_poly_water/textures/Caustic_Free.jpg" id="3_fiuo3"]
 [ext_resource type="Texture2D" uid="uid://d2lhv2ys8p7c6" path="res://shaders/water/low_poly_water/textures/tiling-perlin-noise.png" id="4_d74qd"]
 [ext_resource type="Texture2D" uid="uid://efw8wh3hyefd" path="res://shaders/water/low_poly_water/textures/caustic-v3.jpg" id="5_e4rf7"]
@@ -35,6 +35,6 @@ shader_parameter/foam_amount = 1.49
 shader_parameter/edge_scale = 0.66
 shader_parameter/foam_tiling = Vector2(2, 2)
 shader_parameter/foam_color = Color(0.5246, 0.84882, 0.86, 1)
-shader_parameter/foam_texture = ExtResource("2_pjt5m")
+shader_parameter/foam_texture = ExtResource("2_8hklh")
 shader_parameter/fresnel_color = Color(0.517647, 0.835294, 0.85098, 1)
 shader_parameter/fresnel_strength = 0.504

@@ -164,8 +164,13 @@ void fragment() {
 	//	Set water or foam color
 	mixed_color = mix(color_with_opacity, foam, foam_mask);
 
-	if (wave_height_at_pos > 0.05) {
-		mixed_color += pow(wave_height_at_pos, 2.0);
+	if (wave_height_at_pos > 0.085) {
+		vec3 pixel_world_position = (INV_VIEW_MATRIX * vec4(VERTEX, 1.0)).xyz;
+		vec2 wave_foam_uv = UV * 2.0 - TIME * waves_speed / 1000.0;
+		vec3 wave_foam_color = texture(foam_texture, wave_foam_uv).rgb;
+		//mixed_color += wave_foam_color * pow(wave_height_at_pos, 2.0) * 6.0;
+		mixed_color = mix(mixed_color, wave_foam_color * 6.0, pow(wave_height_at_pos, 2.0));
+//		mixed_color += pow(wave_height_at_pos, 2.0);
 	}
 
 	//	Set the shader attributes
