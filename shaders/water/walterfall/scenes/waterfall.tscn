@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://dfwhnul382b7m"]
+
+[ext_resource type="PackedScene" uid="uid://bovy3cmwyfgsh" path="res://shaders/water/walterfall/models/waterfall.fbx" id="1_piocn"]
+[ext_resource type="Material" uid="uid://dtd061bhdjtxl" path="res://shaders/water/walterfall/materials/waterfall_material.tres" id="2_bnk7s"]
+
+[node name="waterfall" instance=ExtResource("1_piocn")]
+
+[node name="River_Plane_WaterFall_01" parent="." index="0"]
+surface_material_override/0 = ExtResource("2_bnk7s")

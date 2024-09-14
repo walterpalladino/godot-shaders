@@ -1,0 +1,13 @@
+[gd_resource type="ShaderMaterial" load_steps=3 format=3 uid="uid://dtd061bhdjtxl"]
+
+[ext_resource type="Shader" path="res://shaders/water/walterfall/waterfall.gdshader" id="1_mw8ov"]
+[ext_resource type="Texture2D" uid="uid://efw8wh3hyefd" path="res://shaders/water/low_poly_water/textures/caustic-v3.jpg" id="2_3t7cp"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_mw8ov")
+shader_parameter/waterfall_color = Color(0.5, 0.791667, 1, 1)
+shader_parameter/waterfall_texture_scale = Vector2(4, 4)
+shader_parameter/waterfall_water_speed = 0.35
+shader_parameter/transparency = 0.38
+shader_parameter/waterfall_water_texture = ExtResource("2_3t7cp")
