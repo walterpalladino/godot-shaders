@@ -25,14 +25,14 @@ uniform float riples_strength : hint_range(0.0, 1.0) = 0.25;
 
 
 // waves settings
-group_uniforms water_waves;
+group_uniforms water_waves_base;
 
 uniform sampler2D wave_noise_texture;
 uniform vec2 waves_speed = vec2(1.0, 0.0);
-uniform float noise_scale = 10.0;
-uniform float height_scale = 0.15;
+uniform float water_waves_noise_scale = 10.0;
+uniform float water_waves_height_scale = 0.15;
 
-group_uniforms water_texture_waves;
+group_uniforms water_big_waves;
 uniform bool wave_texture_enabled;
 uniform vec2 wave_texture_speed = vec2(-50.0, -50.0);
 uniform sampler2D wave_texture;
@@ -42,7 +42,7 @@ uniform float wave_texture_strength = 2.5;
 group_uniforms water_foam;
 uniform vec2 foam_speed = vec2(0.02, 0.02);
 uniform	float foam_amount : hint_range(0.0, 10.0, 0.01) = 0.40;
-uniform float edge_scale : hint_range(0.0, 5.0, 0.01) = 0.25;
+uniform float edge_scale : hint_range(0.0, 1.0, 0.01) = 0.25;
 uniform sampler2D foam_texture;
 uniform vec2 foam_tiling = vec2(4.0, 4.0);
 uniform vec3 foam_color : source_color;
@@ -62,6 +62,8 @@ varying vec3 v_view_pos;	//	used to calculate normal based on displaced vertex
 varying vec3 vertex_world_pos;
 varying float wave_height_at_pos;
 
+
+
 //	Fresnel will adjust the color of albedo depending
 //	on the angle the camera is viewing the mesh.
 float fresnel (float amount, vec3 normal, vec3 view) {
@@ -71,8 +73,8 @@ float fresnel (float amount, vec3 normal, vec3 view) {
 vec3 get_vertex_position(mat4 model_matrix, vec3 vertex) {
 
 	vec3 world_position = (model_matrix * vec4(vertex, 1.0)).xyz;
-	float height = texture(wave_noise_texture, world_position.xz /  noise_scale + TIME * waves_speed / 1000.0).r;
-	vertex.y += height * height_scale;
+	float height = texture(wave_noise_texture, world_position.xz / water_waves_noise_scale + TIME * waves_speed / 1000.0).r;
+	vertex.y += height * water_waves_height_scale;
 
 	return vertex;
 }
@@ -81,7 +83,7 @@ float get_wave_height(mat4 model_matrix, vec3 vertex) {
 
 	vec3 world_position = (model_matrix * vec4(vertex, 1.0)).xyz;
 	float wave_height = wave_texture_strength * texture(wave_texture, world_position.xz / wave_texture_speed + TIME * waves_speed / 1000.0).r;
-	return wave_height * height_scale;
+	return wave_height * water_waves_height_scale;
 
 }
 
@@ -134,8 +136,8 @@ void fragment() {
 
 	//	Add Foam
 	//	Calculate the area mask affected by the foam
-	float foam_mask = step(edge_scale, depth_blend);
-	foam_mask = smoothstep(0.0, edge_scale, depth_blend);
+	//float foam_mask = step(edge_scale, depth_blend);
+	float foam_mask = smoothstep(0.0, edge_scale, depth_blend);
 	foam_mask = 1.0 - foam_mask;
 
 	//	shore foam
@@ -175,6 +177,7 @@ void fragment() {
 
 	//	Set the shader attributes
 	ALBEDO = mixed_color;
+	//ALBEDO = vec3(foam_mask);
 
 	EMISSION = riple * riples_color + fresnel_color * fresnel_value;
 
