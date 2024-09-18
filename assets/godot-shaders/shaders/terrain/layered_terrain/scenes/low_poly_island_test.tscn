@@ -1,0 +1,17 @@
+[gd_scene load_steps=4 format=3 uid="uid://dxgnt70axecl4"]
+
+[ext_resource type="PackedScene" uid="uid://br336geu1mfdw" path="res://assets/godot-shaders/shaders/terrain/prefabs/island_l_f_04.tscn" id="1_lbpne"]
+[ext_resource type="Material" uid="uid://buafad3huhdai" path="res://assets/godot-shaders/shaders/water/low_poly_water/materials/low_poly_ocean_material.tres" id="2_vy3wp"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_2sl83"]
+size = Vector2(300, 300)
+subdivide_width = 300
+subdivide_depth = 300
+
+[node name="LowPolyIslandTest" type="Node3D"]
+
+[node name="island_l_f_04" parent="." instance=ExtResource("1_lbpne")]
+
+[node name="Sea Low Poly" type="MeshInstance3D" parent="."]
+mesh = SubResource("PlaneMesh_2sl83")
+surface_material_override/0 = ExtResource("2_vy3wp")

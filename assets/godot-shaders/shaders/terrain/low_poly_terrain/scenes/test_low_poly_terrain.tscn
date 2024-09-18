@@ -1,0 +1,38 @@
+[gd_scene load_steps=5 format=3 uid="uid://c8eui7fx5my50"]
+
+[ext_resource type="Material" uid="uid://4o8q1c37ups3" path="res://assets/godot-shaders/shaders/terrain/low_poly_terrain/materials/low_poly_terrain_material.tres" id="1_yn2c1"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_x1tvp"]
+size = Vector2(50, 50)
+
+[sub_resource type="BoxMesh" id="BoxMesh_ib6hb"]
+size = Vector3(2, 2, 2)
+
+[sub_resource type="PrismMesh" id="PrismMesh_df5ng"]
+size = Vector3(4, 4, 2)
+
+[node name="TestLowPolyTerrain" type="Node3D"]
+
+[node name="Base Ground Plane" type="MeshInstance3D" parent="."]
+mesh = SubResource("PlaneMesh_x1tvp")
+surface_material_override/0 = ExtResource("1_yn2c1")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.848716, 0.690257, 0.519058)
+mesh = SubResource("BoxMesh_ib6hb")
+surface_material_override/0 = ExtResource("1_yn2c1")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.12578, 0.523482, -2.59418)
+mesh = SubResource("PrismMesh_df5ng")
+surface_material_override/0 = ExtResource("1_yn2c1")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.59961, -0.800292, 0, 0.800292, 0.59961, 0, 0, 0, 1, 6.58652, 0.690257, -4.05824)
+mesh = SubResource("BoxMesh_ib6hb")
+surface_material_override/0 = ExtResource("1_yn2c1")
+
+[node name="MeshInstance3D4" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.983603, 0.180347, 0, -0.168178, 0.917229, -0.36112, -0.0651271, 0.355199, 0.932519, 10.2066, 0.523482, -2.59418)
+mesh = SubResource("PrismMesh_df5ng")
+surface_material_override/0 = ExtResource("1_yn2c1")

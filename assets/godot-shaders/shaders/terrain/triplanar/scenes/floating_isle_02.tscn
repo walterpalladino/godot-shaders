@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://duo558ndtpcbc"]
+
+[ext_resource type="PackedScene" uid="uid://dn2ihbt15fd1j" path="res://assets/godot-shaders/shaders/terrain/triplanar/models/Floating_Isle_02.glb" id="1_pevb0"]
+[ext_resource type="Material" uid="uid://c1qj4cmtseh6p" path="res://assets/godot-shaders/shaders/terrain/triplanar/materials/floating_island_material.tres" id="2_n1t8c"]
+
+[node name="Floating_Isle_02" instance=ExtResource("1_pevb0")]
+
+[node name="Floating_Isle_022" parent="." index="0"]
+surface_material_override/0 = ExtResource("2_n1t8c")

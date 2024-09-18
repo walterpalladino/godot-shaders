@@ -1,0 +1,49 @@
+[gd_scene load_steps=11 format=3 uid="uid://cyu3a847qgm7y"]
+
+[ext_resource type="Shader" path="res://assets/godot-shaders/test/simple_water.gdshader" id="1_m2nr6"]
+[ext_resource type="Shader" uid="uid://crobbulw4k35a" path="res://assets/godot-shaders/test/test1.tres" id="2_r6qju"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_ilbgc"]
+subdivide_width = 32
+subdivide_depth = 32
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_08415"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_8021w"]
+noise = SubResource("FastNoiseLite_08415")
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_mtudy"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_a34ta"]
+as_normal_map = true
+noise = SubResource("FastNoiseLite_mtudy")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_r4p5a"]
+render_priority = 0
+shader = ExtResource("1_m2nr6")
+shader_parameter/height_scale = 0.25
+shader_parameter/noise = SubResource("NoiseTexture2D_8021w")
+shader_parameter/normalmap = SubResource("NoiseTexture2D_a34ta")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_rww7v"]
+render_priority = 0
+shader = ExtResource("2_r6qju")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_3nb4p"]
+material = SubResource("ShaderMaterial_rww7v")
+subdivide_width = 32
+subdivide_depth = 32
+
+[node name="test1" type="Node3D"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+visible = false
+mesh = SubResource("PlaneMesh_ilbgc")
+surface_material_override/0 = SubResource("ShaderMaterial_r4p5a")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.156766, 0.473145, -0.120035)
+light_energy = 0.516
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
+mesh = SubResource("PlaneMesh_3nb4p")

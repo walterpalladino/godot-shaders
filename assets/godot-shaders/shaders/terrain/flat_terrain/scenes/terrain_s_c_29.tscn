@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://dpaoger6nj4o4"]
+
+[ext_resource type="PackedScene" uid="uid://bef02pym6dg2m" path="res://assets/godot-shaders/shaders/terrain/flat_terrain/meshes/Terrain_S_c_29.glb" id="1_5yg1u"]
+[ext_resource type="Material" uid="uid://r6atq0rpyrva" path="res://assets/godot-shaders/shaders/terrain/flat_terrain/materials/flat_terrain_material.tres" id="2_r3i50"]
+
+[node name="Terrain_S_c_29" instance=ExtResource("1_5yg1u")]
+
+[node name="MT_Terrain_S_c_29" parent="." index="0"]
+surface_material_override/0 = ExtResource("2_r3i50")

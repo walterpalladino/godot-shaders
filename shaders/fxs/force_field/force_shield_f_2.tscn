@@ -1,9 +1,0 @@
-[gd_scene load_steps=3 format=3 uid="uid://c3aqmshnh1mpk"]
-
-[ext_resource type="PackedScene" uid="uid://bqg7ped03kbad" path="res://shaders/fxs/force_field/force_shield_f2.glb" id="1_30juu"]
-[ext_resource type="Material" uid="uid://m468hc2crmgx" path="res://shaders/fxs/force_field/force_field_material_2.tres" id="2_l2nqc"]
-
-[node name="force_shield_f2" instance=ExtResource("1_30juu")]
-
-[node name="GD_mesh_f2" parent="." index="0"]
-surface_material_override/0 = ExtResource("2_l2nqc")

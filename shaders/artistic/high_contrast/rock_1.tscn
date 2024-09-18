@@ -1,9 +1,0 @@
-[gd_scene load_steps=3 format=3 uid="uid://cpld4m4iqx2vr"]
-
-[ext_resource type="PackedScene" uid="uid://c5qewt4ce8b38" path="res://models/Ultimate Stylized Nature/Rock_1.gltf" id="1_7cerh"]
-[ext_resource type="Material" uid="uid://dsb3ntdcvuae2" path="res://shaders/high_contrast/rock_material.tres" id="2_254yy"]
-
-[node name="Rock_1" instance=ExtResource("1_7cerh")]
-
-[node name="Rock_12" parent="." index="0"]
-surface_material_override/0 = ExtResource("2_254yy")

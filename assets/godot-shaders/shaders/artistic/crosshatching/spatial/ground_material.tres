@@ -1,0 +1,20 @@
+[gd_resource type="ShaderMaterial" load_steps=3 format=3 uid="uid://bp6t4db3u0pa7"]
+
+[ext_resource type="Shader" path="res://assets/godot-shaders/shaders/artistic/crosshatching/spatial/crosshatching_spatial.gdshader" id="1_5eve6"]
+[ext_resource type="Texture2D" uid="uid://cmiy3kwjribjl" path="res://assets/godot-shaders/shaders/artistic/crosshatching/pencil.jpg" id="2_j6hfg"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_5eve6")
+shader_parameter/albedo = Color(0.605348, 0.738873, 0.0670934, 1)
+shader_parameter/pattern_tiling = Vector2(2, 2)
+shader_parameter/threshold_1 = 0.75
+shader_parameter/threshold_2 = 0.5
+shader_parameter/threshold_3 = 0.25
+shader_parameter/threshold_4 = 0.05
+shader_parameter/invert_direction = false
+shader_parameter/use_custom_direction = false
+shader_parameter/custom_direction = Vector3(0, 0, 1)
+shader_parameter/hatch_brightness = 1.0
+shader_parameter/hatch_contrast = 1.0
+shader_parameter/texture_pattern = ExtResource("2_j6hfg")

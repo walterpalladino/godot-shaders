@@ -1,0 +1,11 @@
+[gd_scene load_steps=4 format=3 uid="uid://s35y7ymnfvoc"]
+
+[ext_resource type="PackedScene" uid="uid://dmn4qblt6vomt" path="res://assets/godot-shaders/shaders/vegetation/wind/models/normal_tree_8.glb" id="1_grxg4"]
+[ext_resource type="Material" uid="uid://dny2phujf42nn" path="res://assets/godot-shaders/shaders/vegetation/wind/materials/normal_tree_leaves_wind_material.tres" id="2_q1wf4"]
+[ext_resource type="Material" uid="uid://p8x5jj5pu86k" path="res://assets/godot-shaders/shaders/vegetation/wind/materials/normal_tree_bark_wind_material.tres" id="3_j4rax"]
+
+[node name="normal_tree_8" instance=ExtResource("1_grxg4")]
+
+[node name="NormalTree_8" parent="." index="0"]
+surface_material_override/0 = ExtResource("3_j4rax")
+surface_material_override/1 = ExtResource("2_q1wf4")

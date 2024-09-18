@@ -1,0 +1,14 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://cjo5as1h7b8up"]
+
+[ext_resource type="Shader" path="res://assets/godot-shaders/shaders/artistic/dither_high_contrast/spatial/dither_hc_shader.gdshader" id="1_dqpna"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_dqpna")
+shader_parameter/color_light = Color(1, 1, 1, 1)
+shader_parameter/color_dark = Color(0, 0, 0, 1)
+shader_parameter/color = Color(0.239216, 0.321569, 0.878431, 1)
+shader_parameter/alpha_cut_off = 0.5
+shader_parameter/sharpness = 0.5
+shader_parameter/scale = 3.81
+shader_parameter/light_base = 0.1

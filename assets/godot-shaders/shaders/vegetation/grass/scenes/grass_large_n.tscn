@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://ubcql2ylshy5"]
+
+[ext_resource type="PackedScene" uid="uid://cxgkrs755n0ua" path="res://assets/godot-shaders/shaders/vegetation/grass/meshes/grass_large_n.glb" id="1_vd6p1"]
+[ext_resource type="Material" uid="uid://lr0ftjth3vm6" path="res://assets/godot-shaders/shaders/vegetation/grass/materials/grass_material.tres" id="2_f021e"]
+
+[node name="grass_large_n" instance=ExtResource("1_vd6p1")]
+
+[node name="Grass_Large_N" parent="." index="0"]
+surface_material_override/0 = ExtResource("2_f021e")

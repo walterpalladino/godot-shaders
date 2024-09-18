@@ -1,0 +1,14 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://en7miisqo1er"]
+
+[ext_resource type="Shader" path="res://assets/godot-shaders/shaders/artistic/high_contrast/high_contrast_shader.gdshader" id="1_d8dt7"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_d8dt7")
+shader_parameter/alpha_cut_off = 0.465
+shader_parameter/color = Color(0.917647, 0.917647, 0.917647, 1)
+shader_parameter/dark_color = null
+shader_parameter/color_cut_off = 0.5
+shader_parameter/invert_direction = true
+shader_parameter/use_custom_direction = false
+shader_parameter/custom_direction = Vector3(0, 0, 1)

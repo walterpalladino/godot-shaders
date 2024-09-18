@@ -1,0 +1,13 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://dfsyctaocp2o3"]
+
+[ext_resource type="Shader" path="res://assets/godot-shaders/shaders/artistic/dither/dither_shader.gdshader" id="1_xkg0g"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_xkg0g")
+shader_parameter/color = Color(0, 0.443137, 0.870588, 1)
+shader_parameter/alpha_cut_off = 0.5
+shader_parameter/shade_tweak = 0.25
+shader_parameter/light_tweak = 1.0
+shader_parameter/sharpness = 0.5
+shader_parameter/scale = 4.0

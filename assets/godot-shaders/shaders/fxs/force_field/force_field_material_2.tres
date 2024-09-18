@@ -1,0 +1,16 @@
+[gd_resource type="ShaderMaterial" load_steps=3 format=3 uid="uid://m468hc2crmgx"]
+
+[ext_resource type="Shader" path="res://assets/godot-shaders/shaders/fxs/force_field/force_field_v2.gdshader" id="1_2htqr"]
+[ext_resource type="Texture2D" uid="uid://bctpfp7ypcktr" path="res://assets/godot-shaders/shaders/fxs/force_field/GD_mesh_f2-v2.png" id="2_sqfy8"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_2htqr")
+shader_parameter/shield_albedo = Color(0.901961, 0.556863, 0, 1)
+shader_parameter/shield_emission = Color(1, 0.647059, 0.172549, 0.321569)
+shader_parameter/emission_amount = 4.365
+shader_parameter/rim_steepness = 1.184
+shader_parameter/pulsing_strength = 0.5
+shader_parameter/pulsing_speed = 2.5
+shader_parameter/energy_strength = 1.0
+shader_parameter/shield_texture = ExtResource("2_sqfy8")

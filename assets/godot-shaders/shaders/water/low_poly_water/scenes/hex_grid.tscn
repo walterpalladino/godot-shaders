@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://btms15jhxe58v"]
+
+[ext_resource type="PackedScene" uid="uid://b8fn10yy6ct8s" path="res://assets/godot-shaders/models/hex-grid.glb" id="1_d3ytj"]
+[ext_resource type="Material" uid="uid://kmhjhlbsxbnk" path="res://assets/godot-shaders/shaders/water/low_poly_water/materials/low_poly_water_material.tres" id="2_bjgkb"]
+
+[node name="hex-grid" instance=ExtResource("1_d3ytj")]
+
+[node name="Hex Grid" parent="." index="0"]
+surface_material_override/0 = ExtResource("2_bjgkb")

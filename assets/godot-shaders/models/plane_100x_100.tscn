@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://blf0jij3u6bfd"]
+
+[ext_resource type="PackedScene" uid="uid://dxn4p3kxodwoh" path="res://assets/godot-shaders/models/plane100x100.glb" id="1_tjx2k"]
+[ext_resource type="Material" uid="uid://buafad3huhdai" path="res://assets/godot-shaders/shaders/water/low_poly_water/materials/low_poly_ocean_material.tres" id="2_6ph8q"]
+
+[node name="plane100x100" instance=ExtResource("1_tjx2k")]
+
+[node name="Plane100x100" parent="." index="0"]
+surface_material_override/0 = ExtResource("2_6ph8q")

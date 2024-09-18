@@ -1,0 +1,32 @@
+[gd_scene load_steps=6 format=3 uid="uid://oow78kxi2a4s"]
+
+[ext_resource type="Material" uid="uid://ysy4gepk5boc" path="res://assets/godot-shaders/shaders/sky/materials/animated_sky_material.tres" id="1_hk5vb"]
+
+[sub_resource type="Sky" id="Sky_np7l8"]
+sky_material = ExtResource("1_hk5vb")
+
+[sub_resource type="Environment" id="Environment_ufula"]
+background_mode = 2
+sky = SubResource("Sky_np7l8")
+tonemap_mode = 2
+glow_enabled = true
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_l8c68"]
+size = Vector2(200, 200)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_iuwjv"]
+albedo_color = Color(0.219608, 0.321569, 0.0784314, 1)
+
+[node name="sky_test_01" type="Node3D"]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866025, -0.433013, 0.25, 0, 0.5, 0.866026, -0.5, 0.75, -0.433013, 0, 0, 0)
+shadow_enabled = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_ufula")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+visible = false
+mesh = SubResource("PlaneMesh_l8c68")
+surface_material_override/0 = SubResource("StandardMaterial3D_iuwjv")

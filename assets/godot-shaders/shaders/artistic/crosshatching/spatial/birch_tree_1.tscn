@@ -1,0 +1,15 @@
+[gd_scene load_steps=6 format=3 uid="uid://bl0rrf56h8bn"]
+
+[ext_resource type="PackedScene" uid="uid://dkj8u0rh01o0l" path="res://assets/godot-shaders/models/Ultimate Nature Pack/models/BirchTree_1.fbx" id="1_4oa3k"]
+[ext_resource type="Material" uid="uid://dov2yuu34fhd5" path="res://assets/godot-shaders/shaders/artistic/crosshatching/spatial/white_crosshatching_material.tres" id="2_yv3ds"]
+[ext_resource type="Material" uid="uid://cukxjhr7y4nq5" path="res://assets/godot-shaders/shaders/artistic/crosshatching/spatial/black_crosshatching_material.tres" id="3_yd6c3"]
+[ext_resource type="Material" uid="uid://7grrh8jw6oc1" path="res://assets/godot-shaders/shaders/artistic/crosshatching/spatial/dark_green_crosshatching_material.tres" id="4_m8vmu"]
+[ext_resource type="Material" uid="uid://cgcxsrow3ugd1" path="res://assets/godot-shaders/shaders/artistic/crosshatching/spatial/green_crosshatching_material.tres" id="5_vlq0j"]
+
+[node name="BirchTree_1" instance=ExtResource("1_4oa3k")]
+
+[node name="BirchTree_1" parent="RootNode" index="0"]
+surface_material_override/0 = ExtResource("2_yv3ds")
+surface_material_override/1 = ExtResource("3_yd6c3")
+surface_material_override/2 = ExtResource("4_m8vmu")
+surface_material_override/3 = ExtResource("5_vlq0j")

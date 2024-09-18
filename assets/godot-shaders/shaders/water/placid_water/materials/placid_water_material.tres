@@ -1,0 +1,29 @@
+[gd_resource type="ShaderMaterial" load_steps=5 format=3 uid="uid://bxm4eemqnn5kc"]
+
+[ext_resource type="Shader" path="res://assets/godot-shaders/shaders/water/placid_water/placid_water.gdshader" id="1_fws3r"]
+[ext_resource type="Texture2D" uid="uid://dew8p45yaq8qp" path="res://assets/godot-shaders/shaders/water/low_poly_water/textures/Caustic_Free.jpg" id="2_h6hx8"]
+[ext_resource type="Texture2D" uid="uid://b78riwbwyxdhq" path="res://assets/godot-shaders/shaders/water/standard_water/textures/Water_Normal.png" id="2_n2ygt"]
+[ext_resource type="Texture2D" uid="uid://1ttpaxrs6cxr" path="res://assets/godot-shaders/shaders/water/standard_water/textures/water-normal.png" id="3_s478h"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_fws3r")
+shader_parameter/color_deep = Color(0, 0.275333, 0.28, 1)
+shader_parameter/color_shallow = Color(0.0576, 0.62064, 0.72, 1)
+shader_parameter/beers_law = 1.5
+shader_parameter/depth_offset = 0.5
+shader_parameter/metallic = 0.0
+shader_parameter/roughness = 0.0
+shader_parameter/specular = 0.8
+shader_parameter/opacity = 0.492
+shader_parameter/normal_texture_scale = 2.0
+shader_parameter/normal_texture_scale2 = 8.0
+shader_parameter/normal_texture_strength = 1.0
+shader_parameter/wave_direction = Vector2(-5, 10)
+shader_parameter/wave_direction2 = Vector2(-5, 10)
+shader_parameter/texture_normal = ExtResource("2_n2ygt")
+shader_parameter/texture_normal2 = ExtResource("3_s478h")
+shader_parameter/riples_velocity = Vector2(0.01, 0.05)
+shader_parameter/riples_scale = 4.0
+shader_parameter/riples_strength = 0.382
+shader_parameter/riples = ExtResource("2_h6hx8")

@@ -1,0 +1,29 @@
+[gd_resource type="ShaderMaterial" load_steps=8 format=3 uid="uid://csxyop0j51q4g"]
+
+[ext_resource type="Shader" path="res://assets/godot-shaders/shaders/terrain/triplanar/triplanar.gdshader" id="1_b5cid"]
+[ext_resource type="Texture2D" uid="uid://dkn3dkjv33cbr" path="res://assets/godot-shaders/shaders/terrain/triplanar/textures/Tileable Dirt Textures/Dirt_01_Nrm.png" id="2_j3qdn"]
+[ext_resource type="Texture2D" uid="uid://68rum4ymc0rj" path="res://assets/godot-shaders/shaders/terrain/triplanar/textures/Tileable Dirt Textures/Dirt_01.png" id="3_rf0l8"]
+[ext_resource type="Texture2D" uid="uid://dvbsr6uppnom5" path="res://assets/godot-shaders/shaders/terrain/layered_terrain/textures/Cartoon_Texture_Pack/ROCKS/ROCKS_Cliff/Textures/Rocks_Cliff_A_Normal.png" id="4_nyv1q"]
+[ext_resource type="Texture2D" uid="uid://coc51khsrlfji" path="res://assets/godot-shaders/shaders/terrain/layered_terrain/textures/Cartoon_Texture_Pack/ROCKS/ROCKS_Cliff/Textures/Rocks_Cliff_A_Basecolor_B.png" id="5_1aakg"]
+[ext_resource type="Texture2D" uid="uid://do7ammagekqq2" path="res://assets/godot-shaders/shaders/terrain/layered_terrain/textures/Cartoon_Texture_Pack/GRASS/GRASS_Dense/GRASS_Dense_Tint_01/Textures/Grass_Dense_Tint_01_Base_Normal.png" id="6_ld47y"]
+[ext_resource type="Texture2D" uid="uid://cqnihht75ihyd" path="res://assets/godot-shaders/shaders/terrain/layered_terrain/textures/Cartoon_Texture_Pack/GRASS/GRASS_Dense/GRASS_Dense_Tint_01/Textures/Grass_Dense_Tint_01_Base_Basecolor_A.png" id="7_sww0m"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_b5cid")
+shader_parameter/top_normal_strength = 1.0
+shader_parameter/top_texture_scale = Vector2(3, 3)
+shader_parameter/top_texture = ExtResource("7_sww0m")
+shader_parameter/top_normal = ExtResource("6_ld47y")
+shader_parameter/bottom_normal_strength = 1.0
+shader_parameter/bottom_texture_scale = Vector2(2, 2)
+shader_parameter/bottom_texture = ExtResource("3_rf0l8")
+shader_parameter/bottom_normal = ExtResource("2_j3qdn")
+shader_parameter/side_normal_strength = 1.0
+shader_parameter/side_texture_scale = Vector2(4, 6)
+shader_parameter/side_texture = ExtResource("5_1aakg")
+shader_parameter/side_normal = ExtResource("4_nyv1q")
+shader_parameter/blend_offset = 0.5
+shader_parameter/blend_exponent = 6.2
+shader_parameter/roughness = 1.0
+shader_parameter/specular = 0.0

@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://dx5sx5fii1rd4"]
+
+[ext_resource type="PackedScene" uid="uid://q6u55cutlfjt" path="res://assets/godot-shaders/shaders/terrain/flat_terrain/scenes/terrain_l_a_01.tscn" id="1_6rcyk"]
+[ext_resource type="PackedScene" uid="uid://dpaoger6nj4o4" path="res://assets/godot-shaders/shaders/terrain/flat_terrain/scenes/terrain_s_c_29.tscn" id="2_dept5"]
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_ehebd"]
+
+[node name="FlatTerrainTest" type="Node3D"]
+
+[node name="Terrain_L_a_01" parent="." instance=ExtResource("1_6rcyk")]
+
+[node name="Terrain_S_c_29" parent="." instance=ExtResource("2_dept5")]
+
+[node name="Terrain_S_c_30" parent="." instance=ExtResource("2_dept5")]
+transform = Transform3D(0.671514, 0, -0.740992, 0, 1, 0, 0.740992, 0, 0.671514, 29.9991, 0, -28.3199)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.08165e-12, 1, 2.08165e-12)
+mesh = SubResource("CylinderMesh_ehebd")

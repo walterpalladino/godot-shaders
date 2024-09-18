@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://dxnhe22jfy6tl"]
+
+[ext_resource type="Material" uid="uid://rgwbcycbp6qv" path="res://assets/godot-shaders/shaders/retro-parallax/retro-parallax_material.tres" id="1_riwrx"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_xc1wv"]
+
+[node name="retro-parallax-test" type="Node3D"]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.979925, 0.172658, -0.099684, 1.74393e-16, 0.5, 0.866025, 0.199368, -0.84864, 0.489962, 0, 0, 0)
+shadow_enabled = true
+
+[node name="Retro Screen" type="MeshInstance3D" parent="."]
+transform = Transform3D(4, 0, -3.04919e-23, -6.09838e-23, -4.37114e-08, -2, 0, 1, -8.74228e-08, 0, 0, 0)
+mesh = SubResource("PlaneMesh_xc1wv")
+surface_material_override/0 = ExtResource("1_riwrx")

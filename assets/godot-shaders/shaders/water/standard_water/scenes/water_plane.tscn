@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://dxnhd4uksigw7"]
+
+[ext_resource type="Material" uid="uid://dq3fb2u2sb8s0" path="res://assets/godot-shaders/shaders/water/standard_water/materials/water_material.tres" id="1_l24oq"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_ld0w7"]
+material = ExtResource("1_l24oq")
+size = Vector2(10, 10)
+subdivide_width = 128
+subdivide_depth = 128
+
+[node name="WaterPlane" type="MeshInstance3D"]
+cast_shadow = 0
+mesh = SubResource("PlaneMesh_ld0w7")
