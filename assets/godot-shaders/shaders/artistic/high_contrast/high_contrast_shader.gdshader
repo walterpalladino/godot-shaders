@@ -11,6 +11,10 @@ uniform float alpha_cut_off : hint_range(0.0, 1.0) = 0.5;
 uniform vec3 color : source_color;
 uniform vec3 dark_color : source_color;
 uniform float color_cut_off : hint_range(0.0, 1.0) = 0.5;
+
+
+group_uniforms Lightning;
+
 uniform bool invert_direction = false;
 
 //	Light direction: coming from camera or from a point in space
