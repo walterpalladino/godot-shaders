@@ -1,6 +1,6 @@
 shader_type spatial;
 
-#include "res://shaders/includes/noise.gdshaderinc"
+#include "res://assets/godot-shaders/shaders/includes/noise.gdshaderinc"
 
 group_uniforms simulation;
 uniform vec2 scroll_speed = vec2(0.0);
