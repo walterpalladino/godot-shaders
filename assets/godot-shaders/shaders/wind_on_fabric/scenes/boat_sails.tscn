@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://go6aek1eee67"]
+
+[ext_resource type="PackedScene" uid="uid://csadhyuiq660s" path="res://assets/godot-shaders/shaders/wind_on_fabric/scenes/SM_Veh_Boat_Warship_01_Sails_01_Split.fbx" id="1_ils8o"]
+[ext_resource type="Material" uid="uid://cuwrmtr2vyge7" path="res://assets/godot-shaders/shaders/wind_on_fabric/materials/fabric-on-wind.tres" id="2_rrrq3"]
+
+[node name="SM_Veh_Boat_Warship_01_Sails_01_Split" instance=ExtResource("1_ils8o")]
+
+[node name="SM_Veh_Boat_Warship_01_Sails_01_Mid" parent="." index="0"]
+surface_material_override/0 = ExtResource("2_rrrq3")
+
+[node name="SM_Veh_Boat_Warship_01_Sails_01_Top" parent="." index="1"]
+surface_material_override/0 = ExtResource("2_rrrq3")
+
+[node name="SM_Veh_Boat_Warship_01_Sails_01_Low" parent="." index="2"]
+surface_material_override/0 = ExtResource("2_rrrq3")

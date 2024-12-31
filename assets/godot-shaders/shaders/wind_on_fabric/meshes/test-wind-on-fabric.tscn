@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://dp2b2yg5pb6rt"]
+
+[ext_resource type="Material" uid="uid://cuwrmtr2vyge7" path="res://assets/godot-shaders/shaders/wind_on_fabric/materials/fabric-on-wind.tres" id="1_u2yn3"]
+[ext_resource type="PackedScene" uid="uid://go6aek1eee67" path="res://assets/godot-shaders/shaders/wind_on_fabric/scenes/boat_sails.tscn" id="2_g0ije"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_jddfa"]
+flip_faces = true
+size = Vector2(2, 4)
+subdivide_width = 16
+subdivide_depth = 16
+orientation = 2
+
+[node name="Test-wind-on-fabric" type="Node3D"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("PlaneMesh_jddfa")
+surface_material_override/0 = ExtResource("1_u2yn3")
+
+[node name="SM_Veh_Boat_Warship_01_Sails_01_Split" parent="." instance=ExtResource("2_g0ije")]

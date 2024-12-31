@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://buxp156qaks48"
-path.s3tc="res://.godot/imported/sails-masks-v2.jpg-b0e50ad2a6c56019d4104834a8cd77c7.s3tc.ctex"
+uid="uid://b7jv01ips4cxx"
+path.s3tc="res://.godot/imported/tiling-perlin-noise.png-571e89be747e9698e2ebdb7d9bd05f50.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://assets/godot-shaders/shaders/wind/textures/sails-masks-v2.jpg"
-dest_files=["res://.godot/imported/sails-masks-v2.jpg-b0e50ad2a6c56019d4104834a8cd77c7.s3tc.ctex"]
+source_file="res://assets/godot-shaders/shaders/wind_on_fabric/textures/tiling-perlin-noise.png"
+dest_files=["res://.godot/imported/tiling-perlin-noise.png-571e89be747e9698e2ebdb7d9bd05f50.s3tc.ctex"]
 
 [params]
 

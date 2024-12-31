@@ -1,0 +1,15 @@
+[gd_resource type="ShaderMaterial" load_steps=4 format=3 uid="uid://cuwrmtr2vyge7"]
+
+[ext_resource type="Shader" path="res://assets/godot-shaders/shaders/wind_on_fabric/fabric-on-wind.gdshader" id="1_rltsv"]
+[ext_resource type="Texture2D" uid="uid://b7jv01ips4cxx" path="res://assets/godot-shaders/shaders/wind_on_fabric/textures/tiling-perlin-noise.png" id="2_mhep1"]
+[ext_resource type="Texture2D" uid="uid://cks7eovv6c7hd" path="res://assets/godot-shaders/shaders/wind_on_fabric/textures/sails-masks-v3.jpg" id="3_w7j3a"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_rltsv")
+shader_parameter/color = Color(0.93, 0.894195, 0.7347, 1)
+shader_parameter/wind_strength = Vector2(5, 30)
+shader_parameter/wind_frequency = 0.01
+shader_parameter/wind_impact_texture = ExtResource("3_w7j3a")
+shader_parameter/noise_scale = Vector2(0.05, 0.25)
+shader_parameter/noise_texture = ExtResource("2_mhep1")

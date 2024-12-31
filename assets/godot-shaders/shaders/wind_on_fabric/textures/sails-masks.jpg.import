@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ccqf4gqkdg0d"
-path.s3tc="res://.godot/imported/wpuu6.png-45b365ee0db45d9a3be6e34852cc6575.s3tc.ctex"
+uid="uid://bpcs3p1bjqpie"
+path.s3tc="res://.godot/imported/sails-masks.jpg-4b3fb27862a48ed9128817c182727e97.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://assets/godot-shaders/shaders/wind/textures/wpuu6.png"
-dest_files=["res://.godot/imported/wpuu6.png-45b365ee0db45d9a3be6e34852cc6575.s3tc.ctex"]
+source_file="res://assets/godot-shaders/shaders/wind_on_fabric/textures/sails-masks.jpg"
+dest_files=["res://.godot/imported/sails-masks.jpg-4b3fb27862a48ed9128817c182727e97.s3tc.ctex"]
 
 [params]
 
