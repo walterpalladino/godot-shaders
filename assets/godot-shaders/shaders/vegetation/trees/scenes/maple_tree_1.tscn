@@ -1,0 +1,11 @@
+[gd_scene load_steps=4 format=3 uid="uid://dbtcu7arhwm66"]
+
+[ext_resource type="PackedScene" uid="uid://et1oyk43ycra" path="res://assets/godot-shaders/shaders/vegetation/trees/models/MapleTree_1.fbx" id="1_jki8r"]
+[ext_resource type="Material" uid="uid://bcsuoyr7myogb" path="res://assets/godot-shaders/shaders/vegetation/trees/materials/maple_tree_trunk.tres" id="2_srhuq"]
+[ext_resource type="Material" uid="uid://bf13n0wf50w60" path="res://assets/godot-shaders/shaders/vegetation/trees/materials/maple_tree_leaves.tres" id="3_5cnuy"]
+
+[node name="MapleTree_1" instance=ExtResource("1_jki8r")]
+
+[node name="MapleTree_1" parent="." index="0"]
+surface_material_override/0 = ExtResource("2_srhuq")
+surface_material_override/1 = ExtResource("3_5cnuy")

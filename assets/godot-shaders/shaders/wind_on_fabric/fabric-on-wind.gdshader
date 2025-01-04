@@ -64,4 +64,3 @@ void fragment() {
 
 	NORMAL = normal;
 }
-

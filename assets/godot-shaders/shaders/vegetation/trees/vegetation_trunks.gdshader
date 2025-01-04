@@ -18,14 +18,23 @@ uniform sampler2D deposit_normal : hint_roughness_normal,filter_linear_mipmap,re
 uniform vec2 deposit_scale = vec2(1.0);
 uniform float deposit_normal_strength : hint_range(0.0, 2.0, 0.01) = 1.0;
 uniform float deposit_falloff : hint_range(0.01, 50.0, 0.01) = 5.0;
-uniform float min_height : hint_range(-5.0, 5.0, 0.1) = 0.0f;
-uniform float max_height : hint_range(0.0, 10.0, 0.1) = 5.0f;
+uniform float min_height : hint_range(-5.0, 5.0, 0.01) = 0.0f;
+uniform float max_height : hint_range(0.0, 10.0, 0.01) = 5.0f;
 //uniform sampler2D wind_noise_texture;
 
 varying float deposit_factor;
 
+#include "res://assets/godot-shaders/shaders/includes/wind.gdshaderinc"
+
 
 void vertex() {
+
+	vec3 position = get_wind_at(INV_VIEW_MATRIX, VERTEX);
+	//	How much will affect based on height
+	float vertical_factor = get_wind_factor_at(VERTEX);
+
+	VERTEX = mix(VERTEX, position, vertical_factor);
+
 
 	//	How much will affect deposit based on height
 	deposit_factor = 0.0;

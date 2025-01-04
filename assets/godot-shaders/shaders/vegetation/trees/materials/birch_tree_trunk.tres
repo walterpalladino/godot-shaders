@@ -1,0 +1,29 @@
+[gd_resource type="ShaderMaterial" load_steps=5 format=3 uid="uid://ducyd6nus426v"]
+
+[ext_resource type="Shader" path="res://assets/godot-shaders/shaders/vegetation/trees/vegetation_trunks.gdshader" id="1_phrjy"]
+[ext_resource type="Texture2D" uid="uid://d2pis3fp5seao" path="res://assets/godot-shaders/shaders/vegetation/trees/textures/BirchTree_Bark_Normal.png" id="2_jyxai"]
+[ext_resource type="Texture2D" uid="uid://dq4pgjqyxt5q" path="res://assets/godot-shaders/shaders/vegetation/trees/textures/BirchTree_Bark.png" id="3_2lok4"]
+[ext_resource type="Texture2D" uid="uid://cn0712cyytlm4" path="res://assets/godot-shaders/shaders/includes/textures/tiling-perlin-noise.png" id="4_qkh52"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_phrjy")
+shader_parameter/main_color = Color(1, 1, 1, 1)
+shader_parameter/material_scale = Vector2(1, 1)
+shader_parameter/main_normal_strength = 1.0
+shader_parameter/alpha_cut_off = 0.5
+shader_parameter/alpha_hidden_power = 2.5
+shader_parameter/main_texture = ExtResource("3_2lok4")
+shader_parameter/main_normal = ExtResource("2_jyxai")
+shader_parameter/deposit_color = Color(0.521569, 0.564706, 0.0235294, 1)
+shader_parameter/deposit_scale = Vector2(1, 1)
+shader_parameter/deposit_normal_strength = 1.0
+shader_parameter/deposit_falloff = 11.2
+shader_parameter/min_height = -0.5
+shader_parameter/max_height = 0.5
+shader_parameter/wind_min_height = 0.5
+shader_parameter/wind_max_height = 2.2
+shader_parameter/wind_strength = Vector2(0.5, 0.5)
+shader_parameter/wind_swag = 5.0
+shader_parameter/wind_noise_scale = 1.0
+shader_parameter/wind_noise_texture = ExtResource("4_qkh52")
