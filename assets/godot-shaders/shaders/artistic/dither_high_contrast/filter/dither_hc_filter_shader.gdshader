@@ -2,7 +2,7 @@ shader_type spatial;
 
 render_mode unshaded, depth_draw_opaque;
 
-#include "res://shaders/includes/color_utils.gdshaderinc"
+#include "res://assets/godot-shaders/shaders/includes/color_utils.gdshaderinc"
 
 group_uniforms input;
 uniform float brightness : hint_range(0.01, 4.0, 0.01) = 1.0;

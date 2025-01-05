@@ -20,7 +20,7 @@ group_uniforms general;
 uniform float roughness : hint_range(0.0, 1.0, 0.1) = 1.0;
 uniform float specular : hint_range(0.0, 1.0, 0.1) = 0.0;
 
-#include "res://shaders/includes/noise.gdshaderinc"
+#include "res://assets/godot-shaders/shaders/includes/noise.gdshaderinc"
 
 
 void vertex() {

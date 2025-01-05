@@ -2,7 +2,7 @@ shader_type spatial;
 
 render_mode unshaded, depth_draw_opaque;
 
-#include "res://shaders/includes/noise.gdshaderinc"
+#include "res://assets/godot-shaders/shaders/includes/noise.gdshaderinc"
 
 
 uniform sampler2D SCREEN_TEXTURE : hint_screen_texture, filter_linear_mipmap;
