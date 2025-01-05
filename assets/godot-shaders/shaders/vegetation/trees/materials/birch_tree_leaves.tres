@@ -9,7 +9,6 @@ render_priority = 0
 shader = ExtResource("1_puusb")
 shader_parameter/material_scale = Vector2(1, 1)
 shader_parameter/alpha_cut_off = 0.5
-shader_parameter/alpha_hidden_power = 0.0
 shader_parameter/color = Color(0.494118, 0.254902, 0, 1)
 shader_parameter/material_texture = ExtResource("2_vf08d")
 shader_parameter/gradient_color = Color(1, 1, 1, 1)

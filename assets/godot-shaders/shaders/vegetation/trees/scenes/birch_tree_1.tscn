@@ -7,6 +7,6 @@
 [node name="BirchTree_1" instance=ExtResource("1_6qtkt")]
 
 [node name="BirchTree_1" parent="." index="0"]
-transform = Transform3D(100, 0, 0, 0, 100, 0, 0, 0, 100, 0, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 surface_material_override/0 = ExtResource("2_72tgs")
 surface_material_override/1 = ExtResource("3_e4j2i")

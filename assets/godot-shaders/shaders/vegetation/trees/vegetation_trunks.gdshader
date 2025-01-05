@@ -33,7 +33,7 @@ void vertex() {
 	//	How much will affect based on height
 	float vertical_factor = get_wind_factor_at(VERTEX);
 
-	VERTEX = mix(VERTEX, position, vertical_factor);
+	//VERTEX = mix(VERTEX, position, vertical_factor);
 
 
 	//	How much will affect deposit based on height

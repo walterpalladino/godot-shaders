@@ -1,12 +1,11 @@
 shader_type spatial;
 
-render_mode unshaded,cull_back, blend_mix, depth_draw_opaque, diffuse_burley, specular_schlick_ggx;
+render_mode cull_back, blend_mix, depth_draw_opaque, diffuse_burley, specular_schlick_ggx;
 
 group_uniforms main;
 uniform sampler2D material_texture : source_color,filter_linear_mipmap;
 uniform vec2 material_scale = vec2(1.0);
 uniform float alpha_cut_off : hint_range(0.0, 1.0, 0.01) = 0.5;
-uniform float alpha_hidden_power : hint_range(0.0, 10.0, 0.01) = 2.5;
 uniform vec3 color : source_color;
 
 group_uniforms gradient;
@@ -35,7 +34,7 @@ void vertex() {
 void fragment() {
 
 	vec2 uv = UV * material_scale;
-	vec4 texture_color = texture(material_texture, uv);
+	vec4 texture_color = texture(material_texture, uv * material_scale);
 
 	float color_blend = 0.0;
 	if ((gradient_max_height > gradient_min_height) && (VERTEX.y >= gradient_min_height)) {
@@ -46,11 +45,7 @@ void fragment() {
 	vec3 leaves_color = mix(color, gradient_color, color_blend) ;
 
 	ALBEDO = leaves_color * texture_color.rgb;
-
-	float alpha_factor = dot(NORMAL, vec3(0,0,1)) ;
-	alpha_factor = pow(alpha_factor, alpha_hidden_power) * 5.0;
-	alpha_factor = clamp( alpha_factor, 0.0, 1.0);
-
+	
 	ALPHA = texture_color.a ;
 	ALPHA_SCISSOR_THRESHOLD = alpha_cut_off;
 }
