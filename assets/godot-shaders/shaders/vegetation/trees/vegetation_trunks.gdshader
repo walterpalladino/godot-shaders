@@ -29,12 +29,7 @@ varying float deposit_factor;
 
 void vertex() {
 
-	vec3 position = get_wind_at(INV_VIEW_MATRIX, VERTEX);
-	//	How much will affect based on height
-	float vertical_factor = get_wind_factor_at(VERTEX);
-
-	VERTEX = mix(VERTEX, position, vertical_factor);
-
+	VERTEX = get_vertex_with_wind(INV_VIEW_MATRIX, VERTEX);
 
 	//	How much will affect deposit based on height
 	deposit_factor = 0.0;

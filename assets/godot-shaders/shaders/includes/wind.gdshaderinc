@@ -19,8 +19,8 @@ vec3 get_wind_at(mat4 inv_view_matrix, vec3 vertex) {
 	float wind_noise_value = texture(wind_noise_texture, wind_noise_uv).r;
 	wind_noise_value -= 0.5;
 
-	position.x += wind_noise_value * wind_strength.x ;
-	position.z += wind_noise_value * wind_strength.y ;
+	position.x += wind_noise_value * wind_strength.x;
+	position.z += wind_noise_value * wind_strength.y;
 
 	return position;
 }
@@ -41,4 +41,12 @@ float get_wind_factor_at(vec3 vertex) {
 	factor = clamp(factor, 0.0, 1.0);
 
 	return factor;
+}
+
+vec3 get_vertex_with_wind(mat4 inv_view_matrix, vec3 vertex) {
+	vec3 position = get_wind_at(inv_view_matrix, vertex);
+	//	How much will affect based on height
+	float vertical_factor = get_wind_factor_at(vertex);
+
+	return mix(vertex, position, vertical_factor);
 }
