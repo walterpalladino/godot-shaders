@@ -33,7 +33,7 @@ void vertex() {
 	//	How much will affect based on height
 	float vertical_factor = get_wind_factor_at(VERTEX);
 
-	//VERTEX = mix(VERTEX, position, vertical_factor);
+	VERTEX = mix(VERTEX, position, vertical_factor);
 
 
 	//	How much will affect deposit based on height
@@ -58,14 +58,15 @@ void fragment() {
 	deposit_normal_ = clamp(deposit_normal_, 0.0, 1.0);
 
 	float color_blend = 1.0 - deposit_factor;
-	color_blend = pow(color_blend, deposit_falloff);
-	//color_blend = 0.0;
+	color_blend = pow(color_blend * 2.0, deposit_falloff);
+	color_blend= clamp(color_blend, 0.0, 1.0);
+	
 	vec3 trunk_color = mix(color, deposit_color_, color_blend) ;
 	vec3 trunk_normal = (normal + deposit_normal_) / 2.0 ;
 
 
 	ALBEDO = trunk_color ;
-	//ALBEDO = vec3(deposit_factor);
+	//ALBEDO = vec3(color_blend);
 	NORMAL_MAP = trunk_normal;
 	//NORMAL_MAP_DEPTH = 1.0;
 
