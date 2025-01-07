@@ -20,6 +20,11 @@ uniform float layer_normal_strength = 1.0;
 uniform vec2 layer_texture_scale = vec2(1.0);
 uniform float layer_blend_strength : hint_range(0.0, 1.0, 0.01) = 0.5;
 
+group_uniforms layer_mask;
+uniform sampler2D layer_mask : source_color,filter_linear_mipmap,repeat_enable;
+uniform vec2 layer_mask_scale = vec2(1.0);
+uniform float layer_mask_strength : hint_range(0.0, 1.0, 0.01) = 0.5;
+
 group_uniforms layer_blend;
 uniform float blend_offset : hint_range(-0.5, 0.5, 0.01) = 0.256f;
 uniform float blend_exponent : hint_range(1.0, 20.0, 0.1) = 3.57f;
@@ -59,11 +64,20 @@ void fragment() {
 		blended_normal = vec3(pow(blended_normal.x, blend_exponent), pow(blended_normal.y, blend_exponent), pow(blended_normal.z, blend_exponent));
 		blended_normal /= (blended_normal.x + blended_normal.y + blended_normal.z);
 
+		vec3 vertex_world_position = (INV_VIEW_MATRIX * vec4(VERTEX, 1.0)).xyz;
+		vec2 mask_uv = vertex_world_position.xz * layer_mask_scale;
+		float mask_value = texture(layer_mask, mask_uv).r;
+		mask_value = smoothstep(layer_mask_strength - 0.1, layer_mask_strength + 0.1, mask_value);
+		mask_value = clamp(mask_value, 0.0, 1.0);
+		mask_value = 1.0 - mask_value;
+
 		//	Top Face
 		float top_face_blend = clamp(normal.y, 0.0, 1.0) * blended_normal.y;
 		top_face_blend = normal.y * blended_normal.y;
+		top_face_blend *= mask_value;
 
 		new_color = mix(albedo_tex_main, albedo_tex_layer, top_face_blend);
+
 		if (blend_layered_normals) {
 			new_normal = mix(normal_tex_main, normal_tex_layer, top_face_blend);
 			new_normal_strength = mix(main_normal_strength, layer_normal_strength, top_face_blend) ;

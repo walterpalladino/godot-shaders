@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://deedihdym1dtv"]
+
+[ext_resource type="PackedScene" uid="uid://bcf8fsu7jf38y" path="res://assets/godot-shaders/models/Ultimate Stylized Nature/Rock_5.gltf" id="1_ufwrn"]
+[ext_resource type="Material" uid="uid://dloueybth2ho2" path="res://assets/godot-shaders/shaders/terrain/uv_mapped_layered/materials/rock_material.tres" id="2_aq71n"]
+
+[node name="Rock_5" instance=ExtResource("1_ufwrn")]
+
+[node name="Rock_52" parent="." index="0"]
+surface_material_override/0 = ExtResource("2_aq71n")
