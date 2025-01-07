@@ -14,6 +14,7 @@ uniform sampler2D layer_1_texture : hint_default_white, filter_nearest, repeat_e
 uniform vec3 layer_1_color : source_color = vec3(1.0, 1.0, 1.0);
 uniform sampler2D layer_1_normal : hint_normal, filter_nearest, repeat_enable;
 uniform float layer_1_texture_scale = 1.0f;
+uniform bool layer1_rotate_texture = false;
 
 group_uniforms layer2;
 uniform sampler2D layer_2_texture : hint_default_white, filter_nearest, repeat_enable;
@@ -21,6 +22,7 @@ uniform vec3 layer_2_color : source_color = vec3(1.0, 1.0, 1.0);
 uniform sampler2D layer_2_normal : hint_normal, filter_nearest, repeat_enable;
 uniform float layer_2_texture_scale = 1.0f;
 uniform float layer_2_start = 1.0f;
+uniform bool layer2_rotate_texture = false;
 
 group_uniforms layer3;
 uniform sampler2D layer_3_texture : hint_default_white, filter_nearest, repeat_enable;
@@ -28,6 +30,7 @@ uniform vec3 layer_3_color : source_color = vec3(1.0, 1.0, 1.0);
 uniform sampler2D layer_3_normal : hint_normal, filter_nearest, repeat_enable;
 uniform float layer_3_texture_scale = 1.0f;
 uniform float layer_3_start = 2.0f;
+uniform bool layer3_rotate_texture = false;
 
 group_uniforms layer4;
 uniform sampler2D layer_4_texture : hint_default_white, filter_nearest, repeat_enable;
@@ -35,6 +38,7 @@ uniform vec3 layer_4_color : source_color = vec3(1.0, 1.0, 1.0);
 uniform sampler2D layer_4_normal : hint_normal, filter_nearest, repeat_enable;
 uniform float layer_4_texture_scale = 1.0f;
 uniform float layer_4_start = 4.0f;
+uniform bool layer4_rotate_texture = false;
 
 group_uniforms cliff;
 uniform sampler2D cliff_texture : hint_default_white, filter_nearest, repeat_enable;
@@ -81,6 +85,28 @@ vec3 normal_blend(vec3 n1, vec3 n2, float blend) {
 	return (n_blended + 1.0) * 0.5;
 }
 
+
+vec2 rotateUV(vec2 uv, vec2 pivot, float rotation)
+{
+	mat2 rotation_matrix=mat2(	vec2(sin(rotation),-cos(rotation)),
+								vec2(cos(rotation),sin(rotation))
+								);
+    uv -= pivot;
+    uv= uv*rotation_matrix;
+    uv += pivot;
+    return uv;
+}
+
+float rand(vec2 input) {
+	return fract(sin(dot(input.xy, vec2(12.9898,78.233))) * 43758.5453123);
+}
+
+vec2 get_uv_untiled(vec2 uv) {
+	vec2 unique_val = floor(uv) ;
+	float rotation = (rand(unique_val) * 2.0 - 1.0) * 3.14;
+	return rotateUV(uv, vec2(0.5), rotation);
+}
+
 void vertex() {
 	// get the view pos for the low poly normals
 	v_view_pos = (MODELVIEW_MATRIX * vec4(VERTEX, 0.0)).xyz;
@@ -101,15 +127,31 @@ void fragment() {
 
 	vec2 uv = UV;
 
-	vec3 layer1_color = texture(layer_1_texture, pixel_world_position.xz * layer_1_texture_scale).rgb * layer_1_color;
-	vec3 layer2_color = texture(layer_2_texture, pixel_world_position.xz * layer_2_texture_scale).rgb * layer_2_color;
-	vec3 layer3_color = texture(layer_3_texture, pixel_world_position.xz * layer_3_texture_scale).rgb * layer_3_color;
-	vec3 layer4_color = texture(layer_4_texture, pixel_world_position.xz * layer_4_texture_scale).rgb * layer_4_color;
 
-	vec3 layer1_normal = texture(layer_1_normal, pixel_world_position.xz * layer_1_texture_scale).rgb;
-	vec3 layer2_normal = texture(layer_2_normal, pixel_world_position.xz * layer_2_texture_scale).rgb;
-	vec3 layer3_normal = texture(layer_3_normal, pixel_world_position.xz * layer_3_texture_scale).rgb;
-	vec3 layer4_normal = texture(layer_4_normal, pixel_world_position.xz * layer_4_texture_scale).rgb;
+	vec2 layer1_uv = pixel_world_position.xz * layer_1_texture_scale;
+	vec2 layer2_uv = pixel_world_position.xz * layer_2_texture_scale;
+	vec2 layer3_uv = pixel_world_position.xz * layer_3_texture_scale;
+	vec2 layer4_uv = pixel_world_position.xz * layer_4_texture_scale;
+
+	if (layer1_rotate_texture)
+		layer1_uv = get_uv_untiled(layer1_uv);
+	if (layer2_rotate_texture)
+		layer2_uv = get_uv_untiled(layer2_uv);
+	if (layer3_rotate_texture)
+		layer3_uv = get_uv_untiled(layer3_uv);
+	if (layer4_rotate_texture)
+		layer4_uv = get_uv_untiled(layer4_uv);
+
+
+	vec3 layer1_color = texture(layer_1_texture, layer1_uv).rgb * layer_1_color;
+	vec3 layer2_color = texture(layer_2_texture, layer2_uv).rgb * layer_2_color;
+	vec3 layer3_color = texture(layer_3_texture, layer3_uv).rgb * layer_3_color;
+	vec3 layer4_color = texture(layer_4_texture, layer4_uv).rgb * layer_4_color;
+
+	vec3 layer1_normal = texture(layer_1_normal, layer1_uv).rgb;
+	vec3 layer2_normal = texture(layer_2_normal, layer2_uv).rgb;
+	vec3 layer3_normal = texture(layer_3_normal, layer3_uv).rgb;
+	vec3 layer4_normal = texture(layer_4_normal, layer4_uv).rgb;
 
 	vec3 color = layer1_color;
 	vec3 normal_value = layer1_normal;

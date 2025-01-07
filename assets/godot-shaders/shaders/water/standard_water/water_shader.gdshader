@@ -30,6 +30,7 @@ group_uniforms water_texture_waves;
 uniform bool wave_texture_enabled;
 uniform vec2 wave_texture_speed = vec2(-50.0, -50.0);
 uniform sampler2D wave_texture;
+uniform float wave_texture_scale = 1.0;
 uniform float wave_texture_strength = 2.5;
 
 uniform sampler2D riples ;
@@ -74,10 +75,13 @@ vec3 get_vertex_position(mat4 model_matrix, vec3 vertex) {
 	return vertex;
 }
 
+
 float get_wave_height(mat4 model_matrix, vec3 vertex) {
 
 	vec3 world_position = (model_matrix * vec4(vertex, 1.0)).xyz;
-	float wave_height = wave_texture_strength * texture(wave_texture, world_position.xz / wave_texture_speed + TIME * wave_direction / 1000.0).r;
+	vec2 wave_uv = world_position.xz / wave_texture_speed + TIME * wave_direction / 1000.0;
+	wave_uv /= wave_texture_scale;
+	float wave_height = wave_texture_strength * texture(wave_texture, wave_uv).r;
 	return wave_height * height_scale;
 
 }
@@ -92,7 +96,7 @@ void vertex () {
 	VERTEX = get_vertex_position(MODEL_MATRIX, VERTEX);
 	if (wave_texture_enabled) {
 		wave_height_at_pos = get_wave_height(MODEL_MATRIX, VERTEX);
-		VERTEX.y += wave_height_at_pos;
+		VERTEX.y += wave_height_at_pos ;
 	}
 	vertex_world_position = VERTEX;
 	// get the view pos for the low poly normals
@@ -101,7 +105,6 @@ void vertex () {
 }
 
 void fragment() {
-
 
 	//	Depth calculations
 	float depth_texture = texture(DEPTH_TEXTURE, SCREEN_UV).r ;

@@ -55,7 +55,7 @@ void fragment() {
 	float color_blend = 1.0 - deposit_factor;
 	color_blend = pow(color_blend * 2.0, deposit_falloff);
 	color_blend= clamp(color_blend, 0.0, 1.0);
-	
+
 	vec3 trunk_color = mix(color, deposit_color_, color_blend) ;
 	vec3 trunk_normal = (normal + deposit_normal_) / 2.0 ;
 

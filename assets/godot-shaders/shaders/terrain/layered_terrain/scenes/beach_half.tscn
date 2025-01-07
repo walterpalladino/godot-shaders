@@ -1,0 +1,56 @@
+[gd_scene load_steps=7 format=3 uid="uid://cx1hdijquqrsk"]
+
+[ext_resource type="PackedScene" uid="uid://cxdcc06o8bqbt" path="res://assets/godot-shaders/models/Beach_Half.fbx" id="1_ykxhv"]
+[ext_resource type="Material" uid="uid://c5kb7cn80drdd" path="res://assets/godot-shaders/shaders/terrain/layered_terrain/materials/terrain_material.tres" id="2_nh5e4"]
+[ext_resource type="PackedScene" uid="uid://c5gsq5uefuibs" path="res://assets/godot-shaders/shaders/water/low_poly_water/scenes/low_poly_water_plane.tscn" id="3_sc4vb"]
+[ext_resource type="Material" uid="uid://cng6atbdna5em" path="res://assets/godot-shaders/shaders/water/low_poly_water/materials/low_poly_tropical_beach_water_material.tres" id="4_ttnjy"]
+[ext_resource type="Material" uid="uid://dq3fb2u2sb8s0" path="res://assets/godot-shaders/shaders/water/standard_water/materials/water_material.tres" id="5_hi231"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_nhajr"]
+size = Vector2(500, 500)
+subdivide_width = 1
+subdivide_depth = 1
+center_offset = Vector3(-250, 0, 250)
+
+[node name="Beach_Half" instance=ExtResource("1_ykxhv")]
+
+[node name="Beach_Half" parent="." index="0"]
+surface_material_override/0 = ExtResource("2_nh5e4")
+
+[node name="Beach Water" type="Node3D" parent="." index="1"]
+transform = Transform3D(100, 0, 0, 0, 1, 0, 0, 0, 100, 0, 5, 0)
+visible = false
+
+[node name="LowPolyWaterPlane" parent="Beach Water" index="0" instance=ExtResource("3_sc4vb")]
+skeleton = NodePath("../..")
+surface_material_override/0 = ExtResource("4_ttnjy")
+
+[node name="LowPolyWaterPlane2" parent="Beach Water" index="1" instance=ExtResource("3_sc4vb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.08165e-12, 2.08165e-12, -10)
+skeleton = NodePath("../..")
+surface_material_override/0 = ExtResource("4_ttnjy")
+
+[node name="LowPolyWaterPlane3" parent="Beach Water" index="2" instance=ExtResource("3_sc4vb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 2.08165e-12, -10)
+skeleton = NodePath("../..")
+surface_material_override/0 = ExtResource("4_ttnjy")
+
+[node name="LowPolyWaterPlane4" parent="Beach Water" index="3" instance=ExtResource("3_sc4vb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 2.08165e-12, 2.08165e-12)
+skeleton = NodePath("../..")
+surface_material_override/0 = ExtResource("4_ttnjy")
+
+[node name="LowPolyWaterPlane5" parent="Beach Water" index="4" instance=ExtResource("3_sc4vb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20, 2.08165e-12, -10)
+skeleton = NodePath("../..")
+surface_material_override/0 = ExtResource("4_ttnjy")
+
+[node name="LowPolyWaterPlane6" parent="Beach Water" index="5" instance=ExtResource("3_sc4vb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20, 2.08165e-12, 2.08165e-12)
+skeleton = NodePath("../..")
+surface_material_override/0 = ExtResource("4_ttnjy")
+
+[node name="Normal Based Beach Water" type="MeshInstance3D" parent="." index="2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6.5, 0)
+mesh = SubResource("PlaneMesh_nhajr")
+surface_material_override/0 = ExtResource("5_hi231")

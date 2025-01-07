@@ -41,7 +41,7 @@ void fragment() {
 	vec3 leaves_color = mix(color, gradient_color, color_blend) ;
 
 	ALBEDO = leaves_color * texture_color.rgb;
-	
+
 	ALPHA = texture_color.a ;
 	ALPHA_SCISSOR_THRESHOLD = alpha_cut_off;
 }
