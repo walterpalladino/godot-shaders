@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=3 uid="uid://cx1hdijquqrsk"]
 
-[ext_resource type="PackedScene" uid="uid://cxdcc06o8bqbt" path="res://assets/godot-shaders/models/Beach_Half.fbx" id="1_ykxhv"]
+[ext_resource type="PackedScene" uid="uid://cxdcc06o8bqbt" path="res://assets/godot-shaders/models/terrain/Beach_Half.fbx" id="1_ykxhv"]
 [ext_resource type="Material" uid="uid://c5kb7cn80drdd" path="res://assets/godot-shaders/shaders/terrain/layered_terrain/materials/terrain_material.tres" id="2_nh5e4"]
 [ext_resource type="PackedScene" uid="uid://c5gsq5uefuibs" path="res://assets/godot-shaders/shaders/water/low_poly_water/scenes/low_poly_water_plane.tscn" id="3_sc4vb"]
 [ext_resource type="Material" uid="uid://cng6atbdna5em" path="res://assets/godot-shaders/shaders/water/low_poly_water/materials/low_poly_tropical_beach_water_material.tres" id="4_ttnjy"]

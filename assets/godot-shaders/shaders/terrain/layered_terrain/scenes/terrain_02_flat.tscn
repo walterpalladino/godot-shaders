@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://c3jpq45m2g23y"]
 
-[ext_resource type="PackedScene" uid="uid://cgsf0exqfjain" path="res://assets/godot-shaders/models/terrain_02_flat.fbx" id="1_85q5k"]
+[ext_resource type="PackedScene" uid="uid://cgsf0exqfjain" path="res://assets/godot-shaders/models/terrain/terrain_02_flat.fbx" id="1_85q5k"]
 [ext_resource type="Material" uid="uid://c5kb7cn80drdd" path="res://assets/godot-shaders/shaders/terrain/layered_terrain/materials/terrain_material.tres" id="2_efmoa"]
 
 [node name="terrain_02_flat" instance=ExtResource("1_85q5k")]

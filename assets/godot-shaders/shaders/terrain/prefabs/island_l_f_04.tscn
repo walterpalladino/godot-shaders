@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://br336geu1mfdw"]
 
-[ext_resource type="PackedScene" uid="uid://bftfvphrcyhgx" path="res://assets/godot-shaders/models/island_l_f_04.fbx" id="1_gedem"]
+[ext_resource type="PackedScene" uid="uid://bftfvphrcyhgx" path="res://assets/godot-shaders/models/terrain/island_l_f_04.fbx" id="1_gedem"]
 [ext_resource type="Material" uid="uid://c5kb7cn80drdd" path="res://assets/godot-shaders/shaders/terrain/layered_terrain/materials/terrain_material.tres" id="2_4cpem"]
 
 [node name="island_l_f_04" instance=ExtResource("1_gedem")]

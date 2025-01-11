@@ -50,7 +50,7 @@ uniform float cliff_blend : hint_range(0.0, 5.0, 0.01) = 0.50f;
 
 
 group_uniforms terrain_stain;
-uniform sampler2D stain_texture : hint_default_white, filter_nearest, repeat_enable;
+uniform sampler2D stain_texture : hint_default_white, filter_linear_mipmap_anisotropic, repeat_enable;
 uniform vec3 stain_texture_color : source_color = vec3(1.0, 1.0, 1.0);
 uniform float stain_texture_scale = 1.0f;
 uniform float stain_texture_strength : hint_range(0.0, 1.0, 0.01) = 0.0f;
@@ -227,7 +227,11 @@ void fragment() {
 	//vec3 color = texture(layer_1_texture, pixel_world_position.xz * layer_1_texture_scale).rgb;
 	//vec3 normal_value = texture(layer_1_normal, pixel_world_position.xz * uv * layer_1_texture_scale).rgb;
 
-	vec3 stain_color = texture(stain_texture, pixel_world_position.xz / stain_texture_scale).rgb * stain_texture_color;
+	vec2 stain_uv = pixel_world_position.xz / stain_texture_scale;
+	//if (layer1_rotate_texture)
+		//stain_uv = get_uv_untiled(stain_uv);
+
+	vec3 stain_color = texture(stain_texture, stain_uv).r * stain_texture_color;
 	color = mix(color, color * stain_color, stain_texture_strength) ;
 
 	ALBEDO = color;

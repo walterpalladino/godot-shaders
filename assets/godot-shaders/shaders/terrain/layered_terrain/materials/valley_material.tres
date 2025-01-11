@@ -8,7 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://c016k48xkfl3o" path="res://assets/godot-shaders/shaders/terrain/layered_terrain/textures/grass_normal_down_normal.png" id="6_xtg12"]
 [ext_resource type="Texture2D" uid="uid://bokdv32jmvjbk" path="res://assets/godot-shaders/shaders/terrain/layered_terrain/textures/grass_lighted_down.png" id="7_duvjw"]
 [ext_resource type="Texture2D" uid="uid://bj8b7cj0f1lu0" path="res://assets/godot-shaders/shaders/terrain/layered_terrain/textures/grass_normal_down.png" id="8_g4xny"]
-[ext_resource type="Texture2D" uid="uid://5qh7rbpkoh3y" path="res://assets/godot-shaders/shaders/terrain/textures/grunge-stained-paper-texture.jpg" id="12_28v7b"]
+[ext_resource type="Texture2D" uid="uid://dl3ito4a3a58v" path="res://assets/godot-shaders/shaders/water/low_poly_water/textures/water-foam.jpeg" id="9_ax0kl"]
 
 [resource]
 render_priority = 0
@@ -47,6 +47,6 @@ shader_parameter/cliff_blend = 1.12
 shader_parameter/cliff_texture = ExtResource("2_12l71")
 shader_parameter/cliff_texture_normal = ExtResource("3_lykfd")
 shader_parameter/stain_texture_color = Color(0.8, 0.752, 0.68, 1)
-shader_parameter/stain_texture_scale = 32.0
-shader_parameter/stain_texture_strength = 0.87
-shader_parameter/stain_texture = ExtResource("12_28v7b")
+shader_parameter/stain_texture_scale = 328.83
+shader_parameter/stain_texture_strength = 0.52
+shader_parameter/stain_texture = ExtResource("9_ax0kl")

@@ -1,0 +1,26 @@
+[gd_scene load_steps=6 format=3 uid="uid://cr5j1oe08obhp"]
+
+[ext_resource type="PackedScene" uid="uid://c54ioxmsffn13" path="res://assets/godot-shaders/models/terrain/Flat_Islands_Full.fbx" id="1_i0sq7"]
+[ext_resource type="Material" uid="uid://c5kb7cn80drdd" path="res://assets/godot-shaders/shaders/terrain/layered_terrain/materials/terrain_material.tres" id="2_xe0n5"]
+[ext_resource type="Material" uid="uid://kmhjhlbsxbnk" path="res://assets/godot-shaders/shaders/water/low_poly_water/materials/low_poly_water_material.tres" id="3_ye4jb"]
+[ext_resource type="Material" uid="uid://b1324e2il8e7" path="res://assets/godot-shaders/shaders/water/standard_water/materials/beach_water.tres" id="4_wq3ue"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_gyc2g"]
+size = Vector2(1000, 1000)
+subdivide_width = 1024
+subdivide_depth = 1024
+center_offset = Vector3(-500, 5, 500)
+
+[node name="Flat_Islands_Full" instance=ExtResource("1_i0sq7")]
+
+[node name="Flat_Islands_Full" parent="." index="0"]
+surface_material_override/0 = ExtResource("2_xe0n5")
+
+[node name="Low Poly Water" type="MeshInstance3D" parent="." index="1"]
+visible = false
+mesh = SubResource("PlaneMesh_gyc2g")
+surface_material_override/0 = ExtResource("3_ye4jb")
+
+[node name="Standard Water" type="MeshInstance3D" parent="." index="2"]
+mesh = SubResource("PlaneMesh_gyc2g")
+surface_material_override/0 = ExtResource("4_wq3ue")

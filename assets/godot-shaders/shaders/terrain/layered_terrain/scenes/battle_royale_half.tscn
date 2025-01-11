@@ -1,6 +1,6 @@
 [gd_scene load_steps=8 format=3 uid="uid://b2bqivahiudmo"]
 
-[ext_resource type="PackedScene" uid="uid://cwgs242fp60o6" path="res://assets/godot-shaders/models/Battle_Royale_Half.fbx" id="1_wnby2"]
+[ext_resource type="PackedScene" uid="uid://cwgs242fp60o6" path="res://assets/godot-shaders/models/terrain/Battle_Royale_Half.fbx" id="1_wnby2"]
 [ext_resource type="Material" uid="uid://c5kb7cn80drdd" path="res://assets/godot-shaders/shaders/terrain/layered_terrain/materials/terrain_material.tres" id="2_2nmte"]
 [ext_resource type="Material" uid="uid://dq3fb2u2sb8s0" path="res://assets/godot-shaders/shaders/water/standard_water/materials/water_material.tres" id="3_5eosq"]
 [ext_resource type="Material" uid="uid://kmhjhlbsxbnk" path="res://assets/godot-shaders/shaders/water/low_poly_water/materials/low_poly_water_material.tres" id="4_hoon4"]
