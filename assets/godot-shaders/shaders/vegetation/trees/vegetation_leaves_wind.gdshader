@@ -10,7 +10,7 @@ uniform vec3 color : source_color;
 
 group_uniforms gradient;
 uniform vec3 gradient_color : source_color;
-uniform float gradient_falloff : hint_range(0.01, 50.0, 0.01) = 5.0;
+uniform float gradient_falloff : hint_range(0.01, 30.0, 0.01) = 5.0;
 
 
 #include "res://assets/godot-shaders/shaders/includes/wind.gdshaderinc"
@@ -26,19 +26,20 @@ void vertex() {
 
 void fragment() {
 
-	//	angle between normal and horizontal plane
-	float angle = acos(dot(world_normal, vec3(0,1,0)) / (length(world_normal) * length(vec3(0,1,0))));
+	float normal_dot = dot(world_normal, vec3(0.0,1.0,0.0)) ;
 
 	vec2 uv = UV * material_scale;
 	vec4 texture_color = texture(material_texture, uv * material_scale);
 
 	float color_blend = 0.0;
-	color_blend = abs(angle) ;
-	color_blend = pow(color_blend, (50.0 - gradient_falloff) / 10.0);
+	color_blend = normal_dot * 0.5 + 0.5 ;// from -1 to 1 to 0 to 1
+	color_blend = pow(color_blend, 30.0 - gradient_falloff);
 	color_blend = clamp(color_blend, 0.0, 1.0);
+
 	vec3 leaves_color = mix(color, gradient_color, color_blend) ;
 
 	ALBEDO = leaves_color * texture_color.rgb;
+
 	ALPHA = texture_color.a ;
 	ALPHA_SCISSOR_THRESHOLD = alpha_cut_off;
 }
