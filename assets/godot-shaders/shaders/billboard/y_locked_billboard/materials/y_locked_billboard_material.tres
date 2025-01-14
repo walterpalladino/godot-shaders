@@ -1,0 +1,10 @@
+[gd_resource type="ShaderMaterial" load_steps=3 format=3 uid="uid://mfslnj1odl7e"]
+
+[ext_resource type="Shader" path="res://assets/godot-shaders/shaders/billboard/y_locked_billboard/y_locked_billboard.gdshader" id="1_bk4rq"]
+[ext_resource type="Texture2D" uid="uid://bctpfp7ypcktr" path="res://assets/godot-shaders/shaders/fxs/force_field/GD_mesh_f2-v2.png" id="2_7qvo6"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_bk4rq")
+shader_parameter/base_color = Color(1, 0.88, 0.28, 1)
+shader_parameter/texture_albedo = ExtResource("2_7qvo6")

@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://0nncnkk5yqn0"]
+
+[ext_resource type="Material" uid="uid://mfslnj1odl7e" path="res://assets/godot-shaders/shaders/billboard/y_locked_billboard/materials/y_locked_billboard_material.tres" id="1_5j1uo"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_3ujob"]
+center_offset = Vector3(0, 1, 0)
+orientation = 2
+
+[node name="Node3D" type="Node3D"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("PlaneMesh_3ujob")
+surface_material_override/0 = ExtResource("1_5j1uo")

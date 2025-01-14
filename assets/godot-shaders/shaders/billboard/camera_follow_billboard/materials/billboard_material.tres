@@ -1,0 +1,10 @@
+[gd_resource type="ShaderMaterial" load_steps=3 format=3 uid="uid://dp4rep5t5828f"]
+
+[ext_resource type="Shader" path="res://assets/godot-shaders/shaders/billboard/camera_follow_billboard/camera_follow_billboard.gdshader" id="1_v3ij4"]
+[ext_resource type="Texture2D" uid="uid://bctpfp7ypcktr" path="res://assets/godot-shaders/shaders/fxs/force_field/GD_mesh_f2-v2.png" id="2_jetqn"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_v3ij4")
+shader_parameter/base_color = Color(1, 1, 1, 1)
+shader_parameter/texture_albedo = ExtResource("2_jetqn")
