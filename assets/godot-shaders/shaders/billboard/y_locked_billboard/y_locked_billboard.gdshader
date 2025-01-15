@@ -3,7 +3,7 @@ shader_type spatial;
 render_mode cull_back, blend_mix, depth_draw_opaque, diffuse_burley, specular_schlick_ggx;
 
 
-uniform sampler2D texture_albedo : source_color,filter_linear_mipmap,repeat_disable;
+uniform sampler2D texture_albedo : source_color, hint_default_white, filter_linear_mipmap, repeat_disable;
 uniform vec4 base_color : source_color = vec4(1.0);
 
 
