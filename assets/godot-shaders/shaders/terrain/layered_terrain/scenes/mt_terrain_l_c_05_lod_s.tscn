@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://ch4yestp2xh11"]
+
+[ext_resource type="PackedScene" uid="uid://bb7dvrpa2c6kp" path="res://assets/godot-shaders/models/terrain/MT_Terrain_L_c_05_LOD_S.fbx" id="1_sagwq"]
+[ext_resource type="Material" uid="uid://bo1kttcl2obh0" path="res://assets/godot-shaders/shaders/terrain/layered_terrain/materials/grassy_terrain_material.tres" id="2_fmxk7"]
+
+[node name="MT_Terrain_L_c_05_LOD_S" instance=ExtResource("1_sagwq")]
+
+[node name="MT_Terrain_L_c_05_LOD0" parent="." index="0"]
+transform = Transform3D(-1, -1.13999e-14, 1.50996e-07, -8.47033e-22, 1, 7.54979e-08, -1.50996e-07, 7.54979e-08, -1, 7.73862, 3.77238, -4.9034)
+surface_material_override/0 = ExtResource("2_fmxk7")
