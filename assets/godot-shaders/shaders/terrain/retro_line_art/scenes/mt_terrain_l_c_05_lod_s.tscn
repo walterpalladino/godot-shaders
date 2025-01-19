@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://bsdqkgsfs6dkb"]
+
+[ext_resource type="PackedScene" uid="uid://bb7dvrpa2c6kp" path="res://assets/godot-shaders/models/terrain/MT_Terrain_L_c_05_LOD_S.fbx" id="1_c7f1j"]
+[ext_resource type="Material" uid="uid://c3x1rbta1hg5a" path="res://assets/godot-shaders/shaders/terrain/retro_line_art/materials/line_art_terrain_material.tres" id="2_iaitg"]
+
+[node name="MT_Terrain_L_c_05_LOD_S" instance=ExtResource("1_c7f1j")]
+
+[node name="MT_Terrain_L_c_05_LOD0" parent="." index="0"]
+surface_material_override/0 = ExtResource("2_iaitg")

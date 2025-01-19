@@ -1,0 +1,14 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://c3x1rbta1hg5a"]
+
+[ext_resource type="Shader" path="res://assets/godot-shaders/shaders/terrain/retro_line_art/line_art_terrain.gdshader" id="1_uij4x"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_uij4x")
+shader_parameter/main_color = Color(0.0562916, 0.0562916, 0.0562916, 1)
+shader_parameter/line_color = Color(6.01634e-06, 0.968292, 0.0203624, 1)
+shader_parameter/line_separation = 10.0
+shader_parameter/line_thickness = 0.2
+shader_parameter/line_spread = 6.04
+shader_parameter/draw_x_lines = true
+shader_parameter/draw_z_lines = true
