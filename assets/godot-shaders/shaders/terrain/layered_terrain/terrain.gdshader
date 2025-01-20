@@ -232,7 +232,11 @@ void fragment() {
 		//stain_uv = get_uv_untiled(stain_uv);
 
 	vec3 stain_color = texture(stain_texture, stain_uv).r * stain_texture_color;
-	color = mix(color, color * stain_color, stain_texture_strength) ;
+
+	float stain_blend = stain_texture_strength;
+	stain_blend = pow(stain_texture_strength, 0.250);
+	stain_blend = clamp(stain_blend, 0.0, 1.0);
+	color = mix(color, color * stain_color, stain_blend) ;
 
 	ALBEDO = color;
 	ROUGHNESS = 1.0 - smoothness;
