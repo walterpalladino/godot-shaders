@@ -8,6 +8,7 @@ uniform float line_thickness : hint_range(0.0, 1.0, 0.01) = 0.1;
 uniform float line_spread :hint_range(0.0, 10.0, 0.01) = 0.5;
 uniform bool draw_x_lines = true;
 uniform bool draw_z_lines = true;
+uniform bool use_aa = false;
 
 
 //	calculate spread for value
@@ -30,6 +31,26 @@ float get_spread(float value) {
 	return reminder;
 }
 
+vec3 get_color_at(vec3 position) {
+	
+		float spread_x = 0.0;
+	float spread_z = 0.0;
+
+	if (draw_x_lines)
+		spread_x = get_spread(position.x);
+	if (draw_z_lines)
+		spread_z = get_spread(position.z);
+
+	float spread = spread_x + spread_z;
+	spread = spread / 2.0;
+
+	spread = clamp(spread, 0.0, 1.0);
+
+	return mix(main_color, line_color.rgb, spread);
+
+}
+
+
 void vertex() {
 }
 
@@ -37,21 +58,18 @@ void fragment() {
 
 	//	Get the world position
 	vec3 pixel_world_position = (INV_VIEW_MATRIX * vec4(VERTEX, 1.0)).xyz;
+	vec3 color = get_color_at(pixel_world_position);
 
-	float spread_x = 0.0;
-	float spread_z = 0.0;
+	if (use_aa) {
+		float vertex_delta = line_thickness / 2.0;	
+		color *= 0.5;
 
-	if (draw_x_lines)
-		spread_x = get_spread(pixel_world_position.x);
-	if (draw_z_lines)
-		spread_z = get_spread(pixel_world_position.z);
-
-	float spread = spread_x + spread_z;
-	spread = spread / 2.0;
-
-	spread = clamp(spread, 0.0, 1.0);
-	vec3 color = mix(main_color, line_color.rgb, spread);
-
+		color += 0.125 * get_color_at(pixel_world_position + vec3(-vertex_delta, 0.0, 0.0));
+		color += 0.125 * get_color_at(pixel_world_position + vec3( vertex_delta, 0.0, 0.0));
+		color += 0.125 * get_color_at(pixel_world_position + vec3(0.0, 0.0,  vertex_delta));
+		color += 0.125 * get_color_at(pixel_world_position + vec3(0.0, 0.0, -vertex_delta));
+	}
+	
 	ALBEDO = color;
 }
 
