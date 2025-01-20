@@ -49,9 +49,6 @@ vec3 calculate_cloud_color(vec2 sky_uv, float clouds_speed, float clouds_directi
 
 void sky() {
 
-
-	//float eyedir_y = abs( sin( EYEDIR.y * PI * 0.5 ));
-
 	float horizon_blend = abs(EYEDIR.y / horizon_intensity) - offset_horizon;
 	horizon_blend = clamp(horizon_blend, 0.0, 1.0);
 
@@ -87,12 +84,10 @@ void sky() {
 
 	} else {
 
-		vec3 under_horizon_color = ground_color;
 		float under_horizon_blend = 200.5 * pow(horizon_blend, 2.0);
 		under_horizon_blend = clamp(under_horizon_blend, 0.0, 1.0);
-		under_horizon_color = mix(horizon_color, ground_color, under_horizon_blend);
+		vec3 under_horizon_color = mix(horizon_color, ground_color, under_horizon_blend);
 		COLOR = under_horizon_color;
-		//COLOR = vec3(under_horizon_blend);
 
 	}
 
