@@ -1,0 +1,16 @@
+[gd_resource type="ShaderMaterial" load_steps=3 format=3 uid="uid://bwj776v0lde0"]
+
+[ext_resource type="Shader" path="res://assets/godot-shaders/shaders/terrain/retro-checker/retro_checker.gdshader" id="1_howui"]
+[ext_resource type="Texture2D" uid="uid://cso0popreclkw" path="res://assets/godot-shaders/shaders/terrain/retro-checker/textures/Checker-64x64.png" id="2_ipjd8"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_howui")
+shader_parameter/albedo_a = Color(8.51914e-06, 0.807879, 0.203529, 1)
+shader_parameter/albedo_b = Color(0.745098, 0.219608, 0.231373, 1)
+shader_parameter/point_size = null
+shader_parameter/roughness = 0.19
+shader_parameter/specular = 0.45
+shader_parameter/metallic = 0.1
+shader_parameter/uv_scale = 0.39
+shader_parameter/texture_albedo = ExtResource("2_ipjd8")
