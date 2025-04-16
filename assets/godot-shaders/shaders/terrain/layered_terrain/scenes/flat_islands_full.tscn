@@ -22,5 +22,6 @@ mesh = SubResource("PlaneMesh_gyc2g")
 surface_material_override/0 = ExtResource("3_ye4jb")
 
 [node name="Standard Water" type="MeshInstance3D" parent="." index="2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 0)
 mesh = SubResource("PlaneMesh_gyc2g")
 surface_material_override/0 = ExtResource("4_wq3ue")

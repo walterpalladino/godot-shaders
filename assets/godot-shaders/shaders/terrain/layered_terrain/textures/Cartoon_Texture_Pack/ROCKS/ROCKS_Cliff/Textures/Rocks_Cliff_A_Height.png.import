@@ -3,20 +3,19 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://drii2ikev0syq"
-path.s3tc="res://.godot/imported/Rocks_Cliff_A_Height.png-83e967d9374109e0e2a630fa2c164aab.s3tc.ctex"
+path="res://.godot/imported/Rocks_Cliff_A_Height.png-83e967d9374109e0e2a630fa2c164aab.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
-"vram_texture": true
+"vram_texture": false
 }
 
 [deps]
 
 source_file="res://assets/godot-shaders/shaders/terrain/layered_terrain/textures/Cartoon_Texture_Pack/ROCKS/ROCKS_Cliff/Textures/Rocks_Cliff_A_Height.png"
-dest_files=["res://.godot/imported/Rocks_Cliff_A_Height.png-83e967d9374109e0e2a630fa2c164aab.s3tc.ctex"]
+dest_files=["res://.godot/imported/Rocks_Cliff_A_Height.png-83e967d9374109e0e2a630fa2c164aab.ctex"]
 
 [params]
 
-compress/mode=2
+compress/mode=0
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1

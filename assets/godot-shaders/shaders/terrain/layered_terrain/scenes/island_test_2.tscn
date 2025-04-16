@@ -75,7 +75,6 @@ environment = SubResource("Environment_g046j")
 
 [node name="Island" parent="." index="3"]
 transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 0, 0, 0)
-visible = false
 lod_bias = 0.001
 surface_material_override/0 = ExtResource("2_7chm4")
 

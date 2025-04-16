@@ -51,6 +51,6 @@ skeleton = NodePath("../..")
 surface_material_override/0 = ExtResource("4_ttnjy")
 
 [node name="Normal Based Beach Water" type="MeshInstance3D" parent="." index="2"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6.5, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 7, 0)
 mesh = SubResource("PlaneMesh_nhajr")
 surface_material_override/0 = ExtResource("5_hi231")

@@ -23,7 +23,7 @@ void vertex() {
 
 
 void fragment() {
-	
+
 	vec3 pixel_world_position = (INV_VIEW_MATRIX * vec4(VERTEX, 1.0)).xyz;
 	vec3 world_normal = (INV_VIEW_MATRIX * vec4(NORMAL.xyz, 0.0)).xyz;
 
@@ -31,15 +31,15 @@ void fragment() {
 	if (abs(world_normal.y) < 0.001) {
 		//	Special cases for vertical faces
 		if (abs(world_normal.x) < abs(world_normal.z)) {
-			albedo_tex = texture(texture_albedo, pixel_world_position.xy * uv_scale);			
+			albedo_tex = texture(texture_albedo, pixel_world_position.xy * uv_scale);
 		}
 		else {
-			albedo_tex = texture(texture_albedo, pixel_world_position.zy * uv_scale);			
+			albedo_tex = texture(texture_albedo, pixel_world_position.zy * uv_scale);
 		}
 	}
-	
+
 	vec3 albedo_color = mix(albedo_a, albedo_b, albedo_tex.r);
-	
+
 	ALBEDO = albedo_color.rgb ;
 
 	METALLIC = metallic;

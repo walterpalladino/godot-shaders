@@ -247,7 +247,7 @@ void fragment() {
 		NORMAL = normal_flat;
 	} else {
 		NORMAL_MAP = normal_value;
-		NORMAL_MAP_DEPTH = normal_strength;
+		NORMAL_MAP_DEPTH = -normal_strength;
 	}
 
 }
