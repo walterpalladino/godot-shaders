@@ -1,0 +1,56 @@
+[gd_scene load_steps=3 format=3 uid="uid://dy4ppknuplt3d"]
+
+[ext_resource type="PackedScene" uid="uid://d0r3v641sumg3" path="res://assets/godot-shaders/models/KayKit/Barbarian.glb" id="1_u8b2k"]
+[ext_resource type="Material" uid="uid://dxa2vihftoojl" path="res://assets/godot-shaders/shaders/artistic/simple_comic/materials/barbarian_comic.tres" id="2_4xi55"]
+
+[node name="Barbarian" instance=ExtResource("1_u8b2k")]
+
+[node name="1H_Axe_Offhand" parent="Rig/Skeleton3D" index="0"]
+transform = Transform3D(-0.999999, -1.17465e-07, 2.00909e-07, 1.0297e-07, -5.30967e-07, 0.999999, -1.957e-07, 0.999999, 6.23449e-07, 0.883132, 1.04926, 0.0333083)
+visible = false
+
+[node name="Barbarian_Round_Shield" parent="Rig/Skeleton3D" index="1"]
+transform = Transform3D(-0.999999, 2.40298e-06, -7.04971e-07, -8.02913e-07, -7.37598e-07, 0.999999, 2.32475e-06, 0.999999, 8.30081e-07, 0.883132, 1.20515, 0.0170112)
+visible = false
+
+[node name="1H_Axe" parent="Rig/Skeleton3D" index="2"]
+transform = Transform3D(0.999999, 1.88247e-07, -4.39071e-07, -3.79561e-07, -7.95385e-07, -0.999999, -1.1747e-07, 0.999999, -7.42514e-07, -0.883132, 1.04926, 0.0333086)
+visible = false
+
+[node name="2H_Axe" parent="Rig/Skeleton3D" index="3"]
+transform = Transform3D(0.999999, 1.88247e-07, -4.39071e-07, -3.79561e-07, -7.95385e-07, -0.999999, -1.1747e-07, 0.999999, -7.42514e-07, -0.883132, 1.04926, 0.0333086)
+visible = false
+
+[node name="Mug" parent="Rig/Skeleton3D" index="4"]
+transform = Transform3D(0.999999, 1.88247e-07, -4.39071e-07, -3.79561e-07, -7.95385e-07, -0.999999, -1.1747e-07, 0.999999, -7.42514e-07, -1.1837, 1.04926, -0.0156374)
+
+[node name="Mug" parent="Rig/Skeleton3D/Mug" index="0"]
+surface_material_override/0 = ExtResource("2_4xi55")
+
+[node name="Barbarian_Hat" parent="Rig/Skeleton3D" index="5"]
+transform = Transform3D(1, -2.20965e-22, 1.69407e-21, 2.20965e-22, 1, 0, -1.69407e-21, 3.58732e-43, 1, 0, 1.21587, -1.39099e-07)
+
+[node name="Barbarian_Hat" parent="Rig/Skeleton3D/Barbarian_Hat" index="0"]
+surface_material_override/0 = ExtResource("2_4xi55")
+
+[node name="Barbarian_Cape" parent="Rig/Skeleton3D" index="6"]
+transform = Transform3D(1, 1.25214e-21, 0, -1.25214e-21, 1, 0, 0, 0, 1, -1.90735e-06, 1.21587, -1.39099e-07)
+visible = false
+
+[node name="Barbarian_ArmLeft" parent="Rig/Skeleton3D" index="7"]
+surface_material_override/0 = ExtResource("2_4xi55")
+
+[node name="Barbarian_ArmRight" parent="Rig/Skeleton3D" index="8"]
+surface_material_override/0 = ExtResource("2_4xi55")
+
+[node name="Barbarian_Body" parent="Rig/Skeleton3D" index="9"]
+surface_material_override/0 = ExtResource("2_4xi55")
+
+[node name="Barbarian_Head" parent="Rig/Skeleton3D" index="10"]
+surface_material_override/0 = ExtResource("2_4xi55")
+
+[node name="Barbarian_LegLeft" parent="Rig/Skeleton3D" index="11"]
+surface_material_override/0 = ExtResource("2_4xi55")
+
+[node name="Barbarian_LegRight" parent="Rig/Skeleton3D" index="12"]
+surface_material_override/0 = ExtResource("2_4xi55")

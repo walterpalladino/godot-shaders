@@ -1,0 +1,15 @@
+[gd_resource type="ShaderMaterial" load_steps=3 format=3 uid="uid://dxa2vihftoojl"]
+
+[ext_resource type="Shader" path="res://assets/godot-shaders/shaders/artistic/simple_comic/simple_comic.gdshader" id="1_5dl7w"]
+[ext_resource type="Texture2D" uid="uid://c13fvlmgjo1so" path="res://assets/godot-shaders/models/KayKit/barbarian_texture.png" id="2_brc6v"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_5dl7w")
+shader_parameter/color = Color(1, 1, 1, 1)
+shader_parameter/rim_power = 2.0
+shader_parameter/rim_width = 0.2
+shader_parameter/roughness = 1.0
+shader_parameter/metallic = 0.0
+shader_parameter/specular = 0.5
+shader_parameter/texture = ExtResource("2_brc6v")
