@@ -39,5 +39,5 @@ Some GODOT shaders I'm working on
 ## Thanks to
 
 I'm using on this examples some free assets from:
-
-- FREE assets from Quaternius site (https://quaternius.com/)
+- Quaternius (https://quaternius.com/)
+- KayKit (https://kaylousberg.itch.io/kaykit-adventurers)
