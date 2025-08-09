@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://c5gsq5uefuibs"]
+[gd_scene load_steps=4 format=3 uid="uid://c5gsq5uefuibs"]
 
 [ext_resource type="Material" uid="uid://kmhjhlbsxbnk" path="res://assets/godot-shaders/shaders/water/low_poly_water/materials/low_poly_water_material.tres" id="1_hn2av"]
+[ext_resource type="Material" uid="uid://cng6atbdna5em" path="res://assets/godot-shaders/shaders/water/low_poly_water/materials/low_poly_tropical_beach_water_material.tres" id="2_v1axa"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_ld0w7"]
 material = ExtResource("1_hn2av")
@@ -11,3 +12,4 @@ subdivide_depth = 64
 [node name="LowPolyWaterPlane" type="MeshInstance3D"]
 cast_shadow = 0
 mesh = SubResource("PlaneMesh_ld0w7")
+surface_material_override/0 = ExtResource("2_v1axa")

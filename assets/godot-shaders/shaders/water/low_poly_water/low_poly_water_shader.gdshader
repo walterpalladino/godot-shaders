@@ -44,6 +44,7 @@ uniform vec2 foam_speed = vec2(0.02, 0.02);
 uniform	float foam_amount : hint_range(0.0, 10.0, 0.01) = 0.40;
 uniform float edge_scale : hint_range(0.0, 1.0, 0.01) = 0.25;
 uniform sampler2D foam_texture;
+uniform vec2 foam_shore_tiling = vec2(4.0, 4.0);
 uniform vec2 foam_tiling = vec2(4.0, 4.0);
 uniform vec3 foam_color : source_color;
 
@@ -102,6 +103,10 @@ void vertex() {
 
 void fragment() {
 
+	//	Get the world position
+	vec3 pixel_world_position = (INV_VIEW_MATRIX * vec4(VERTEX, 1.0)).xyz;
+	vec2 water_uv = pixel_world_position.xz;
+
 //	vec3 world_normal = cross( dFdx(vertex_world_pos), dFdy(vertex_world_pos) );
 //	world_normal = -normalize(world_normal);
 
@@ -122,8 +127,8 @@ void fragment() {
 	float depth_blend_power = clamp(pow(depth_blend, 2.5), 0.0, 1.0);
 
 	//	Riples added later as emmission
-	vec2 riple_coords = UV * riples_scale + (TIME * riples_velocity) ;
-	vec2 riple_coords2 = UV * riples_scale - (TIME * riples_velocity) ;
+	vec2 riple_coords = water_uv * riples_scale + (TIME * riples_velocity) ;
+	vec2 riple_coords2 = water_uv * riples_scale - (TIME * riples_velocity) ;
 
 	vec3 riple_color = texture(riples, riple_coords).rgb;
 	vec3 riple_color2 = texture(riples, riple_coords2).rgb;
@@ -142,8 +147,8 @@ void fragment() {
 
 	//	shore foam
 	vec2 offset = TIME * foam_speed;
-	vec2 tiling = foam_tiling;
-	vec2 uv_i = vec2( UV.x, foam_amount * depth);
+	vec2 tiling = foam_shore_tiling;
+	vec2 uv_i = vec2( water_uv.x, foam_amount * depth);
 
 	vec2 uv_o = uv_i * tiling + offset;
 	vec3 foam = texture(foam_texture, uv_o).rgb;
@@ -166,20 +171,21 @@ void fragment() {
 	//	Set water or foam color
 	mixed_color = mix(color_with_opacity, foam, foam_mask);
 
+	vec3 emission_color = riple * riples_color + fresnel_color * fresnel_value;
+
 	if (wave_height_at_pos > 0.085) {
-		vec3 pixel_world_position = (INV_VIEW_MATRIX * vec4(VERTEX, 1.0)).xyz;
-		vec2 wave_foam_uv = UV * 2.0 - TIME * waves_speed / 1000.0;
+		vec2 wave_foam_uv = water_uv * foam_tiling - TIME * waves_speed / 1000.0;
 		vec3 wave_foam_color = texture(foam_texture, wave_foam_uv).rgb;
 		//mixed_color += wave_foam_color * pow(wave_height_at_pos, 2.0) * 6.0;
-		mixed_color = mix(mixed_color, wave_foam_color * 6.0, pow(wave_height_at_pos, 2.0));
+		emission_color = mix(emission_color, wave_foam_color * 8.0, pow(wave_height_at_pos, 1.850));
+		//mixed_color = mix(mixed_color, wave_foam_color * 6.0, pow(wave_height_at_pos, 2.0));
 //		mixed_color += pow(wave_height_at_pos, 2.0);
 	}
 
 	//	Set the shader attributes
 	ALBEDO = mixed_color;
-	//ALBEDO = vec3(foam_mask);
 
-	EMISSION = riple * riples_color + fresnel_color * fresnel_value;
+	EMISSION = emission_color;
 
 	METALLIC = metallic;
 	SPECULAR = specular;
