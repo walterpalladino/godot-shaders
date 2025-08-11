@@ -4,6 +4,9 @@ render_mode unshaded, depth_draw_opaque;
 
 uniform int pixel_size : hint_range(1, 100, 1) = 4;
 
+uniform bool use_color_reduction = false;	//	Used to respect background transparencies
+uniform int color_count : hint_range(1, 256, 1) = 256;
+
 uniform bool use_transparency = false;	//	Used to respect background transparencies
 
 uniform sampler2D SCREEN_TEXTURE : hint_screen_texture, filter_linear_mipmap;
@@ -31,11 +34,20 @@ void fragment() {
 		discard;
 	}
 
+	vec3 color = pixelated_texture_color.rgb;
+
+	if (use_color_reduction) {
+
+		int color_step = 256 / color_count;
+		color = color * 256.0;
+		int r = int(color.r) / color_step;
+		int g = int(color.g) / color_step;
+		int b = int(color.b) / color_step;
+		color = vec3(float(r) * float(color_step) / 256.0, float(g) * float(color_step) / 256.0, float(b) * float(color_step) / 256.0);
+
+	}
+
 	//	Set the color
-	ALBEDO = pixelated_texture_color.rgb;
+	ALBEDO = color;
 }
 
-//void light() {
-	// Called for every pixel for every light affecting the material.
-	// Uncomment to replace the default light processing function with this one.
-//}
