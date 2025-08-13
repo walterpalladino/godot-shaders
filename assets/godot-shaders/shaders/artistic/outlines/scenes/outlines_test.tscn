@@ -1,9 +1,10 @@
-[gd_scene load_steps=15 format=3 uid="uid://d1oldo1g445iu"]
+[gd_scene load_steps=16 format=3 uid="uid://d1oldo1g445iu"]
 
 [ext_resource type="PackedScene" uid="uid://qbyn3jihphc" path="res://assets/godot-shaders/models/Ultimate Nature Pack/models/PalmTree_1.fbx" id="1_6dwsb"]
 [ext_resource type="PackedScene" uid="uid://dkj8u0rh01o0l" path="res://assets/godot-shaders/models/Ultimate Nature Pack/models/BirchTree_1.fbx" id="2_esvlw"]
 [ext_resource type="Material" uid="uid://bc3huwebhd0a5" path="res://assets/godot-shaders/shaders/artistic/outlines/materials/outlines_material.tres" id="3_n66g1"]
 [ext_resource type="PackedScene" uid="uid://xlv7cdj11dmm" path="res://assets/godot-shaders/models/Ultimate Nature Pack/models/Bush_1.fbx" id="4_llgs8"]
+[ext_resource type="PackedScene" uid="uid://blodbntacu1xf" path="res://assets/godot-shaders/models/KayKit/Rogue_Hooded.glb" id="5_s2fiw"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_f2ln3"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -49,7 +50,7 @@ size = Vector2(2, 2)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.85386, 0, -1.33347)
 
 [node name="BirchTree_1" parent="." instance=ExtResource("2_esvlw")]
-transform = Transform3D(0.632908, 0, -0.774227, 0, 1, 0, 0.774227, 0, 0.632908, -1.70537, 0, 1.33508)
+transform = Transform3D(0.632908, 0, -0.774227, 0, 1, 0, 0.774227, 0, 0.632908, -1.985, 0, 1.335)
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.749999, -0.43301, 0, 0, 0)
@@ -70,7 +71,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.71653, 0.5, -0.52426)
 mesh = SubResource("CylinderMesh_ohw6x")
 
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, -3.74938e-16, 3.47805e-16, 3.47805e-16, 0.997185, 0.0749787, -3.74938e-16, -0.0749787, 0.997185, 2.08165e-12, 1.701, 4.6152)
+transform = Transform3D(1, -3.74938e-16, 3.47805e-16, 3.47805e-16, 0.997185, 0.0749787, -3.74938e-16, -0.0749787, 0.997185, 1.04, 1.701, 4.645)
 
 [node name="fx_projection_canvas" type="MeshInstance3D" parent="Camera3D"]
 transform = Transform3D(1, 3.48787e-16, -3.48787e-16, -3.48787e-16, 1, 3.48787e-16, 3.48787e-16, -3.48787e-16, 1, 2.08165e-12, 2.08165e-12, -0.1)
@@ -80,3 +81,6 @@ surface_material_override/0 = ExtResource("3_n66g1")
 
 [node name="Bush_1" parent="." instance=ExtResource("4_llgs8")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.49172, 0, -1.39592)
+
+[node name="Rogue_Hooded" parent="." instance=ExtResource("5_s2fiw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.57044, 0, 1.04256)

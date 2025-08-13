@@ -1,15 +1,15 @@
 shader_type spatial;
 
-render_mode unshaded;
+render_mode unshaded, fog_disabled;
 
 uniform sampler2D SCREEN_TEXTURE : source_color, hint_screen_texture, filter_nearest;
 uniform sampler2D NORMAL_TEXTURE : source_color, hint_normal_roughness_texture, filter_nearest;
 uniform sampler2D DEPTH_TEXTURE : source_color, hint_depth_texture, filter_nearest;
 
-uniform float depth_treshold = 0.05;
+uniform float depth_treshold : hint_range(0.01, 20.0, 0.01) = 0.05;
 uniform vec4 outline_color : source_color = vec4(0.0, 0.0, 0.0, 1.0);
-uniform float outline_width : hint_range(0.0, 5.0, 0.1) = 1.0;
-
+uniform float outline_width : hint_range(0.0, 8.0, 0.1) = 1.0;
+uniform bool use_only_normals = true;
 
 vec3 get_screen(vec2 screen_uv)
 {
@@ -21,7 +21,7 @@ vec3 get_normal(vec2 screen_uv)
 	return texture(NORMAL_TEXTURE, screen_uv).rgb * 2.0 - 1.0;
 }
 
-float get_depth(vec2 screen_uv, mat4 inv_projection_matrix)
+float get_linear_depth(vec2 screen_uv, mat4 inv_projection_matrix)
 {
 	float depth = texture(DEPTH_TEXTURE, screen_uv).r;
 	vec3 ndc = vec3(screen_uv * 2.0 - 1.0, depth);
@@ -29,7 +29,6 @@ float get_depth(vec2 screen_uv, mat4 inv_projection_matrix)
 	view_space.xyz /= -view_space.w;
 	return view_space.z;
 }
-
 
 void fragment() {
 
@@ -40,8 +39,7 @@ void fragment() {
 	vec3 screen_normal = get_normal(SCREEN_UV);
 
 	// DEPTH
-	float screen_depth = get_depth(SCREEN_UV, INV_PROJECTION_MATRIX);
-
+	float screen_depth = get_linear_depth(SCREEN_UV, INV_PROJECTION_MATRIX);
 
 	// GET SURROUNDING TEXEL
 	vec2 texel_size = outline_width / VIEWPORT_SIZE.xy;
@@ -56,7 +54,7 @@ void fragment() {
 	float normal_sum = 0.0;
 	for (int i = 0; i < 4; i++)
 	{
-		float d = get_depth(uvs[i], INV_PROJECTION_MATRIX);
+		float d = get_linear_depth(uvs[i], INV_PROJECTION_MATRIX);
 		depth_diff += screen_depth - d;
 
 		vec3 n = get_normal(uvs[i]);
@@ -70,12 +68,12 @@ void fragment() {
 	}
 
 	float depth_edge = step(depth_treshold, depth_diff);
-
-	float outline = depth_edge + normal_sum;
-	outline = clamp(outline, 0.0, 1.0);
-
+	float outline = normal_sum;
+	if (!use_only_normals) {
+		outline += depth_edge;
+	}
+	outline = clamp(0.0, 1.0, outline);
 	ALBEDO = mix(screen_color, outline_color.rgb, outline);
 	ALPHA = mix(0.0, outline_color.a, outline);
-
 }
 
