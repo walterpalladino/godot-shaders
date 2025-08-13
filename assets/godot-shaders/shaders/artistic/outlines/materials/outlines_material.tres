@@ -1,0 +1,10 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://bc3huwebhd0a5"]
+
+[ext_resource type="Shader" path="res://assets/godot-shaders/shaders/artistic/outlines/outlines.gdshader" id="1_fried"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_fried")
+shader_parameter/depth_treshold = 0.05
+shader_parameter/outline_color = Color(0.0541422, 0.0541422, 0.0541422, 1)
+shader_parameter/outline_width = 3.0
