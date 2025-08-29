@@ -1,0 +1,12 @@
+[gd_resource type="ShaderMaterial" load_steps=3 format=3 uid="uid://jol3ur2q035h"]
+
+[ext_resource type="Shader" uid="uid://de6pgpdt5wi5n" path="res://assets/godot-shaders/shaders/artistic/palette_reduction/palette_reduction.gdshader" id="1_2av4s"]
+[ext_resource type="Texture2D" uid="uid://xr1secja1opi" path="res://assets/godot-shaders/shaders/artistic/palette_reduction/palettes/aap-64-1x.png" id="2_exl4h"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_2av4s")
+shader_parameter/palette_texture = ExtResource("2_exl4h")
+shader_parameter/HUE_WEIGHT = 5.04
+shader_parameter/SATURATION_WEIGHT = 1.9
+shader_parameter/VALUE_WEIGHT = 2.53
