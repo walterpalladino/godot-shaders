@@ -1,6 +1,6 @@
 [gd_scene load_steps=11 format=3 uid="uid://cyu3a847qgm7y"]
 
-[ext_resource type="Shader" path="res://assets/godot-shaders/test/simple_water.gdshader" id="1_m2nr6"]
+[ext_resource type="Shader" uid="uid://hs0fhps4tt7b" path="res://assets/godot-shaders/test/simple_water.gdshader" id="1_m2nr6"]
 [ext_resource type="Shader" uid="uid://crobbulw4k35a" path="res://assets/godot-shaders/test/test1.tres" id="2_r6qju"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_ilbgc"]
