@@ -1,0 +1,10 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://d4i7o5r3qd517"]
+
+[ext_resource type="Shader" uid="uid://bnbe0i21ix7ly" path="res://assets/godot-shaders/shaders/artistic/horizontal_lines/horizontal_lines.gdshader" id="1_7l7e3"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_7l7e3")
+shader_parameter/line_thickness = 4.0
+shader_parameter/pixel_interval = 8.0
+shader_parameter/line_color = Color(0.16, 0.16, 0.16, 1)
