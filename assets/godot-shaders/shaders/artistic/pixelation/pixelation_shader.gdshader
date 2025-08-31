@@ -9,7 +9,7 @@ uniform int color_count : hint_range(1, 256, 1) = 256;
 
 uniform bool use_transparency = false;	//	Used to respect background transparencies
 
-uniform sampler2D SCREEN_TEXTURE : hint_screen_texture, filter_linear_mipmap;
+uniform sampler2D SCREEN_TEXTURE : hint_screen_texture, filter_nearest;
 
 void vertex() {
 	// Called for every vertex the material is visible on.
@@ -50,4 +50,3 @@ void fragment() {
 	//	Set the color
 	ALBEDO = color;
 }
-
