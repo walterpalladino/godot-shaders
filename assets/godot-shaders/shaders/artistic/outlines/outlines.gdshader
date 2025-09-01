@@ -2,6 +2,8 @@ shader_type spatial;
 
 render_mode unshaded, fog_disabled;
 
+group_uniforms Outline;
+
 uniform sampler2D SCREEN_TEXTURE : source_color, hint_screen_texture, filter_nearest;
 uniform sampler2D NORMAL_TEXTURE : source_color, hint_normal_roughness_texture, filter_nearest;
 uniform sampler2D DEPTH_TEXTURE : source_color, hint_depth_texture, filter_nearest;
@@ -26,8 +28,8 @@ float get_linear_depth(vec2 screen_uv, mat4 inv_projection_matrix)
 	float depth = texture(DEPTH_TEXTURE, screen_uv).r;
 	vec3 ndc = vec3(screen_uv * 2.0 - 1.0, depth);
 	vec4 view_space = inv_projection_matrix * vec4(ndc, 1.0);
-	view_space.xyz /= -view_space.w;
-	return view_space.z;
+	view_space.xyz /= view_space.w;
+	return -view_space.z;
 }
 
 void fragment() {
