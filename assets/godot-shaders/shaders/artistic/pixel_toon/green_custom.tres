@@ -1,0 +1,15 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://cmqwrjuertyda"]
+
+[ext_resource type="Shader" uid="uid://4rryk50b6pff" path="res://assets/godot-shaders/shaders/artistic/pixel_toon/custom_toon.gdshader" id="1_lclqu"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_lclqu")
+shader_parameter/albedo = Color(0, 0.662745, 0.403922, 1)
+shader_parameter/albedo_dark = 0.5
+shader_parameter/use_custom_direction = false
+shader_parameter/custom_direction = Vector3(-2.5, 0.5, 1)
+shader_parameter/dark_cut_off = 0.5
+shader_parameter/specular_size = 50.0
+shader_parameter/specular_intensity = 0.8
+shader_parameter/specular_color = Color(0, 0.67451, 1, 1)

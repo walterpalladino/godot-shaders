@@ -1,0 +1,11 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://b3xmjnap7lm41"]
+
+[ext_resource type="Shader" uid="uid://b24o5wqbuw6qr" path="res://assets/godot-shaders/shaders/artistic/pixel_toon/simple_toon.gdshader" id="1_f7y6j"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_f7y6j")
+shader_parameter/albedo = Color(0, 0.333333, 1, 1)
+shader_parameter/roughness = 0.0
+shader_parameter/specular = 0.5
+shader_parameter/metallic = 0.0
