@@ -1,6 +1,6 @@
 [gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://bc3huwebhd0a5"]
 
-[ext_resource type="Shader" path="res://assets/godot-shaders/shaders/artistic/outlines/outlines.gdshader" id="1_fried"]
+[ext_resource type="Shader" uid="uid://bu8aoauj8ycnd" path="res://assets/godot-shaders/shaders/artistic/outlines/outlines.gdshader" id="1_fried"]
 
 [resource]
 render_priority = 0

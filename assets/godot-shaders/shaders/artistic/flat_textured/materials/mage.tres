@@ -1,0 +1,11 @@
+[gd_resource type="ShaderMaterial" load_steps=3 format=3 uid="uid://bdjv7skj4ee7m"]
+
+[ext_resource type="Shader" uid="uid://d4cx778ijmvtw" path="res://assets/godot-shaders/shaders/artistic/flat_textured/flat_textured_unshaded.gdshader" id="1_2thrv"]
+[ext_resource type="Texture2D" uid="uid://cnrlxiafo37ma" path="res://assets/godot-shaders/models/KayKit/mage_texture.png" id="2_tqmn4"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_2thrv")
+shader_parameter/albedo_color = Color(1, 1, 1, 1)
+shader_parameter/main_texture = ExtResource("2_tqmn4")
+shader_parameter/brightness = 0.54

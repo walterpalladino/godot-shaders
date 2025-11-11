@@ -1,0 +1,18 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://by2vws0mrh07v"]
+
+[ext_resource type="Shader" path="res://assets/godot-shaders/shaders/sky/dithered_sky.gdshader" id="1_5m33s"]
+
+[resource]
+shader = ExtResource("1_5m33s")
+shader_parameter/azimut_color = Color(0.308159, 0.6556, 0.999992, 1)
+shader_parameter/horizon_color = Color(0.71, 0.3408, 0.611547, 1)
+shader_parameter/offset_horizon = -0.4
+shader_parameter/horizon_intensity = 0.694
+shader_parameter/ground_color = Color(0.37, 0.23384, 0.1147, 1)
+shader_parameter/sun_color = Color(0.95, 0.95, 0.95, 1)
+shader_parameter/sun_radius = 0.205
+shader_parameter/flat_sun = false
+shader_parameter/shade_tweak = 0.5
+shader_parameter/light_tweak = 1.25
+shader_parameter/sharpness = 0.0
+shader_parameter/scale = 4.0

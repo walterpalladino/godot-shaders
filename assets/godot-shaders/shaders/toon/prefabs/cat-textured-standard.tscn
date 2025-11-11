@@ -1,0 +1,26 @@
+[gd_scene load_steps=7 format=3 uid="uid://bajibyjqrv757"]
+
+[ext_resource type="PackedScene" uid="uid://cfabjuls3itff" path="res://assets/godot-shaders/shaders/toon/models/cat/Cat.fbx" id="1_gaahl"]
+[ext_resource type="Material" uid="uid://gwxo3swls2p6" path="res://assets/godot-shaders/shaders/toon/materials/cat-standard.tres" id="2_28sn3"]
+[ext_resource type="Texture2D" uid="uid://s068k33ow2i1" path="res://assets/godot-shaders/shaders/toon/models/cat/textures/CatAlbedo.jpg" id="2_ko5p0"]
+[ext_resource type="Material" uid="uid://b14tdgu2nsyc0" path="res://assets/godot-shaders/shaders/toon/materials/cat-construction-worker-standard.tres" id="3_ob86u"]
+[ext_resource type="Material" uid="uid://byb4pg4ofs052" path="res://assets/godot-shaders/shaders/toon/materials/cat-party-standard.tres" id="5_nr8df"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hhwdj"]
+albedo_texture = ExtResource("2_ko5p0")
+
+[node name="Cat" instance=ExtResource("1_gaahl")]
+
+[node name="HatandTie" parent="Skeleton3D" index="0"]
+surface_material_override/0 = ExtResource("2_28sn3")
+
+[node name="CatMesh" parent="Skeleton3D" index="1"]
+surface_material_override/0 = SubResource("StandardMaterial3D_hhwdj")
+
+[node name="ConstructionGearMesh" parent="Skeleton3D" index="2"]
+visible = false
+surface_material_override/0 = ExtResource("3_ob86u")
+
+[node name="PartHatandBowtie" parent="Skeleton3D" index="3"]
+visible = false
+surface_material_override/0 = ExtResource("5_nr8df")

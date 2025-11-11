@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://ew83u55p00bv"]
+
+[ext_resource type="PackedScene" uid="uid://bajibyjqrv757" path="res://assets/godot-shaders/shaders/toon/prefabs/cat-textured-standard.tscn" id="1_srqo1"]
+
+[node name="Cat-toon-test" type="Node3D"]
+
+[node name="Cat" parent="." instance=ExtResource("1_srqo1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5, 0, 0)

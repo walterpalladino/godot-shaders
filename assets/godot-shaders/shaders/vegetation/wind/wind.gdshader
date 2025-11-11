@@ -62,6 +62,7 @@ void vertex() {
 }
 
 void fragment() {
+
 	vec4 texture_color = texture(material_texture, UV);
 	ALBEDO = color * texture_color.rgb;
 

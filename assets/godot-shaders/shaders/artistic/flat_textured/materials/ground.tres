@@ -1,0 +1,10 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://esti1oaug8jw"]
+
+[ext_resource type="Shader" uid="uid://ctjjpy8vqwebs" path="res://assets/godot-shaders/shaders/artistic/flat_textured/flat_textured.gdshader" id="1_xqw4w"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_xqw4w")
+shader_parameter/albedo_color = Color(0.243137, 0.458824, 0.313726, 1)
+shader_parameter/shadow_strength = 0.6
+shader_parameter/brightness = 0.7

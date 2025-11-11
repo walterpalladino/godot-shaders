@@ -17,6 +17,8 @@ void vertex() {
 }
 
 // Converts an RGB color to HSV.
+//	hsv [0..1]
+//	h should be in range 0..360
 vec3 rgb2hsv(vec3 c) {
     float cMax = max(max(c.r, c.g), c.b);
     float cMin = min(min(c.r, c.g), c.b);

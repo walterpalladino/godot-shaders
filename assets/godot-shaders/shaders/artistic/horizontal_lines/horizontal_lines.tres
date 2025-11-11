@@ -6,5 +6,5 @@
 render_priority = 0
 shader = ExtResource("1_7l7e3")
 shader_parameter/line_thickness = 4.0
-shader_parameter/pixel_interval = 8.0
+shader_parameter/pixel_interval = 12.0
 shader_parameter/line_color = Color(0.16, 0.16, 0.16, 1)

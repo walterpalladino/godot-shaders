@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://bhrrm0ti1spsy"]
+
+[ext_resource type="PackedScene" uid="uid://b314krlwq0vm5" path="res://assets/godot-shaders/shaders/toon/models/Suzanne-Smooth.fbx" id="1_g4tao"]
+[ext_resource type="Material" uid="uid://m67h3lv6lgk5" path="res://assets/godot-shaders/shaders/toon/materials/suzanne-standard.tres" id="2_07rlw"]
+
+[node name="Suzanne-Smooth" instance=ExtResource("1_g4tao")]
+
+[node name="Suzanne-Smooth" parent="." index="0"]
+surface_material_override/0 = ExtResource("2_07rlw")

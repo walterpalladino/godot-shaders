@@ -1,6 +1,6 @@
 [gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://b1hcysg486ofi"]
 
-[ext_resource type="Shader" path="res://assets/godot-shaders/shaders/artistic/dither_high_contrast/filter/dither_hc_filter_shader.gdshader" id="1_l0pl6"]
+[ext_resource type="Shader" uid="uid://c3yjixuvlm8ie" path="res://assets/godot-shaders/shaders/artistic/dither_high_contrast/filter/dither_hc_filter_shader.gdshader" id="1_l0pl6"]
 
 [resource]
 render_priority = 0

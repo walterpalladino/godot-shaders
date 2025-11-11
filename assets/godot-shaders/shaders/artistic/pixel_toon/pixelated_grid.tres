@@ -1,0 +1,10 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://bpii7m2luskcp"]
+
+[ext_resource type="Shader" uid="uid://db7qdag2qlcv2" path="res://assets/godot-shaders/shaders/artistic/pixel_toon/pixelated_grid.gdshader" id="1_b3iqt"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_b3iqt")
+shader_parameter/albedo = Color(0.221302, 0.221302, 0.221302, 1)
+shader_parameter/pixel_size = 8
+shader_parameter/only_horizontal_lines = false

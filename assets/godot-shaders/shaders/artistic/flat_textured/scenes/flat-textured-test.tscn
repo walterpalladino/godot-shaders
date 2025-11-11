@@ -1,0 +1,15 @@
+[gd_scene load_steps=4 format=3 uid="uid://d2ow1wevvl3ih"]
+
+[ext_resource type="Material" uid="uid://esti1oaug8jw" path="res://assets/godot-shaders/shaders/artistic/flat_textured/materials/ground.tres" id="1_pimow"]
+[ext_resource type="PackedScene" uid="uid://beds3jukg5s2" path="res://assets/godot-shaders/shaders/artistic/flat_textured/scenes/mage.tscn" id="2_h8sep"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_q66s2"]
+size = Vector2(10, 10)
+
+[node name="Flat-textured-test" type="Node3D"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("PlaneMesh_q66s2")
+surface_material_override/0 = ExtResource("1_pimow")
+
+[node name="Mage" parent="." instance=ExtResource("2_h8sep")]

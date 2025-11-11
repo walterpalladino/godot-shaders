@@ -17,7 +17,7 @@ void vertex() {
 }
 
 void fragment() {
-	
+
 	vec4 screen_color = texture(SCREEN_TEXTURE, SCREEN_UV);
 
 	// Get the current pixel's vertical coordinate in screen space

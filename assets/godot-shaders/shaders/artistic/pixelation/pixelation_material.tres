@@ -1,11 +1,11 @@
 [gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://b6igf1jpqoq5w"]
 
-[ext_resource type="Shader" uid="uid://d3wgwd8s0usxj" path="res://assets/godot-shaders/shaders/artistic/pixelation/pixelation_shader.gdshader" id="1_7xi63"]
+[ext_resource type="Shader" uid="uid://d3wgwd8s0usxj" path="res://assets/godot-shaders/shaders/artistic/pixelation/pixelation.gdshader" id="1_aymms"]
 
 [resource]
 render_priority = 0
-shader = ExtResource("1_7xi63")
+shader = ExtResource("1_aymms")
 shader_parameter/pixel_size = 4
 shader_parameter/use_color_reduction = false
-shader_parameter/color_count = 64
+shader_parameter/color_count = 32
 shader_parameter/use_transparency = false

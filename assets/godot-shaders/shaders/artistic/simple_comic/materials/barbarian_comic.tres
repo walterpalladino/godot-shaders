@@ -6,10 +6,10 @@
 [resource]
 render_priority = 0
 shader = ExtResource("1_5dl7w")
-shader_parameter/color = Color(1, 1, 1, 1)
-shader_parameter/rim_power = 2.0
-shader_parameter/rim_width = 0.2
+shader_parameter/albedo = Color(1, 1, 1, 1)
+shader_parameter/rim_power = 1.0
+shader_parameter/rim_width = 0.51
 shader_parameter/roughness = 1.0
 shader_parameter/metallic = 0.0
 shader_parameter/specular = 0.5
-shader_parameter/texture = ExtResource("2_brc6v")
+shader_parameter/texture_albedo = ExtResource("2_brc6v")

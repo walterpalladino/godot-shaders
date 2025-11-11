@@ -12,4 +12,4 @@ shader_parameter/custom_direction = Vector3(-2.5, 0.5, 1)
 shader_parameter/dark_cut_off = 0.5
 shader_parameter/specular_size = 50.0
 shader_parameter/specular_intensity = 1.0
-shader_parameter/specular_color = Color(1, 0.298039, 0.121569, 1)
+shader_parameter/specular_color = Color(1, 0.526715, 0.415202, 1)

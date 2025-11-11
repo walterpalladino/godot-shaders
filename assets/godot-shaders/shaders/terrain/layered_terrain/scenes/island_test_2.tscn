@@ -4,7 +4,7 @@
 [ext_resource type="Material" uid="uid://c5kb7cn80drdd" path="res://assets/godot-shaders/shaders/terrain/layered_terrain/materials/terrain_material.tres" id="2_7chm4"]
 [ext_resource type="PackedScene" uid="uid://c3jpq45m2g23y" path="res://assets/godot-shaders/shaders/terrain/layered_terrain/scenes/terrain_02_flat.tscn" id="2_p1roc"]
 [ext_resource type="Material" uid="uid://dq3fb2u2sb8s0" path="res://assets/godot-shaders/shaders/water/standard_water/materials/water_material.tres" id="3_8ul4n"]
-[ext_resource type="Shader" path="res://assets/godot-shaders/shaders/sky/gradient_sky.gdshader" id="3_ckf7f"]
+[ext_resource type="Shader" uid="uid://b7mm6p7qeqrbr" path="res://assets/godot-shaders/shaders/sky/gradient_sky.gdshader" id="3_ckf7f"]
 [ext_resource type="Material" uid="uid://hhw4udntxbbb" path="res://assets/godot-shaders/shaders/water/low_poly_water/materials/depth_texture_material.tres" id="5_eve0l"]
 [ext_resource type="Material" uid="uid://kmhjhlbsxbnk" path="res://assets/godot-shaders/shaders/water/low_poly_water/materials/low_poly_water_material.tres" id="7_7qf4g"]
 

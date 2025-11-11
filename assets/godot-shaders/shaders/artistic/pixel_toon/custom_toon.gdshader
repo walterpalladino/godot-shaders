@@ -43,12 +43,12 @@ void fragment() {
 
 	//	Get the angle between the surface and the light
 	//	to calculate how much the light affects it
-	float _dot = dot(normalize(world_view), normalize(NORMAL));
-	_dot = clamp(_dot, 0.0, 1.0);
+	float diffuse_factor = dot(normalize(world_view), normalize(NORMAL));
+	diffuse_factor = clamp(diffuse_factor, 0.0, 1.0);
 
 	vec3 diffuse_color = albedo.rgb * albedo_tex.rgb;
 
-	if (_dot < dark_cut_off) {
+	if (diffuse_factor < dark_cut_off) {
 		diffuse_color = diffuse_color * albedo_dark;
 	}
 

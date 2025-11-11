@@ -84,6 +84,7 @@ float get_wave_height(mat4 model_matrix, vec3 vertex) {
 
 	vec3 world_position = (model_matrix * vec4(vertex, 1.0)).xyz;
 	float wave_height = wave_texture_strength * texture(wave_texture, world_position.xz / wave_texture_speed + TIME * waves_speed / 1000.0).r;
+	wave_height = pow(wave_height, 2.0);
 	return wave_height * water_waves_height_scale;
 
 }
@@ -173,7 +174,7 @@ void fragment() {
 
 	vec3 emission_color = riple * riples_color + fresnel_color * fresnel_value;
 
-	if (wave_height_at_pos > 0.085) {
+	if (wave_height_at_pos > 0.05) {
 		vec2 wave_foam_uv = water_uv * foam_tiling - TIME * waves_speed / 1000.0;
 		vec3 wave_foam_color = texture(foam_texture, wave_foam_uv).rgb;
 		//mixed_color += wave_foam_color * pow(wave_height_at_pos, 2.0) * 6.0;

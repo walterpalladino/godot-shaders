@@ -1,0 +1,62 @@
+[gd_scene load_steps=3 format=3 uid="uid://beds3jukg5s2"]
+
+[ext_resource type="PackedScene" uid="uid://j8u4du56dpum" path="res://assets/godot-shaders/models/KayKit/Mage.glb" id="1_0mfxe"]
+[ext_resource type="Material" uid="uid://bdjv7skj4ee7m" path="res://assets/godot-shaders/shaders/artistic/flat_textured/materials/mage.tres" id="2_gr5iv"]
+
+[node name="Mage" instance=ExtResource("1_0mfxe")]
+
+[node name="Spellbook" parent="Rig/Skeleton3D" index="0"]
+transform = Transform3D(0.999999, -3.80067e-07, -1.32199e-07, 4.78006e-07, 0.999999, -5.30967e-07, 2.10433e-07, 6.23449e-07, 0.999999, 0.883132, 1.04926, 0.265739)
+visible = false
+
+[node name="Spellbook" parent="Rig/Skeleton3D/Spellbook" index="0"]
+surface_material_override/0 = ExtResource("2_gr5iv")
+
+[node name="Spellbook_open" parent="Rig/Skeleton3D" index="1"]
+transform = Transform3D(0.999999, -3.80067e-07, -1.32199e-07, 4.78006e-07, 0.999999, -5.30967e-07, 2.10433e-07, 6.23449e-07, 0.999999, 0.883132, 1.04926, 0.145387)
+
+[node name="Spellbook_open" parent="Rig/Skeleton3D/Spellbook_open" index="0"]
+surface_material_override/0 = ExtResource("2_gr5iv")
+
+[node name="1H_Wand" parent="Rig/Skeleton3D" index="2"]
+transform = Transform3D(0.999999, 2.0298e-07, -4.52757e-07, -3.93247e-07, -6.76176e-07, -0.999999, -1.32203e-07, 0.999999, -6.23305e-07, -0.883132, 1.04926, -3.45664e-07)
+visible = false
+
+[node name="1H_Wand" parent="Rig/Skeleton3D/1H_Wand" index="0"]
+surface_material_override/0 = ExtResource("2_gr5iv")
+
+[node name="2H_Staff" parent="Rig/Skeleton3D" index="3"]
+transform = Transform3D(0.999999, 2.0298e-07, -4.52757e-07, -3.93247e-07, -6.76176e-07, -0.999999, -1.32203e-07, 0.999999, -6.23305e-07, -0.883132, 1.04926, -3.45664e-07)
+
+[node name="2H_Staff" parent="Rig/Skeleton3D/2H_Staff" index="0"]
+surface_material_override/0 = ExtResource("2_gr5iv")
+
+[node name="Mage_Hat" parent="Rig/Skeleton3D" index="4"]
+transform = Transform3D(1, -8.47033e-22, 0, 2.11758e-22, 0.965926, 0.258819, 0, -0.258819, 0.965926, 0, 1.7841, -1.02333e-07)
+
+[node name="Mage_Hat" parent="Rig/Skeleton3D/Mage_Hat" index="0"]
+surface_material_override/0 = ExtResource("2_gr5iv")
+
+[node name="Mage_Cape" parent="Rig/Skeleton3D" index="5"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.21587, -1.02333e-07)
+
+[node name="Mage_Cape" parent="Rig/Skeleton3D/Mage_Cape" index="0"]
+surface_material_override/0 = ExtResource("2_gr5iv")
+
+[node name="Mage_ArmLeft" parent="Rig/Skeleton3D" index="6"]
+surface_material_override/0 = ExtResource("2_gr5iv")
+
+[node name="Mage_ArmRight" parent="Rig/Skeleton3D" index="7"]
+surface_material_override/0 = ExtResource("2_gr5iv")
+
+[node name="Mage_Body" parent="Rig/Skeleton3D" index="8"]
+surface_material_override/0 = ExtResource("2_gr5iv")
+
+[node name="Mage_Head" parent="Rig/Skeleton3D" index="9"]
+surface_material_override/0 = ExtResource("2_gr5iv")
+
+[node name="Mage_LegLeft" parent="Rig/Skeleton3D" index="10"]
+surface_material_override/0 = ExtResource("2_gr5iv")
+
+[node name="Mage_LegRight" parent="Rig/Skeleton3D" index="11"]
+surface_material_override/0 = ExtResource("2_gr5iv")

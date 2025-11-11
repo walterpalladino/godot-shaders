@@ -1,10 +1,10 @@
 shader_type spatial;
 
 //render_mode unshaded;
-render_mode cull_back, diffuse_burley, specular_schlick_ggx;
+render_mode blend_mix, depth_draw_opaque, cull_back, diffuse_toon, specular_toon;
 
-uniform vec4 color : source_color = vec4(1.0, 1.0, 1.0, 1.0);
-uniform sampler2D texture : hint_default_white;
+uniform vec4 albedo : source_color = vec4(1.0, 1.0, 1.0, 1.0);
+uniform sampler2D texture_albedo : source_color;
 
 uniform float rim_power = 1.0;
 uniform float rim_width : hint_range(0.0, 1.0, 0.01) = 0.005;
@@ -28,17 +28,23 @@ void fragment() {
 	rim = clamp(rim, 0.0, 1.0);
 	rim = step(rim_width, rim);
 
-	vec4 _texture = texture(texture, UV);
-	vec3 _color = color.rgb * _texture.rgb * rim;
+	vec2 base_uv = UV;
 
-	ALBEDO	= _color;
+	vec4 albedo_tex = texture(texture_albedo, base_uv);
+	vec3 color = albedo.rgb * albedo_tex.rgb ;
+
+	ALBEDO	= color * rim;
 	ROUGHNESS = roughness;
 	METALLIC = metallic;
 	SPECULAR = specular;
 
 }
 
+
+//	Force hard shadows cut
 //void light() {
-	// Called for every pixel for every light affecting the material.
-	// Uncomment to replace the default light processing function with this one.
+//	float attenuation = step(0.001, ATTENUATION);
+//	float NdotL = clamp(dot(NORMAL, LIGHT), 0.0, 1.0);
+//	vec3 diffuse_light = NdotL * attenuation * LIGHT_COLOR * 0.5;
+//	DIFFUSE_LIGHT += diffuse_light;
 //}

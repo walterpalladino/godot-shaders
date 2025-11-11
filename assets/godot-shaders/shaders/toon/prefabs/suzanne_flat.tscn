@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://crgyhii8ji866"]
+
+[ext_resource type="PackedScene" uid="uid://bphu4x7ynv45y" path="res://assets/godot-shaders/shaders/toon/models/Suzanne-Flat.fbx" id="1_ek0hh"]
+[ext_resource type="Material" uid="uid://m67h3lv6lgk5" path="res://assets/godot-shaders/shaders/toon/materials/suzanne-standard.tres" id="2_onphm"]
+
+[node name="Suzanne-Flat" instance=ExtResource("1_ek0hh")]
+
+[node name="Suzanne-Flat" parent="." index="0"]
+surface_material_override/0 = ExtResource("2_onphm")

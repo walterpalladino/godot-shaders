@@ -1,6 +1,6 @@
 [gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://cvirig6ffswmh"]
 
-[ext_resource type="Shader" path="res://assets/godot-shaders/shaders/artistic/dither/dither_shader.gdshader" id="1_5g0fe"]
+[ext_resource type="Shader" uid="uid://c7g8s6b1blvu3" path="res://assets/godot-shaders/shaders/artistic/dither/dither_shader.gdshader" id="1_5g0fe"]
 
 [resource]
 render_priority = 0

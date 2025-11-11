@@ -1,0 +1,36 @@
+[gd_resource type="ShaderMaterial" load_steps=5 format=3 uid="uid://b44hib5yp0rv4"]
+
+[ext_resource type="Shader" uid="uid://k8gspc5nanjq" path="res://assets/godot-shaders/shaders/water/simple_water/simple_water.gdshader" id="1_mi8ke"]
+[ext_resource type="Texture2D" uid="uid://d21nwuvor410p" path="res://assets/godot-shaders/shaders/water/simple_water/textures/caustic.jpg" id="2_75g5o"]
+[ext_resource type="Texture2D" uid="uid://dnckm8dpej332" path="res://assets/godot-shaders/shaders/water/simple_water/textures/uv-foam.jpg" id="2_kthnc"]
+[ext_resource type="Texture2D" uid="uid://dhhmtfgdv5b8y" path="res://assets/godot-shaders/shaders/water/simple_water/textures/tiling-perlin-noise.png" id="2_r7scf"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_mi8ke")
+shader_parameter/color_deep = Color(0, 0.2509804, 0.41960785, 1)
+shader_parameter/color_shallow = Color(0.18039216, 0.7176471, 0.70980394, 1)
+shader_parameter/beers_law = 1.6
+shader_parameter/depth_offset = 0.37
+shader_parameter/metallic = 0.0
+shader_parameter/roughness = 0.02
+shader_parameter/specular = 0.8
+shader_parameter/opacity_level = 0.94400004484
+shader_parameter/wave_noise_texture = ExtResource("2_r7scf")
+shader_parameter/waves_speed = Vector2(5, 10)
+shader_parameter/water_waves_noise_scale = 32.0
+shader_parameter/water_waves_height_scale = 0.5
+shader_parameter/riples_texture = ExtResource("2_75g5o")
+shader_parameter/riples_color = Color(0.58435583, 0.8550957, 1, 1)
+shader_parameter/riples_velocity = Vector2(0.1, 0.1)
+shader_parameter/riples_scale = 4.0
+shader_parameter/riples_strength = 0.66000003135
+shader_parameter/foam_speed = 0.1
+shader_parameter/foam_amount = 2.999999932944
+shader_parameter/edge_scale = 5.70999987237008
+shader_parameter/foam_texture = ExtResource("2_kthnc")
+shader_parameter/foam_shore_tiling = 0.1
+shader_parameter/foam_color = Color(1, 1, 1, 1)
+shader_parameter/foam_strength = 2.500000037253
+shader_parameter/fresnel_color = Color(0.6472598, 0.9194763, 0.9999998, 1)
+shader_parameter/fresnel_strength = 0.8070000383325

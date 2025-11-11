@@ -1,3 +1,28 @@
-[gd_scene format=3 uid="uid://c14h74x1xn2pa"]
+[gd_scene load_steps=5 format=3 uid="uid://c14h74x1xn2pa"]
+
+[ext_resource type="PackedScene" uid="uid://dy4ppknuplt3d" path="res://assets/godot-shaders/shaders/artistic/simple_comic/scenes/barbarian.tscn" id="1_elp5o"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_jg15l"]
+sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+
+[sub_resource type="Sky" id="Sky_1wfm3"]
+sky_material = SubResource("ProceduralSkyMaterial_jg15l")
+
+[sub_resource type="Environment" id="Environment_nmoy0"]
+background_mode = 2
+sky = SubResource("Sky_1wfm3")
+tonemap_mode = 2
+glow_enabled = true
 
 [node name="Simple-comic-test" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_nmoy0")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.879649, -0.391032, 0.270763, 0, 0.569279, 0.822144, -0.475624, -0.723198, 0.500766, 0, 0, 0)
+shadow_enabled = true
+shadow_bias = 0.0
+
+[node name="Barbarian" parent="." instance=ExtResource("1_elp5o")]
