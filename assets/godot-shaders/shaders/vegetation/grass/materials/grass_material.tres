@@ -1,6 +1,6 @@
 [gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://lr0ftjth3vm6"]
 
-[ext_resource type="Shader" path="res://assets/godot-shaders/shaders/vegetation/grass/grass.gdshader" id="1_1vf33"]
+[ext_resource type="Shader" uid="uid://guec0dgsf8jg" path="res://assets/godot-shaders/shaders/vegetation/grass/grass.gdshader" id="1_1vf33"]
 
 [resource]
 render_priority = 1

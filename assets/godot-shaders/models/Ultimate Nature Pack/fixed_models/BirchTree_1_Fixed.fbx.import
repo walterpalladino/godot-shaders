@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://bksjufoibrmup"
-path="res://.godot/imported/Billboards-v0.2.fbx-e35965770e6b6cbe23c3ecafb2c04744.scn"
+uid="uid://qmyrq0u0pqo1"
+path="res://.godot/imported/BirchTree_1_Fixed.fbx-79a64cec4f49d194a827817fbdd7573e.scn"
 
 [deps]
 
-source_file="res://assets/godot-shaders/shaders/vegetation/grass/meshes/Billboards-v0.2.fbx"
-dest_files=["res://.godot/imported/Billboards-v0.2.fbx-e35965770e6b6cbe23c3ecafb2c04744.scn"]
+source_file="res://assets/godot-shaders/models/Ultimate Nature Pack/fixed_models/BirchTree_1_Fixed.fbx"
+dest_files=["res://.godot/imported/BirchTree_1_Fixed.fbx-79a64cec4f49d194a827817fbdd7573e.scn"]
 
 [params]
 
@@ -38,19 +38,16 @@ materials/extract=0
 materials/extract_format=0
 materials/extract_path=""
 _subresources={
-"meshes": {
-"Cube_005": {
-"generate/lightmap_uv": 0,
-"generate/lods": 0,
-"generate/shadow_meshes": 0,
-"lods/normal_merge_angle": 20.0,
-"save_to_file/enabled": true,
-"save_to_file/fallback_path": "res://assets/godot-shaders/shaders/vegetation/grass/meshes/grass_patches/grass_patch_triangle.res",
-"save_to_file/path": "uid://bx6mnl21o0qa1"
+"nodes": {
+"PATH:BirchTree_1_LOD1": {
+"import/skip_import": true
+},
+"PATH:BirchTree_1_LOD2": {
+"import/skip_import": true
 }
 }
 }
 fbx/importer=0
 fbx/allow_geometry_helper_nodes=false
 fbx/embedded_image_handling=1
-fbx/naming_version=1
+fbx/naming_version=2

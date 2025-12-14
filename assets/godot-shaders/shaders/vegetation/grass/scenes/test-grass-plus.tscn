@@ -1,0 +1,46 @@
+[gd_scene load_steps=3 format=3 uid="uid://bsrlrr7tw6t45"]
+
+[ext_resource type="PackedScene" uid="uid://bksjufoibrmup" path="res://assets/godot-shaders/shaders/vegetation/grass/meshes/Billboards-v0.2.fbx" id="1_fiei7"]
+[ext_resource type="Material" uid="uid://bex6c28vkuafk" path="res://assets/godot-shaders/shaders/vegetation/grass/materials/grass_textured_plusl.tres" id="2_44b0g"]
+
+[node name="Billboards-v0_2" instance=ExtResource("1_fiei7")]
+
+[node name="Light" parent="." index="0"]
+visible = false
+
+[node name="Camera" parent="." index="1"]
+visible = false
+
+[node name="Squared_Basic" parent="." index="2"]
+transform = Transform3D(-4.371139e-08, 0.99999994, 0, -1, -4.3711385e-08, 0, 0, 0, 0.99999994, -0.5, 0.5, 0)
+visible = false
+surface_material_override/0 = ExtResource("2_44b0g")
+
+[node name="Squared_Subdivided_8x8" parent="." index="3"]
+transform = Transform3D(1, 0, 0, 0, 0.99999994, 0, 0, 0, 0.99999994, 0, 0, 0)
+visible = false
+surface_material_override/0 = ExtResource("2_44b0g")
+
+[node name="Squared_Subdivided_16x8" parent="." index="4"]
+transform = Transform3D(1, 0, 0, 0, 0.99999994, 0, 0, 0, 0.99999994, 0, 0, 0)
+visible = false
+surface_material_override/0 = ExtResource("2_44b0g")
+
+[node name="Grass_Patch_Basic" parent="." index="5"]
+transform = Transform3D(1, 0, 0, 0, 0.99999994, 0, 0, 0, 0.99999994, 0, 0, 0)
+visible = false
+surface_material_override/0 = ExtResource("2_44b0g")
+
+[node name="Grass_Patch_Triangle" parent="." index="6"]
+transform = Transform3D(1.2, 0, 0, 0, 1.2, 0, 0, 0, 1.2, 0, 0, 0)
+surface_material_override/0 = ExtResource("2_44b0g")
+
+[node name="Grass_Patch_Triangle_Group_Squared" parent="." index="7"]
+transform = Transform3D(1, 0, 0, 0, 0.99999994, 0, 0, 0, 0.99999994, 0, 0, 0)
+visible = false
+surface_material_override/0 = ExtResource("2_44b0g")
+
+[node name="Grass_Patch_Faces" parent="." index="8"]
+transform = Transform3D(1, 0, 0, 0, 0.99999994, 0, 0, 0, 0.99999994, 0, 0, 0)
+visible = false
+surface_material_override/0 = ExtResource("2_44b0g")

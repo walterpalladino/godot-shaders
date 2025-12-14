@@ -1,0 +1,17 @@
+[gd_resource type="ShaderMaterial" load_steps=4 format=3 uid="uid://bex6c28vkuafk"]
+
+[ext_resource type="Shader" uid="uid://cny8xjvffd5or" path="res://assets/godot-shaders/shaders/vegetation/grass/grass_textured_plus.gdshader" id="1_jcxkq"]
+[ext_resource type="Texture2D" uid="uid://bhgote2ix4eoa" path="res://assets/godot-shaders/shaders/vegetation/grass/textures/grass_blade_001.png" id="2_jcxkq"]
+[ext_resource type="Texture2D" uid="uid://bmqlnlqo7cxra" path="res://assets/godot-shaders/shaders/vegetation/grass/textures/tiling-perlin-noise.png" id="3_72ena"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_jcxkq")
+shader_parameter/grass_texture = ExtResource("2_jcxkq")
+shader_parameter/color_top = Color(0.329412, 0.54902, 0.176471, 1)
+shader_parameter/color_bottom = Color(0.247059, 0.34902, 0.0117647, 1)
+shader_parameter/color_mix = 2.1
+shader_parameter/wind_strength = Vector2(1, 1)
+shader_parameter/wind_frequency = 10.0
+shader_parameter/noise_texture = ExtResource("3_72ena")
+shader_parameter/noise_scale = 1.0

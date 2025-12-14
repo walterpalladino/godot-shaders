@@ -1,21 +1,21 @@
 [gd_resource type="ShaderMaterial" load_steps=4 format=3 uid="uid://cpurx1bgctlgt"]
 
-[ext_resource type="Shader" path="res://assets/godot-shaders/shaders/vegetation/trees/vegetation_leaves_wind.gdshader" id="1_puusb"]
+[ext_resource type="Shader" uid="uid://vaqi50g856bf" path="res://assets/godot-shaders/shaders/vegetation/trees/vegetation_leaves_wind.gdshader" id="1_puusb"]
 [ext_resource type="Texture2D" uid="uid://bnij1orbag1jr" path="res://assets/godot-shaders/shaders/vegetation/trees/textures/BirchTree_Leaves_BW.png" id="2_8kwff"]
-[ext_resource type="Texture2D" uid="uid://d2lhv2ys8p7c6" path="res://assets/godot-shaders/shaders/water/low_poly_water/textures/tiling-perlin-noise.png" id="3_hxrd1"]
+[ext_resource type="Texture2D" uid="uid://bmqlnlqo7cxra" path="res://assets/godot-shaders/shaders/vegetation/grass/textures/tiling-perlin-noise.png" id="3_i0oi0"]
 
 [resource]
 render_priority = 0
 shader = ExtResource("1_puusb")
+shader_parameter/material_texture = ExtResource("2_8kwff")
 shader_parameter/material_scale = Vector2(1, 1)
 shader_parameter/alpha_cut_off = 0.5
 shader_parameter/color = Color(0.580392, 0.364706, 0, 1)
-shader_parameter/material_texture = ExtResource("2_8kwff")
+shader_parameter/draw_back_faces = true
 shader_parameter/gradient_color = Color(0.909804, 0.780392, 0, 1)
-shader_parameter/gradient_falloff = 13.28
-shader_parameter/wind_min_height = 0.0
-shader_parameter/wind_max_height = 2.44
-shader_parameter/wind_strength = Vector2(0.5, 0.5)
-shader_parameter/wind_swag = 2.0
-shader_parameter/wind_noise_scale = 2.0
-shader_parameter/wind_noise_texture = ExtResource("3_hxrd1")
+shader_parameter/gradient_falloff = 4.99999988824
+shader_parameter/wind_strength = Vector2(0.1, 0.1)
+shader_parameter/wind_frequency = 2.0
+shader_parameter/wind_min_height = 1.0000000149012
+shader_parameter/wind_max_height = 10.0
+shader_parameter/noise_texture = ExtResource("3_i0oi0")

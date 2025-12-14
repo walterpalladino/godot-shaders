@@ -1,0 +1,16 @@
+[gd_resource type="ShaderMaterial" load_steps=3 format=3 uid="uid://bhasdsokrmdhg"]
+
+[ext_resource type="Shader" uid="uid://dhd4eiujvx6uy" path="res://assets/godot-shaders/shaders/vegetation/wind/wind.gdshader" id="1_xmld7"]
+[ext_resource type="Texture2D" uid="uid://da0cbkrcnoax5" path="res://assets/godot-shaders/models/Ultimate Nature Pack/fixed_models/Palette-16x16-512x512-ultimate-nature.png" id="2_xmld7"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_xmld7")
+shader_parameter/material_texture = ExtResource("2_xmld7")
+shader_parameter/normal_strength = 0.0
+shader_parameter/alpha_cut_off = 0.0
+shader_parameter/color = Color(1, 1, 1, 1)
+shader_parameter/wind_strength = Vector2(0.1, 0.1)
+shader_parameter/wind_frequency = 2.0
+shader_parameter/min_height = 1.0000000149012
+shader_parameter/max_height = 10.0

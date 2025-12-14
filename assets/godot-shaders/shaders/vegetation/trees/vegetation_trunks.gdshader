@@ -24,12 +24,35 @@ uniform float max_height : hint_range(0.0, 10.0, 0.01) = 5.0f;
 
 varying float deposit_factor;
 
-#include "res://assets/godot-shaders/shaders/includes/wind.gdshaderinc"
+//#include "res://assets/godot-shaders/shaders/includes/wind.gdshaderinc"
+group_uniforms wind;
+uniform vec2 wind_strength = vec2(0.0);
+uniform float wind_frequency = 0.0f;
+uniform float wind_min_height : hint_range(0.0, 5.0, 0.1) = 1.0f;
+uniform float wind_max_height : hint_range(0.0, 10.0, 0.1) = 5.0f;
 
 
 void vertex() {
 
-	VERTEX = get_vertex_with_wind(INV_VIEW_MATRIX, VERTEX);
+	//	VERTEX = get_vertex_with_wind(INV_VIEW_MATRIX, VERTEX);
+	//	Will get the noise based on the vertex world position
+	vec3 vertex_world_position = (INV_VIEW_MATRIX * vec4(VERTEX, 1.0)).xyz;
+
+	vec3 position = VERTEX;
+
+//	position.x += wind_strength.x * sin(TIME * wind_frequency) * (1.0 - UV.y);
+//	position.z += wind_strength.y * cos(TIME * wind_frequency) * (1.0 - UV.y);
+	position.x += wind_strength.x * sin(TIME * wind_frequency) ;
+	position.z += wind_strength.y * cos(TIME * wind_frequency) ;
+
+	//	How much will affect based on height
+	float factor = 0.0;
+	if ((wind_max_height > wind_min_height) && (VERTEX.y >= wind_min_height)) {
+		factor = (VERTEX.y - wind_min_height) / (wind_max_height - wind_min_height);
+	}
+	factor = clamp(factor, 0.0, 1.0);
+
+	VERTEX = mix(VERTEX, position, factor);
 
 	//	How much will affect deposit based on height
 	deposit_factor = 0.0;

@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://xf3fqcv23fv4"]
+
+[ext_resource type="PackedScene" uid="uid://qmyrq0u0pqo1" path="res://assets/godot-shaders/models/Ultimate Nature Pack/fixed_models/BirchTree_1_Fixed.fbx" id="1_k4b5n"]
+[ext_resource type="Material" uid="uid://bhasdsokrmdhg" path="res://assets/godot-shaders/shaders/vegetation/wind/materials/ultimate-nature.tres" id="2_k4b5n"]
+
+[node name="BirchTree_1_Fixed" instance=ExtResource("1_k4b5n")]
+
+[node name="BirchTree_1_LOD0" parent="." index="0"]
+transform = Transform3D(1, 0, 0, 0, 0.99999994, 0, 0, 0, 0.99999994, 0, 0, 0)
+surface_material_override/0 = ExtResource("2_k4b5n")

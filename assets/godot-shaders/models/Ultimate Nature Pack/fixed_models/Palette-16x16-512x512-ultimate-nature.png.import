@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://u3qlqm6armrp"
-path.s3tc="res://.godot/imported/03.tga-3fec1d18d972accce37816b6c0378189.s3tc.ctex"
+uid="uid://da0cbkrcnoax5"
+path.s3tc="res://.godot/imported/Palette-16x16-512x512-ultimate-nature.png-bc82f6c4855ab6b21bc5dc7c46f42ddb.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://assets/godot-shaders/shaders/vegetation/grass/textures/grass/03.tga"
-dest_files=["res://.godot/imported/03.tga-3fec1d18d972accce37816b6c0378189.s3tc.ctex"]
+source_file="res://assets/godot-shaders/models/Ultimate Nature Pack/fixed_models/Palette-16x16-512x512-ultimate-nature.png"
+dest_files=["res://.godot/imported/Palette-16x16-512x512-ultimate-nature.png-bc82f6c4855ab6b21bc5dc7c46f42ddb.s3tc.ctex"]
 
 [params]
 

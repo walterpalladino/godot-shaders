@@ -1,14 +1,14 @@
 [gd_resource type="ShaderMaterial" load_steps=3 format=3 uid="uid://dup2jr247vvyr"]
 
-[ext_resource type="Shader" path="res://assets/godot-shaders/shaders/vegetation/grass/grass_textured.gdshader" id="1_vqyby"]
+[ext_resource type="Shader" uid="uid://dfcxn2i8aur6x" path="res://assets/godot-shaders/shaders/vegetation/grass/grass_textured.gdshader" id="1_vqyby"]
 [ext_resource type="Texture2D" uid="uid://bkc8bmuwr5b1i" path="res://assets/godot-shaders/shaders/vegetation/grass/textures/Grass_01.png" id="2_krdju"]
 
 [resource]
 render_priority = 0
 shader = ExtResource("1_vqyby")
+shader_parameter/grass_texture = ExtResource("2_krdju")
 shader_parameter/color_top = Color(0.329412, 0.54902, 0.176471, 1)
 shader_parameter/color_bottom = Color(0.247059, 0.34902, 0.0117647, 1)
 shader_parameter/color_mix = 2.1
-shader_parameter/wind_strength = Vector2(0.1, 0.1)
-shader_parameter/wind_frequency = 1.0
-shader_parameter/grass_texture = ExtResource("2_krdju")
+shader_parameter/wind_strength = Vector2(-0.1, 0.1)
+shader_parameter/wind_frequency = 1.5

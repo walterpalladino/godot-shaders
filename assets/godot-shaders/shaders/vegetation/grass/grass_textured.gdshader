@@ -1,6 +1,6 @@
 shader_type spatial;
 
-render_mode cull_disabled, unshaded, depth_draw_opaque;
+render_mode cull_back, unshaded, depth_draw_opaque;
 
 
 uniform sampler2D grass_texture : source_color, hint_default_transparent;
