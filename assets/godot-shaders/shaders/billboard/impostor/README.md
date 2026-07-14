@@ -46,15 +46,17 @@ shader's `angle_offset_deg` uniform to realign it without rebaking.
 
 ## Step 1 — Bake the Atlas
 
-1. Create a new empty scene with a `Node3D` root.
-2. Attach `impostor_baker.gd` to the root.
+1. Add a `Node3D` anywhere in any open scene (a dedicated `res://tools/`
+   scene works well, but it can live temporarily in the model's own scene).
+2. Attach `impostor_baker.gd` to it. The script is a `@tool` script — it runs
+   inside the editor, no scene execution required.
 3. Configure the exported properties in the Inspector:
 
 | Property | Meaning | Notes |
 |----------|---------|-------|
 | `source_scene_path` | Scene to bake (`.tscn`, `.glb`, `.gltf`) | Root must be a `Node3D`. |
 | `output_path` | Where the PNG atlas is written | e.g. `res://impostors/tree_atlas.png`. Used as the pre-filled suggestion when the save dialog is enabled. |
-| `ask_output_path` | Show a save dialog on run | **On by default.** A `FileDialog` opens when the scene starts; pick where to save the atlas. Cancelling aborts the bake. Turn off for unattended/repeat bakes using `output_path` directly. |
+| `ask_output_path` | Show a save dialog when baking | **On by default.** A `FileDialog` opens when you click **Bake Atlas**; pick where to save. Cancelling aborts the bake. Turn off for unattended/repeat bakes using `output_path` directly. |
 | `frame_count` | Number of views around the Y axis | 8 = visible popping, 16 = good default, 32 = very smooth. |
 | `columns` | Frames per atlas row | 16 frames / 4 columns = 4×4 grid; 8 / 8 = single horizontal strip. |
 | `frame_size` | Pixel size of each cell (square) | 256 is a good starting point; 512 for hero props. |
@@ -71,8 +73,9 @@ at the origin), and sizes the view to
 `max(height, XZ-footprint diagonal) × (1 + margin)` — the diagonal is used
 because that is the widest the model can appear as the camera circles it.
 
-4. Run the scene (**F6**). It prints progress per frame, saves the PNG, and
-   quits automatically.
+4. Click the **Bake Atlas** button at the top of the Inspector. Progress is
+   printed to the Output panel, the PNG is saved, and the FileSystem dock is
+   rescanned automatically so the atlas appears immediately.
 5. Select the generated PNG in the FileSystem dock. Recommended import
    settings: keep **Mipmaps** on for distant objects (see Troubleshooting for
    the bleeding caveat), no compression artifacts issues expected with

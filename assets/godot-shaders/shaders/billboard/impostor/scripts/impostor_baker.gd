@@ -1,10 +1,13 @@
 # impostor_baker.gd — Godot 4.7
 # Bakes a single-image impostor atlas matching impostor_y.gdshader.
+# Runs ENTIRELY INSIDE THE EDITOR — no scene execution needed.
 #
 # Usage:
-#   1. Create an empty scene with a Node3D root and attach this script.
-#   2. Set the exported properties (source scene, frame count, output path...).
-#   3. Run the scene (F6). It renders every view, writes the PNG, and quits.
+#   1. Add a Node3D anywhere in any open scene (or reuse an existing one)
+#      and attach this script.
+#   2. Configure the exported properties in the Inspector.
+#   3. Click the "Bake Atlas" button at the top of the Inspector.
+#      Progress is printed to the Output panel.
 #
 # Frame convention (matches the shader):
 #   frame 0 = camera at +Z looking toward -Z, then counterclockwise (toward +X).
@@ -16,14 +19,17 @@
 # the computed ortho_size — set your QuadMesh size to that value for a 1:1
 # world-scale match.
 
+@tool
 extends Node3D
+
+@export_tool_button("Bake Atlas", "ImageTexture") var bake_button: Callable = _start_bake
 
 @export_file("*.tscn", "*.glb", "*.gltf") var source_scene_path: String = "res://model.tscn"
 ## Fallback / default output path. When ask_output_path is enabled, a save
-## dialog opens on run and this value is used as the pre-filled suggestion.
+## dialog opens on bake and this value is used as the pre-filled suggestion.
 @export var output_path: String = "res://impostor_atlas.png"
-## Show a file save dialog when the scene runs instead of using output_path
-## directly. Cancelling the dialog aborts the bake.
+## Show a file save dialog when baking instead of using output_path directly.
+## Cancelling the dialog aborts the bake.
 @export var ask_output_path: bool = true
 @export_range(4, 128) var frame_count: int = 16
 @export_range(1, 32) var columns: int = 4
@@ -42,26 +48,39 @@ extends Node3D
 @export var ortho_size: float = 4.0
 @export var look_at_height: float = 0.0
 
-
+var _is_baking: bool = false
 var _dialog_result: String = ""
 var _dialog_done: bool = false
 
 
-func _ready() -> void:
+func _start_bake() -> void:
+	if _is_baking:
+		push_warning("A bake is already in progress.")
+		return
+	_run_bake()
+
+
+## Fire-and-forget coroutine driving the whole bake, so the tool button
+## callback itself can return immediately.
+func _run_bake() -> void:
+	_is_baking = true
 	if ask_output_path:
 		var selected: String = await _prompt_output_path()
 		if selected.is_empty():
 			print("Bake cancelled: no output file selected.")
-			get_tree().quit()
+			_is_baking = false
 			return
 		output_path = selected
 	await _bake()
-	get_tree().quit()
+	_is_baking = false
 
 
 ## Opens a save dialog and returns the chosen path, or an empty String if the
 ## user cancelled. The .png extension is appended if missing.
 func _prompt_output_path() -> String:
+	_dialog_result = ""
+	_dialog_done = false
+
 	var dialog: FileDialog = FileDialog.new()
 	dialog.title = "Save Impostor Atlas"
 	dialog.file_mode = FileDialog.FILE_MODE_SAVE_FILE
@@ -71,7 +90,7 @@ func _prompt_output_path() -> String:
 	dialog.file_selected.connect(_on_dialog_file_selected)
 	dialog.canceled.connect(_on_dialog_canceled)
 	add_child(dialog)
-	dialog.popup_centered_ratio(0.7)
+	dialog.popup_centered_ratio(0.5)
 
 	while not _dialog_done:
 		await get_tree().process_frame
@@ -101,7 +120,16 @@ func _bake() -> void:
 	viewport.msaa_3d = Viewport.MSAA_4X
 	add_child(viewport)
 
-	var model: Node3D = load(source_scene_path).instantiate() as Node3D
+	var source: PackedScene = load(source_scene_path) as PackedScene
+	if source == null:
+		push_error("Could not load source scene: %s" % source_scene_path)
+		viewport.queue_free()
+		return
+	var model: Node3D = source.instantiate() as Node3D
+	if model == null:
+		push_error("Source scene root is not a Node3D: %s" % source_scene_path)
+		viewport.queue_free()
+		return
 	viewport.add_child(model)
 
 	var orbit_center: Vector3 = Vector3(0.0, look_at_height, 0.0)
@@ -113,6 +141,7 @@ func _bake() -> void:
 		var aabb: AABB = _compute_model_aabb(model)
 		if aabb.size == Vector3.ZERO:
 			push_error("auto_frame: no VisualInstance3D found in the source scene.")
+			viewport.queue_free()
 			return
 		var center: Vector3 = aabb.get_center()
 		# Worst-case width as the camera orbits = diagonal of the XZ footprint.
@@ -146,7 +175,7 @@ func _bake() -> void:
 				orbit_center.z + cos(angle) * distance)
 		camera.look_at(orbit_center, Vector3.UP)
 
-		# Let the viewport render the new camera transform.
+		# Let the (editor) rendering loop draw the new camera transform.
 		await RenderingServer.frame_post_draw
 		await RenderingServer.frame_post_draw
 
@@ -159,12 +188,18 @@ func _bake() -> void:
 				Vector2i(col * frame_size, row * frame_size))
 		print("Baked frame %d / %d" % [i + 1, frame_count])
 
+	viewport.queue_free()
+
 	var err: Error = atlas.save_png(output_path)
 	if err != OK:
 		push_error("Failed to save atlas: %s" % error_string(err))
-	else:
-		print("Atlas saved to %s (%d x %d, %d frames, %d columns)" % [
-				output_path, atlas.get_width(), atlas.get_height(), frame_count, columns])
+		return
+	print("Atlas saved to %s (%d x %d, %d frames, %d columns)" % [
+			output_path, atlas.get_width(), atlas.get_height(), frame_count, columns])
+
+	# Make the new/updated file show up in the FileSystem dock immediately.
+	if Engine.is_editor_hint():
+		EditorInterface.get_resource_filesystem().scan()
 
 
 ## Merges the AABBs of every VisualInstance3D in the model, in the model's
