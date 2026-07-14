@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://bbddtevqtgn36"]
+
+[ext_resource type="PackedScene" uid="uid://c7if34iqlsf27" path="res://assets/godot-shaders/models/Ultimate Stylized Nature/BirchTree_1.gltf" id="1_cy8g4"]
+[ext_resource type="Material" uid="uid://nc5nn8oopqeg" path="res://assets/godot-shaders/models/Ultimate Stylized Nature/materials/birch_trunk.tres" id="2_nee2s"]
+[ext_resource type="Material" uid="uid://bhogsoqu7ie4x" path="res://assets/godot-shaders/models/Ultimate Stylized Nature/materials/birch_leaves.tres" id="3_tsdkk"]
+
+[node name="BirchTree_1" unique_id=1818663729 instance=ExtResource("1_cy8g4")]
+
+[node name="BirchTree_12" parent="." index="0"]
+surface_material_override/0 = ExtResource("2_nee2s")
+surface_material_override/1 = ExtResource("3_tsdkk")

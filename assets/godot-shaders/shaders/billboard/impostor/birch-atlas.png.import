@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dbwibadi7hwwe"
-path.s3tc="res://.godot/imported/BirchTree_Leaves.png-ce249d312343c7c761e8854733d6a49c.s3tc.ctex"
+uid="uid://cg0pt56y58y20"
+path.s3tc="res://.godot/imported/birch-atlas.png-b3f10421307f6053f45044b1bad3e6ec.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://assets/godot-shaders/models/Ultimate Stylized Nature/Textures/BirchTree_Leaves.png"
-dest_files=["res://.godot/imported/BirchTree_Leaves.png-ce249d312343c7c761e8854733d6a49c.s3tc.ctex"]
+source_file="res://assets/godot-shaders/shaders/billboard/impostor/birch-atlas.png"
+dest_files=["res://.godot/imported/birch-atlas.png-b3f10421307f6053f45044b1bad3e6ec.s3tc.ctex"]
 
 [params]
 

@@ -1,0 +1,9 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://cogdmgrsf7yu2"]
+
+[ext_resource type="Shader" uid="uid://ygfibf4fu02e" path="res://assets/godot-shaders/shaders/fxs/scan_lines/simple-scan-lines-shader.gdshader" id="1_ijgfs"]
+
+[resource]
+shader = ExtResource("1_ijgfs")
+shader_parameter/scanline_thickness = 4.00000018674012
+shader_parameter/pixel_interval = 12.0000005225
+shader_parameter/scanline_color = Color(0.07058824, 0.07058824, 0.07058824, 0.4509804)

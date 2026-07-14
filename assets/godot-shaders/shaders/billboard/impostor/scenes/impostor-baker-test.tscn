@@ -1,0 +1,19 @@
+[gd_scene format=3 uid="uid://b4kp5n6xjynus"]
+
+[ext_resource type="Script" uid="uid://dgtpub44jp2th" path="res://assets/godot-shaders/shaders/billboard/impostor/scripts/impostor_baker.gd" id="1_ksl8d"]
+
+[node name="ImpostorTest" type="Node3D" unique_id=1385091934]
+script = ExtResource("1_ksl8d")
+source_scene_path = "uid://bbddtevqtgn36"
+output_path = "res://assets/godot-shaders/shaders/billboard/impostor/birch-atlas.png"
+ask_output_path = false
+frame_count = 8
+columns = 8
+camera_distance = 24.0
+camera_height = 16.0
+look_at_height = 6.0
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=99874796]
+transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545, -0.50000006, 0.75, -0.43301266, 0, 0, 0)
+shadow_enabled = true
+directional_shadow_max_distance = 1.0

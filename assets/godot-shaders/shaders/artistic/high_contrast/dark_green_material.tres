@@ -1,4 +1,4 @@
-[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://5s25rs28lrbi"]
+[gd_resource type="ShaderMaterial" format=3 uid="uid://5s25rs28lrbi"]
 
 [ext_resource type="Shader" uid="uid://ccsjxx2xr5ww1" path="res://assets/godot-shaders/shaders/artistic/high_contrast/high_contrast_shader.gdshader" id="1_tn03f"]
 

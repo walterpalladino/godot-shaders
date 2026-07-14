@@ -20,8 +20,9 @@ group_uniforms general;
 uniform float roughness : hint_range(0.0, 1.0, 0.1) = 1.0;
 uniform float specular : hint_range(0.0, 1.0, 0.1) = 0.0;
 
-#include "res://assets/godot-shaders/shaders/includes/noise.gdshaderinc"
-
+//#include "res://assets/godot-shaders/shaders/includes/noise.gdshaderinc"
+uniform sampler2D layer_texture : source_color,filter_linear_mipmap,repeat_enable;
+uniform float layer_texture_scale = 1.0;
 
 void vertex() {
 	// Called for every vertex the material is visible on.
@@ -40,9 +41,11 @@ void fragment() {
 	vec2 uv = uv_projected_coordinate / top_texture_scale;
 	vec2 uv_mix = uv_projected_coordinate / top_mix_texture_scale;
 
-	float noise = get_noise(scale * vec3(uv_projected_coordinate * 0.01, seed)).g;
+//	float noise = get_noise(scale * vec3(uv_projected_coordinate * 0.01, seed)).g;
+	float noise = texture(layer_texture, uv_projected_coordinate * layer_texture_scale).r;
 	//noise = step(noise, top_texture_mix_strength);
-	noise = smoothstep(noise * 0.95, noise * 1.05, top_texture_mix_strength);
+	//noise = smoothstep(noise * 0.95, noise * 1.05, top_texture_mix_strength);
+	noise = pow(noise, top_texture_mix_strength * 10.0);
 	noise = clamp(noise, 0.0, 1.0);
 
 	//	Get the texture color

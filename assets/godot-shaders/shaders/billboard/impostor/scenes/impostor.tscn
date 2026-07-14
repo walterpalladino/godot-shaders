@@ -1,0 +1,12 @@
+[gd_scene format=3 uid="uid://cnakhnjf36irs"]
+
+[ext_resource type="Material" uid="uid://ci3q7be4p345n" path="res://assets/godot-shaders/shaders/billboard/impostor/materials/birch-impostor.tres" id="1_qvagw"]
+
+[sub_resource type="QuadMesh" id="QuadMesh_5yvxn"]
+
+[node name="Impostor" type="Node3D" unique_id=1070488305]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=933424310]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+mesh = SubResource("QuadMesh_5yvxn")
+surface_material_override/0 = ExtResource("1_qvagw")

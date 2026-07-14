@@ -1,0 +1,9 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://bhogsoqu7ie4x"]
+
+[ext_resource type="Texture2D" uid="uid://dbwibadi7hwwe" path="res://assets/godot-shaders/models/Ultimate Stylized Nature/Textures/BirchTree_Leaves.png" id="1_odxbx"]
+
+[resource]
+transparency = 2
+alpha_scissor_threshold = 0.5
+alpha_antialiasing_mode = 0
+albedo_texture = ExtResource("1_odxbx")

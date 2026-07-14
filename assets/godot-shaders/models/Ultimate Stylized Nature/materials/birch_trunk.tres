@@ -1,0 +1,6 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://nc5nn8oopqeg"]
+
+[ext_resource type="Texture2D" uid="uid://cycyuysimur3c" path="res://assets/godot-shaders/models/Ultimate Stylized Nature/Textures/BirchTree_Bark.png" id="1_5jigb"]
+
+[resource]
+albedo_texture = ExtResource("1_5jigb")

@@ -1,0 +1,45 @@
+[gd_scene load_steps=4 format=3 uid="uid://fpkxjt2t4t0t"]
+
+[ext_resource type="Material" uid="uid://cogdmgrsf7yu2" path="res://assets/godot-shaders/shaders/fxs/scan_lines/materials/scan-lines-material.tres" id="1_0ds1y"]
+[ext_resource type="Texture2D" uid="uid://bx53jfco1y3uo" path="res://icon.svg" id="2_47t6s"]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_0ds1y"]
+
+[node name="TestScanLines" type="Node2D"]
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 1024.0
+offset_bottom = 768.0
+
+[node name="FX" type="TextureRect" parent="Control"]
+z_index = 1
+material = ExtResource("1_0ds1y")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 1.0
+offset_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("CanvasTexture_0ds1y")
+
+[node name="TextureRect" type="TextureRect" parent="Control"]
+z_index = -1
+layout_mode = 0
+offset_left = 378.0
+offset_top = 148.0
+offset_right = 704.0
+offset_bottom = 466.0
+texture = ExtResource("2_47t6s")
+
+[node name="Label" type="Label" parent="Control"]
+layout_mode = 0
+offset_right = 1024.0
+offset_bottom = 400.0
+theme_override_colors/font_color = Color(0.13333334, 0.6627451, 0.34509805, 1)
+theme_override_font_sizes/font_size = 24
+text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+autowrap_mode = 2

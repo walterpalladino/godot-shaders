@@ -1,0 +1,16 @@
+[gd_resource type="ShaderMaterial" format=3 uid="uid://ci3q7be4p345n"]
+
+[ext_resource type="Shader" uid="uid://cbxhmujo7dp5i" path="res://assets/godot-shaders/shaders/billboard/impostor/impostor_y.gdshader" id="1_qtk1i"]
+[ext_resource type="Texture2D" uid="uid://cg0pt56y58y20" path="res://assets/godot-shaders/shaders/billboard/impostor/birch-atlas.png" id="2_a6hqm"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_qtk1i")
+shader_parameter/atlas = ExtResource("2_a6hqm")
+shader_parameter/roughness = 1.0
+shader_parameter/specular = 0.0
+shader_parameter/frames = 8
+shader_parameter/columns = 8
+shader_parameter/angle_offset_deg = 0.0
+shader_parameter/blend_frames = true
+shader_parameter/alpha_clip = 0.5
