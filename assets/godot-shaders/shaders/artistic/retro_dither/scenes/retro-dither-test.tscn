@@ -1,0 +1,29 @@
+[gd_scene format=3 uid="uid://bwaowgyrg3waf"]
+
+[ext_resource type="Material" uid="uid://clu7qbjrdx3ll" path="res://assets/godot-shaders/shaders/artistic/retro_dither/materials/retro-dither-red.tres" id="1_65mq2"]
+[ext_resource type="Material" uid="uid://b8bt60yic5tst" path="res://assets/godot-shaders/shaders/artistic/retro_dither/materials/retro-dither-green.tres" id="1_ng844"]
+
+[sub_resource type="QuadMesh" id="QuadMesh_5yvxn"]
+size = Vector2(100, 100)
+orientation = 1
+
+[sub_resource type="BoxMesh" id="BoxMesh_5yvxn"]
+size = Vector3(2, 2, 2)
+
+[node name="RetroDitherTest" type="Node3D" unique_id=210120424]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=444503841]
+transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545, -0.50000006, 0.75, -0.43301266, 0, 0, 0)
+shadow_enabled = true
+directional_shadow_max_distance = 1.0
+
+[node name="Env" type="Node3D" parent="." unique_id=372444918]
+
+[node name="Ground" type="MeshInstance3D" parent="Env" unique_id=1317818475]
+mesh = SubResource("QuadMesh_5yvxn")
+surface_material_override/0 = ExtResource("1_ng844")
+
+[node name="Red Cube" type="MeshInstance3D" parent="Env" unique_id=545601491]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+mesh = SubResource("BoxMesh_5yvxn")
+surface_material_override/0 = ExtResource("1_65mq2")

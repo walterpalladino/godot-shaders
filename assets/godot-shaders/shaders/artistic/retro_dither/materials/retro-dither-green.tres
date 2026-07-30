@@ -1,0 +1,14 @@
+[gd_resource type="ShaderMaterial" format=3 uid="uid://b8bt60yic5tst"]
+
+[ext_resource type="Shader" uid="uid://b13t3xd7p2efa" path="res://assets/godot-shaders/shaders/artistic/retro_dither/retro_dither.gdshader" id="1_wp6ej"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_wp6ej")
+shader_parameter/base_color = Color(0.19215687, 0.5686275, 0.043137256, 1)
+shader_parameter/shadow_color = Color(0, 0, 0, 1)
+shader_parameter/pixel_size = 8.0000001043084
+shader_parameter/invert_direction = true
+shader_parameter/use_custom_direction = false
+shader_parameter/custom_direction = Vector3(0, 0, 1)
+shader_parameter/color_cut_off = 0.1390000066025
