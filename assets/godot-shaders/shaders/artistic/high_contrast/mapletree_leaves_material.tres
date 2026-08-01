@@ -1,6 +1,6 @@
 [gd_resource type="ShaderMaterial" format=3 uid="uid://dleu7ql7hqtdf"]
 
-[ext_resource type="Shader" uid="uid://ccsjxx2xr5ww1" path="res://assets/godot-shaders/shaders/artistic/high_contrast/high_contrast_shader.gdshader" id="1_7e4ba"]
+[ext_resource type="Shader" uid="uid://ccsjxx2xr5ww1" path="res://assets/godot-shaders/shaders/artistic/high_contrast/high_contrast.gdshader" id="1_7e4ba"]
 [ext_resource type="Texture2D" uid="uid://cm0jji8pb2v8y" path="res://assets/godot-shaders/models/Ultimate Stylized Nature/Textures/MapleTree_Leaves.png" id="2_bc6yn"]
 
 [resource]
@@ -8,9 +8,9 @@ render_priority = 0
 shader = ExtResource("1_7e4ba")
 shader_parameter/material_texture = ExtResource("2_bc6yn")
 shader_parameter/alpha_cut_off = 0.5
-shader_parameter/color = Color(0.917647, 0.917647, 0.917647, 1)
+shader_parameter/color = Color(0.6, 0.6, 0.6, 1)
 shader_parameter/dark_color = Color(0, 0, 0, 1)
-shader_parameter/color_cut_off = 0.04
-shader_parameter/invert_direction = true
+shader_parameter/color_cut_off = 0.50000002375
+shader_parameter/invert_direction = false
 shader_parameter/use_custom_direction = true
-shader_parameter/custom_direction = Vector3(0.1, -0.25, 1)
+shader_parameter/light_angle_deg = Vector3(-60, 150, 0)
