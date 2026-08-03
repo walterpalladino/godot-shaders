@@ -4,19 +4,22 @@ render_mode diffuse_burley;
 
 
 group_uniforms top_texture;
-uniform sampler2D top_texture : source_color,filter_linear_mipmap,repeat_enable;
+uniform vec3 top_color : source_color = vec3(1.0);
+uniform sampler2D top_texture : source_color,filter_linear_mipmap,repeat_enable, hint_default_white;
 uniform sampler2D top_normal : hint_roughness_normal,filter_linear_mipmap,repeat_enable;
 uniform float top_normal_strength = 1.0;
 uniform vec2 top_texture_scale = vec2(1.0);
 
 group_uniforms bottom_texture;
-uniform sampler2D bottom_texture : source_color,filter_linear_mipmap,repeat_enable;
+uniform vec3 bottom_color : source_color = vec3(1.0);
+uniform sampler2D bottom_texture : source_color,filter_linear_mipmap,repeat_enable, hint_default_white;
 uniform sampler2D bottom_normal : hint_roughness_normal,filter_linear_mipmap,repeat_enable;
 uniform float bottom_normal_strength = 1.0;
 uniform vec2 bottom_texture_scale = vec2(1.0);
 
 group_uniforms side_texture;
-uniform sampler2D side_texture : source_color,filter_linear_mipmap,repeat_enable;
+uniform vec3 side_color : source_color = vec3(1.0);
+uniform sampler2D side_texture : source_color,filter_linear_mipmap,repeat_enable, hint_default_white;
 uniform sampler2D side_normal : hint_roughness_normal,filter_linear_mipmap,repeat_enable;
 uniform float side_normal_strength = 1.0;
 uniform vec2 side_texture_scale = vec2(1.0);
@@ -58,7 +61,7 @@ void fragment() {
 	vec2 uv = uv_projected_coordinate / top_texture_scale;
 
 	//	Get the texture color
-	vec3 albedo_tex_top = texture(top_texture, uv).rgb;
+	vec3 albedo_tex_top = top_color * texture(top_texture, uv).rgb;
 	vec3 normal_tex_top = texture(top_normal, uv).rgb;
 
 	color = albedo_tex_top * top_face_blend;
@@ -74,7 +77,7 @@ void fragment() {
 	uv = uv_projected_coordinate / bottom_texture_scale;
 
 	//	Get the texture color
-	vec3 albedo_tex_bottom = texture(bottom_texture, uv).rgb;
+	vec3 albedo_tex_bottom = bottom_color * texture(bottom_texture, uv).rgb;
 	vec3 normal_tex_bottom = texture(bottom_normal, uv).rgb;
 
 	color += albedo_tex_bottom * bottom_face_blend;
@@ -91,7 +94,7 @@ void fragment() {
 	uv = uv_projected_coordinate / side_texture_scale;
 
 	//	Get the texture color
-	vec3 albedo_tex_side_x = texture(side_texture, uv).rgb;
+	vec3 albedo_tex_side_x = side_color *  texture(side_texture, uv).rgb;
 	vec3 normal_tex_side_x = texture(side_normal, uv).rgb;
 
 	color += albedo_tex_side_x * side_x_face_blend;
@@ -107,7 +110,7 @@ void fragment() {
 	uv = uv_projected_coordinate / side_texture_scale;
 
 	//	Get the texture color
-	vec3 albedo_tex_side_z = texture(side_texture, uv).rgb;
+	vec3 albedo_tex_side_z = side_color * texture(side_texture, uv).rgb;
 	vec3 normal_tex_side_z = texture(side_normal, uv).rgb;
 
 	color += albedo_tex_side_z * side_z_face_blend;
