@@ -1,0 +1,17 @@
+[gd_resource type="ShaderMaterial" format=3 uid="uid://dk3fj4r88bi7i"]
+
+[ext_resource type="Shader" uid="uid://b0npdpq5fu3oo" path="res://assets/godot-shaders/shaders/artistic/ao/ssao.gdshader" id="1_2ewon"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_2ewon")
+shader_parameter/radius = 0.75
+shader_parameter/bias = 0.02
+shader_parameter/strength = 1.0
+shader_parameter/sample_count = 12
+shader_parameter/fade_start = 40.0
+shader_parameter/fade_end = 90.0
+shader_parameter/bands = 4
+shader_parameter/dither_bands = true
+shader_parameter/occluded_color = Color(0, 0, 0, 1)
+shader_parameter/debug_ao = false

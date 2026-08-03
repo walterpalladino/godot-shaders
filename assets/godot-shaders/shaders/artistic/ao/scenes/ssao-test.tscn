@@ -1,0 +1,78 @@
+[gd_scene format=3 uid="uid://67oe0w7srog5"]
+
+[ext_resource type="Material" uid="uid://dk3fj4r88bi7i" path="res://assets/godot-shaders/shaders/artistic/ao/materials/ssao.tres" id="1_exvaw"]
+[ext_resource type="PackedScene" uid="uid://qbyn3jihphc" path="res://assets/godot-shaders/models/Ultimate Nature Pack/models/PalmTree_1.fbx" id="2_tnkpg"]
+[ext_resource type="PackedScene" uid="uid://dkj8u0rh01o0l" path="res://assets/godot-shaders/models/Ultimate Nature Pack/models/BirchTree_1.fbx" id="3_nf0mh"]
+
+[sub_resource type="QuadMesh" id="QuadMesh_tgq31"]
+size = Vector2(2, 2)
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_tciy2"]
+sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+
+[sub_resource type="Sky" id="Sky_7q12x"]
+sky_material = SubResource("ProceduralSkyMaterial_tciy2")
+
+[sub_resource type="Environment" id="Environment_wmvqj"]
+background_mode = 2
+sky = SubResource("Sky_7q12x")
+tonemap_mode = 2
+glow_enabled = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_b85bc"]
+albedo_color = Color(0.270588, 0.388235, 0.105882, 1)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_pbjx4"]
+material = SubResource("StandardMaterial3D_b85bc")
+size = Vector2(10, 10)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_y2efu"]
+albedo_color = Color(0.431373, 0.619608, 1, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_lxh60"]
+material = SubResource("StandardMaterial3D_y2efu")
+size = Vector3(1, 2, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_12gsp"]
+albedo_color = Color(0.921569, 0.658824, 0.239216, 1)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_nvkqn"]
+material = SubResource("StandardMaterial3D_12gsp")
+bottom_radius = 1.0
+height = 1.0
+
+[node name="SsaoTest" type="Node3D" unique_id=2016489605]
+
+[node name="Camera3D" type="Camera3D" parent="." unique_id=406954234]
+transform = Transform3D(1, -3.48787e-16, 3.48786e-16, 2.22945e-16, 0.950358, 0.311158, -4.4e-16, -0.311158, 0.950358, 2.08165e-12, 1.701, 4.6152)
+
+[node name="ssao_projection_canvas" type="MeshInstance3D" parent="Camera3D" unique_id=432817393]
+transform = Transform3D(1, 3.48787e-16, -3.48787e-16, -3.48787e-16, 1, 3.48787e-16, 3.48787e-16, -3.48787e-16, 1, 2.08165e-12, 2.08165e-12, -0.1)
+mesh = SubResource("QuadMesh_tgq31")
+skeleton = NodePath("../..")
+surface_material_override/0 = ExtResource("1_exvaw")
+
+[node name="PalmTree_1" parent="." unique_id=1202799405 instance=ExtResource("2_tnkpg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.85386, 0, -1.33347)
+
+[node name="BirchTree_1" parent="." unique_id=1388445198 instance=ExtResource("3_nf0mh")]
+transform = Transform3D(0.632908, 0, -0.774227, 0, 1, 0, 0.774227, 0, 0.632908, -1.70537, 0, 1.33508)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1561359315]
+transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.749999, -0.43301, 0, 0, 0)
+shadow_enabled = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1643059606]
+environment = SubResource("Environment_wmvqj")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1688379880]
+mesh = SubResource("PlaneMesh_pbjx4")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="." unique_id=1689788487]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.08165e-12, 1, 2.08165e-12)
+mesh = SubResource("BoxMesh_lxh60")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="." unique_id=1978668098]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.71653, 0.5, -0.52426)
+mesh = SubResource("CylinderMesh_nvkqn")

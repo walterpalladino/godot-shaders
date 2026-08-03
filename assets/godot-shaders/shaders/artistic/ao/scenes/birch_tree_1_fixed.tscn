@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://vjgscmhrw8sb"]
+
+[ext_resource type="PackedScene" uid="uid://qmyrq0u0pqo1" path="res://assets/godot-shaders/models/Ultimate Nature Pack/fixed_models/BirchTree_1_Fixed.fbx" id="1_stl1n"]
+[ext_resource type="Material" uid="uid://bxkrf5twrky0m" path="res://assets/godot-shaders/shaders/artistic/ao/materials/ao-test.tres" id="2_37q6y"]
+
+[node name="BirchTree_1_Fixed" unique_id=1986699608 instance=ExtResource("1_stl1n")]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." index="0" unique_id=1304707568]
+transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545, -0.50000006, 0.75, -0.43301266, 0, 0, 0)
+light_energy = 2.402
+shadow_enabled = true
+directional_shadow_max_distance = 1.0
+
+[node name="BirchTree_1_LOD0" parent="." index="1"]
+transform = Transform3D(1, 0, 0, 0, 0.99999994, 0, 0, 0, 0.99999994, 0, 0, 0)
+surface_material_override/0 = ExtResource("2_37q6y")

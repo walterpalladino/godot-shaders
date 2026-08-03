@@ -1,0 +1,9 @@
+[gd_resource type="ShaderMaterial" format=3 uid="uid://bxkrf5twrky0m"]
+
+[ext_resource type="Shader" uid="uid://h0j84xrf2exp" path="res://assets/godot-shaders/shaders/artistic/ao/ao.gdshader" id="1_lghnf"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_lghnf")
+shader_parameter/base_color = Color(0.5882353, 0.64705884, 0.14509805, 1)
+shader_parameter/ao_intensity = 0.50000002375
