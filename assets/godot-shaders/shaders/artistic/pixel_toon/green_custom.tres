@@ -1,4 +1,4 @@
-[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://cmqwrjuertyda"]
+[gd_resource type="ShaderMaterial" format=3 uid="uid://cmqwrjuertyda"]
 
 [ext_resource type="Shader" uid="uid://4rryk50b6pff" path="res://assets/godot-shaders/shaders/artistic/pixel_toon/custom_toon.gdshader" id="1_lclqu"]
 

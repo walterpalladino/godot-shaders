@@ -1,6 +1,7 @@
-[gd_scene load_steps=16 format=3 uid="uid://dxl6nps2umjc"]
+[gd_scene format=3 uid="uid://dxl6nps2umjc"]
 
 [ext_resource type="Material" uid="uid://b3xmjnap7lm41" path="res://assets/godot-shaders/shaders/artistic/pixel_toon/blue.tres" id="1_c8doi"]
+[ext_resource type="Material" uid="uid://d0scui1b3xac8" path="res://assets/godot-shaders/shaders/artistic/pixel_toon/green.tres" id="1_wy1mh"]
 [ext_resource type="Material" uid="uid://cvbyrxaqpfvf8" path="res://assets/godot-shaders/shaders/artistic/pixel_toon/yellow.tres" id="2_wy1mh"]
 [ext_resource type="Material" uid="uid://b6igf1jpqoq5w" path="res://assets/godot-shaders/shaders/artistic/pixelation/pixelation_material.tres" id="3_p7f3e"]
 [ext_resource type="Material" uid="uid://cfty76bhbarwi" path="res://assets/godot-shaders/shaders/artistic/pixel_toon/red.tres" id="4_p7f3e"]
@@ -47,38 +48,40 @@ size = Vector2(2, 2)
 radius = 1.0
 height = 2.0
 
-[node name="PixelationTest" type="Node3D"]
+[node name="PixelationTest" type="Node3D" unique_id=1785703767]
 
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1419909685]
 transform = Transform3D(0.0174523, 0.681894, -0.731242, 0, 0.731354, 0.681998, 0.999848, -0.0119025, 0.0127638, 1.3981, 0, -1.60061)
 shadow_enabled = true
+shadow_blur = 0.0
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1928067594]
 environment = SubResource("Environment_qdl8e")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1102175779]
 mesh = SubResource("PlaneMesh_jt42u")
+surface_material_override/0 = ExtResource("1_wy1mh")
 
-[node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="." unique_id=844840088]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.08165e-12, 1, 2.08165e-12)
 mesh = SubResource("BoxMesh_evfov")
 surface_material_override/0 = ExtResource("1_c8doi")
 
-[node name="MeshInstance3D3" type="MeshInstance3D" parent="."]
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="." unique_id=318521369]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.71653, 0.5, -0.52426)
 mesh = SubResource("CylinderMesh_el0c2")
 surface_material_override/0 = ExtResource("2_wy1mh")
 
-[node name="Camera3D" type="Camera3D" parent="."]
+[node name="Camera3D" type="Camera3D" parent="." unique_id=1353491333]
 transform = Transform3D(0.965926, -0.0194059, 0.25809, 0, 0.997185, 0.0749787, -0.258819, -0.0724239, 0.963207, 1.96, 1.701, 3.205)
 
-[node name="fx_projection_canvas" type="MeshInstance3D" parent="Camera3D"]
+[node name="fx_projection_canvas" type="MeshInstance3D" parent="Camera3D" unique_id=236253685]
 transform = Transform3D(1, 3.48787e-16, -3.48787e-16, -3.48787e-16, 1, 3.48787e-16, 3.48787e-16, -3.48787e-16, 1, 2.08165e-12, 2.08165e-12, -0.1)
 mesh = SubResource("QuadMesh_ou0fs")
 skeleton = NodePath("../..")
 surface_material_override/0 = ExtResource("3_p7f3e")
 
-[node name="MeshInstance3D4" type="MeshInstance3D" parent="."]
+[node name="MeshInstance3D4" type="MeshInstance3D" parent="." unique_id=1872073786]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.09634, 2.63349, -1.12188)
 mesh = SubResource("SphereMesh_768da")
 surface_material_override/0 = ExtResource("4_p7f3e")

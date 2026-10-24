@@ -68,3 +68,10 @@ void fragment() {
 	//
 	ALBEDO = diffuse_color + custom_specular;
 }
+
+//	Test enaable light removing unshaded
+uniform float shadow_opacity : hint_range(0.0, 1.0) = 0.5;
+void light() {
+    float shadow_factor = mix(shadow_opacity, 1.0, step(0.001, ATTENUATION));
+    DIFFUSE_LIGHT = vec3(shadow_factor);
+}

@@ -1,4 +1,4 @@
-[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://b6igf1jpqoq5w"]
+[gd_resource type="ShaderMaterial" format=3 uid="uid://b6igf1jpqoq5w"]
 
 [ext_resource type="Shader" uid="uid://d3wgwd8s0usxj" path="res://assets/godot-shaders/shaders/artistic/pixelation/pixelation.gdshader" id="1_aymms"]
 

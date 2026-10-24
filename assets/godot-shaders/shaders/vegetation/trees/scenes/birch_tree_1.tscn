@@ -1,10 +1,10 @@
-[gd_scene load_steps=4 format=3 uid="uid://bhtwewiepbewy"]
+[gd_scene format=3 uid="uid://bhtwewiepbewy"]
 
 [ext_resource type="PackedScene" uid="uid://cx47id2gcier0" path="res://assets/godot-shaders/shaders/vegetation/trees/models/BirchTree_1.fbx" id="1_6qtkt"]
 [ext_resource type="Material" uid="uid://ducyd6nus426v" path="res://assets/godot-shaders/shaders/vegetation/trees/materials/birch_tree_trunk.tres" id="2_72tgs"]
 [ext_resource type="Material" uid="uid://cpurx1bgctlgt" path="res://assets/godot-shaders/shaders/vegetation/trees/materials/birch_tree_leaves.tres" id="3_e4j2i"]
 
-[node name="BirchTree_1" instance=ExtResource("1_6qtkt")]
+[node name="BirchTree_1" unique_id=2123752922 instance=ExtResource("1_6qtkt")]
 
 [node name="BirchTree_1" parent="." index="0"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
