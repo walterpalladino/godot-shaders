@@ -1,14 +1,12 @@
 shader_type spatial;
 
-render_mode unshaded, cull_disabled, blend_mix, depth_draw_opaque, diffuse_burley, specular_schlick_ggx;
+render_mode cull_back, blend_mix, depth_draw_opaque, diffuse_burley, specular_schlick_ggx;
 
 group_uniforms main;
 uniform sampler2D material_texture : source_color,filter_linear_mipmap;
 uniform vec2 material_scale = vec2(1.0);
 uniform float alpha_cut_off : hint_range(0.0, 1.0, 0.01) = 0.5;
 uniform vec3 color : source_color;
-
-uniform bool draw_back_faces = false;
 
 group_uniforms gradient;
 uniform vec3 gradient_color : source_color;
@@ -30,16 +28,13 @@ varying vec3 world_normal;
 
 void vertex() {
 
-	//	Will get the noise based on the vertex world position
-	vec3 vertex_world_position = (INV_VIEW_MATRIX * vec4(VERTEX, 1.0)).xyz;
-
 	vec3 position = VERTEX;
 
 	position.x += wind_strength.x * sin(TIME * wind_frequency) ;
 	position.z += wind_strength.y * cos(TIME * wind_frequency) ;
 
 	//	Adds swag
-	vec2 uv = TIME * wind_frequency / 100.0 + vec2( vertex_world_position.x, vertex_world_position.z) ;
+	vec2 uv = TIME * wind_frequency / 100.0 + vec2( position.x, position.z) ;
 	float noise = texture(noise_texture, uv).r;
 	noise = (noise - 0.5) * 2.0 ;
 	position.x += noise * wind_strength.x * 5.0;
@@ -59,28 +54,21 @@ void vertex() {
 
 void fragment() {
 
-	if (FRONT_FACING || draw_back_faces) {
+	float normal_dot = dot(world_normal, vec3(0.0,1.0,0.0)) ;
 
-		float normal_dot = dot(world_normal, vec3(0.0,1.0,0.0)) ;
+	vec2 uv = UV * material_scale;
+	vec4 texture_color = texture(material_texture, uv * material_scale);
 
-		vec2 uv = UV * material_scale;
-		vec4 texture_color = texture(material_texture, uv * material_scale);
+	float color_blend = 0.0;
+	color_blend = normal_dot * 0.5 + 0.5 ;// from -1 to 1 to 0 to 1
+	color_blend = pow(color_blend, 30.0 - gradient_falloff);
+	color_blend = clamp(color_blend, 0.0, 1.0);
 
-		float color_blend = 0.0;
-		color_blend = normal_dot * 0.5 + 0.5 ;// from -1 to 1 to 0 to 1
-		color_blend = pow(color_blend, 30.0 - gradient_falloff);
-		color_blend = clamp(color_blend, 0.0, 1.0);
+	vec3 leaves_color = mix(color, gradient_color, color_blend) ;
 
-		vec3 leaves_color = mix(color, gradient_color, color_blend) ;
+	ALBEDO = leaves_color * texture_color.rgb;
 
-		ALBEDO = leaves_color * texture_color.rgb;
-
-		ALPHA = texture_color.a ;
-		ALPHA_SCISSOR_THRESHOLD = alpha_cut_off;
+	ALPHA = texture_color.a ;
+	ALPHA_SCISSOR_THRESHOLD = alpha_cut_off;
 	
-	}
-	else {
-		ALPHA = 0.0;
-	}
-
 }
